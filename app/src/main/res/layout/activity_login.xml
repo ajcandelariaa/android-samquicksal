@@ -96,21 +96,11 @@
             android:text="Forgot Password?"
             android:gravity="end" />
 
-        <TextView
-            android:id="@+id/tvIncorretPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:textColor="@color/loginColor"
-            android:fontFamily="@font/montserrat"
-            android:textAlignment="center"
-            android:text="Invalid Username and Password"
-            android:gravity="center" />
-
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/login_button"
             android:fontFamily="@font/montserrat"
@@ -136,6 +126,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.500684" />
+        app:layout_constraintGuide_begin="481dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

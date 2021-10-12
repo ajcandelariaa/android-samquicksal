@@ -30,12 +30,14 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/customerImage"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="20dp"
                     android:src="@drawable/sample_rlogo" />
 
                 <TextView
+                    android:id="@+id/customerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Aj Candelaria"
@@ -44,7 +46,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/customerEmailAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"

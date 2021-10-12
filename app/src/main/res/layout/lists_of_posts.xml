@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/ivPostImage"
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:scaleType="centerCrop"
@@ -16,7 +16,7 @@
         app:srcCompat="@drawable/sample_post" />
 
     <TextView
-        android:id="@+id/textView30"
+        android:id="@+id/tvPostDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -24,9 +24,9 @@
         android:text="Top Popular Order"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintEnd_toEndOf="@+id/ivPostImage"
+        app:layout_constraintStart_toStartOf="@+id/ivPostImage"
+        app:layout_constraintTop_toBottomOf="@+id/ivPostImage" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

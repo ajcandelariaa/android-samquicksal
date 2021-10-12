@@ -28,7 +28,7 @@
 
 
                 <TextView
-                    android:id="@+id/textView17"
+                    android:id="@+id/tvAboutRestaurantName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -43,7 +43,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView18"
+                    android:id="@+id/tvAboutRestaurantAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -51,9 +51,9 @@
                     android:fontFamily="@font/montserrat"
                     android:text="Morayta, Metro Manila"
                     android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="@+id/textView17"
-                    app:layout_constraintStart_toStartOf="@+id/textView17"
-                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
+                    app:layout_constraintEnd_toEndOf="@+id/tvAboutRestaurantName"
+                    app:layout_constraintStart_toStartOf="@+id/tvAboutRestaurantName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAboutRestaurantName" />
 
                 <TextView
                     android:id="@+id/textView19"
@@ -65,7 +65,7 @@
                     android:text="Opens at 10:00 am"
                     android:textColor="@color/restaurantOpeningTextColor"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvAboutRestaurantAddress" />
 
                 <TextView
                     android:id="@+id/textView20"
@@ -77,7 +77,7 @@
                     android:text="Closes at 10:00 pm"
                     android:textColor="@color/closingTimeTextColor"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvAboutRestaurantAddress" />
 
 
                 <ImageView
@@ -159,7 +159,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView23"
+                        android:id="@+id/tvAboutTablesCapacity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat"
@@ -205,7 +205,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView25"
+                        android:id="@+id/tvAboutReservedTables"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat"
@@ -263,7 +263,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView232"
+                        android:id="@+id/tvAboutNumberOfPeople"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat"
@@ -309,7 +309,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView252"
+                        android:id="@+id/tvAboutNumberOfQueues"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat"

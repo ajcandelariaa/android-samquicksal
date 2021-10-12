@@ -11,19 +11,26 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Samquicksal2">
+        android:theme="@style/Theme.Samquicksal2"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".TransactionDetailsActivity"
-            android:theme="@style/HomeScreen"  />
+            android:theme="@style/HomeScreen" />
         <activity
             android:name=".RestaurantViewActivity"
             android:theme="@style/HomeScreen" />
-        <activity android:name=".sidebarActivities.ScanQrCode" />
+        <activity
+            android:name=".sidebarActivities.ScanQrCode"
+            android:theme="@style/HomeScreen" />
         <activity
             android:name=".sidebarActivities.TransactionHistory"
             android:theme="@style/HomeScreen" />
-        <activity android:name=".sidebarActivities.Rewards" />
-        <activity android:name=".sidebarActivities.Account" />
+        <activity
+            android:name=".sidebarActivities.Rewards"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".sidebarActivities.Account"
+            android:theme="@style/HomeScreen" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/HomeScreen" />

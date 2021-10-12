@@ -24,10 +24,8 @@ class ListsOfRestaurantsViewModel:ViewModel() {
         val retroInstance = RetroInstance.getRetroInstance()
         val retroService = retroInstance.create(RetroServiceInterface::class.java)
         val call = retroService.getRestaurantList()
-        Log.d("message", "CALL : $call")
         call.enqueue(object : retrofit2.Callback<List<ListOfRestaurantModel>> {
             override fun onFailure(call: Call<List<ListOfRestaurantModel>>?, t: Throwable?) {
-                Log.d("message", "FAILED")
                 liveDataList.postValue(null)
             }
 
@@ -35,7 +33,6 @@ class ListsOfRestaurantsViewModel:ViewModel() {
                 call: Call<List<ListOfRestaurantModel>>?,
                 response: Response<List<ListOfRestaurantModel>>?
             ) {
-                Log.d("message", "$response")
                 if (response != null) {
                     liveDataList.postValue(response.body())
                 }

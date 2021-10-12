@@ -2,13 +2,21 @@ package com.altwav.samquicksal2
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.altwav.samquicksal2.models.RegisterCustomerModel
+import com.altwav.samquicksal2.models.RegisterCustomerModelResponse
+import com.altwav.samquicksal2.viewmodel.RegisterCustomerViewModel
 import kotlinx.android.synthetic.main.activity_register.*
 import java.util.regex.Pattern
 
 
 class Register : AppCompatActivity() {
+    private lateinit var viewModel: RegisterCustomerViewModel
+
     private val validEmail = Pattern.compile(
         "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
                 "\\@" +
@@ -28,6 +36,23 @@ class Register : AppCompatActivity() {
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
         }
+
+        viewModel = ViewModelProvider(this).get(RegisterCustomerViewModel::class.java)
+        viewModel.getRegisterCustomerObserver().observe(this, Observer <RegisterCustomerModelResponse>{
+            if(it == null){
+                Toast.makeText(this, "Registration Failed", Toast.LENGTH_SHORT).show()
+            } else {
+                if(it.status == "Registered Successfully"){
+                    Toast.makeText(this, "${it.status}", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("id", it.id)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(this, "${it.status}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
 
         btnSignup.setOnClickListener {
             val fullName = etRName.text.toString()
@@ -117,10 +142,10 @@ class Register : AppCompatActivity() {
             } else { etRConfirmPassword.setBackgroundResource(R.drawable.edit_text_rounded) }
 
 
-
             // CHECK ERRORS
             if(countError == 0) {
-                Toast.makeText(this, "Registered Successfully", Toast.LENGTH_SHORT).show()
+                val customer = RegisterCustomerModel(fullName, emailAddress, contactNumber, password)
+                viewModel.registerNewCustomer(customer)
             }
         }
     }

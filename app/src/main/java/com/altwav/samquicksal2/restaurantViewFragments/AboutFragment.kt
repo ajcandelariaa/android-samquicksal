@@ -1,15 +1,23 @@
 package com.altwav.samquicksal2.restaurantViewFragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.ListsOfPostsAdapter
 import com.altwav.samquicksal2.Adapters.RatedRestaurantsAdapter
 import com.altwav.samquicksal2.R
+import com.altwav.samquicksal2.RestaurantViewActivity
+import com.altwav.samquicksal2.viewmodel.ListsOfRestaurantsViewModel
+import com.altwav.samquicksal2.viewmodel.RestaurantAboutViewModel
+import kotlinx.android.synthetic.main.fragment_about.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,12 +50,36 @@ class AboutFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         val view = inflater.inflate(R.layout.fragment_about, container, false)
+
+        val restaurantId = (activity as RestaurantViewActivity?)?.getRestaurantId()
 
         recyclerView = view.findViewById(R.id.postsRecyclerView)
         adapter = ListsOfPostsAdapter()
         recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
+
+
+        val viewModel = ViewModelProvider(this).get<RestaurantAboutViewModel>()
+        viewModel.getRestaurantAboutObserver().observe(viewLifecycleOwner, {
+            if (it != null){
+                adapter.setRestaurantPost(it.rPosts)
+                adapter.notifyDataSetChanged()
+                view.tvAboutRestaurantName.text = it.rName
+                view.tvAboutRestaurantAddress.text = it.rAddress
+                view.tvAboutTablesCapacity.text = "${it.rTableStatus} / ${it.rTableCapacity}"
+                view.tvAboutReservedTables.text = it.rReservedTables.toString()
+                view.tvAboutNumberOfPeople.text = it.rNumberOfPeople.toString()
+                view.tvAboutNumberOfQueues.text = it.rNumberOfQueues.toString()
+            } else {
+                Toast.makeText(activity, "Error in getting list", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        if (restaurantId != null) {
+            viewModel.getRestaurantAboutInfo(restaurantId)
+        }
 
         return view
 

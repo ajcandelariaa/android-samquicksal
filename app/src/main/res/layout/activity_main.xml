@@ -18,17 +18,17 @@
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             android:backgroundTint="@color/white"
-            android:elevation="4dp"
-            android:contentInsetLeft="0dp"
             android:contentInsetStart="0dp"
-            app:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp"
-            android:contentInsetRight="0dp"
+            android:contentInsetLeft="0dp"
             android:contentInsetEnd="0dp"
-            app:contentInsetRight="0dp"
-            app:contentInsetEnd="0dp"
+            android:contentInsetRight="0dp"
+            android:elevation="4dp"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
+            app:contentInsetEnd="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -43,8 +43,8 @@
                     android:id="@+id/ivHamburger"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
                     android:onClick="ClickMenu"
                     android:src="@drawable/ic_menu2"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -55,11 +55,13 @@
                     android:id="@+id/ivSamquicksalTextLogo"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
+                    android:src="@drawable/samquicksal_text_logo"
                     app:layout_constraintBottom_toBottomOf="@+id/ivHamburger"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:src="@drawable/samquicksal_text_logo"
-                    app:layout_constraintTop_toTopOf="@+id/ivHamburger" />
+                    app:layout_constraintTop_toTopOf="@+id/ivHamburger"
+                    app:layout_constraintVertical_bias="0.454" />
 
                 <TextView
                     android:id="@+id/tvTitle"
@@ -72,6 +74,17 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/ivHamburger" />
+
+                <ImageView
+                    android:id="@+id/ivOngoingGif"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/ongoing_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -106,7 +119,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-            app:layout_constraintVertical_bias="0.0"/>
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -116,8 +129,7 @@
         android:layout_gravity="start"
         android:background="#fff">
 
-        <include
-            layout="@layout/main_nav_drawer"/>
+        <include layout="@layout/main_nav_drawer" />
 
     </RelativeLayout>
 

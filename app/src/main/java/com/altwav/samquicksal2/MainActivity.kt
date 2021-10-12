@@ -4,28 +4,44 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat.recreate
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.altwav.samquicksal2.mainActivityFragments.HomeFragment
 import com.altwav.samquicksal2.mainActivityFragments.NotificationsFragment
 import com.altwav.samquicksal2.mainActivityFragments.PromosFragment
 import com.altwav.samquicksal2.mainActivityFragments.RestaurantsFragment
+import com.altwav.samquicksal2.models.HomepageCustomerModel
+import com.altwav.samquicksal2.models.HomepageCustomerModelResponse
+import com.altwav.samquicksal2.models.LoginCustomerModel
+import com.altwav.samquicksal2.models.LoginCustomerModelResponse
 import com.altwav.samquicksal2.sidebarActivities.Account
 import com.altwav.samquicksal2.sidebarActivities.Rewards
 import com.altwav.samquicksal2.sidebarActivities.ScanQrCode
 import com.altwav.samquicksal2.sidebarActivities.TransactionHistory
+import com.altwav.samquicksal2.viewmodel.HomepageCustomerViewModel
+import com.altwav.samquicksal2.viewmodel.LoginCustomerViewModel
+import com.bumptech.glide.Glide
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_restaurants.*
+import kotlinx.android.synthetic.main.main_nav_drawer.*
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var viewModel: HomepageCustomerViewModel
+
     var drawerLayout: DrawerLayout? = null
 
     private val fragment1: Fragment = HomeFragment()
@@ -38,6 +54,42 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val customerId = intent.getIntExtra("id", 0)
+        getCustomerId(customerId)
+
+        viewModel = ViewModelProvider(this).get(HomepageCustomerViewModel::class.java)
+        viewModel.getHomepageCustomerObserver().observe(this, Observer <HomepageCustomerModelResponse>{
+            if(it != null){
+                customerEmailAddress.text = it.emailAddress
+                customerName.text = it.name
+                Glide.with(this).load(it.profileImage).into(customerImage)
+                if(it.status == "onGoing"){
+                    ivOngoingGif.visibility = View.VISIBLE
+                    Glide.with(view).load(R.drawable.ongoing_icon).into(ivOngoingGif)
+                    ivOngoingGif.setOnClickListener {
+                        finish()
+                        overridePendingTransition( 0, 0);
+                        startActivity(intent);
+                        overridePendingTransition( 0, 0);
+                        Log.d("message",  "$customerId")
+                    }
+                } else {
+                    ivOngoingGif.visibility = View.GONE
+                }
+            }
+        })
+
+        if (customerId != 0){
+            viewModel.getHomepageInfoCustomer(customerId)
+        }
+
+
+
+
+
+
+
         drawerLayout = findViewById(R.id.drawer_layout)
 
         tvTitle.visibility = View.GONE
@@ -46,6 +98,7 @@ class MainActivity : AppCompatActivity() {
         fm.beginTransaction().add(R.id.fragment, fragment3, "3").hide(fragment3).commit();
         fm.beginTransaction().add(R.id.fragment, fragment2, "2").hide(fragment2).commit();
         fm.beginTransaction().add(R.id.fragment,fragment1, "1").commit();
+
 
 
         bottomNavigationView.setOnItemSelectedListener {
@@ -103,9 +156,15 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    private var custId = 0
+    fun getCustomerId(id: Int){
+        custId = id
+    }
+
     //PARA SA MGA NEW ACTIVITES
     fun ClickAccount(view: View?){
         val intent = Intent(this, Account::class.java)
+        intent.putExtra("id", custId)
         startActivity(intent)
     }
     fun ClickRewards(view: View?){
