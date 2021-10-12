@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background3"
+    tools:context=".Register">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="450dp"
+        android:layout_height="450dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/register_cricle" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="263dp"
+        android:layout_height="114dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="136dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:srcCompat="@drawable/samquicksal_text_desc_logo" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.500684" />
+
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginHorizontal="32dp"-->
+    <!--        android:layout_marginBottom="68dp"-->
+    <!--        android:background="@android:drawable/dialog_holo_light_frame"-->
+    <!--        android:paddingHorizontal="30dp"-->
+    <!--        android:paddingTop="20dp"-->
+    <!--        android:paddingBottom="50dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent">-->
+
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:id="@+id/constraintLayout"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:paddingTop="20dp"-->
+    <!--            android:paddingBottom="30dp"-->
+    <!--            app:layout_constraintEnd_toEndOf="@+id/etFullName"-->
+    <!--            app:layout_constraintStart_toStartOf="@+id/etFullName"-->
+    <!--            app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/textView3"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:fontFamily="@font/roboto"-->
+    <!--                android:paddingRight="10dp"-->
+    <!--                android:text="Welcome"-->
+    <!--                android:textColor="@color/loginColor"-->
+    <!--                android:textSize="24sp"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--            <ImageView-->
+    <!--                android:layout_width="25dp"-->
+    <!--                android:layout_height="25dp"-->
+    <!--                android:src="@drawable/ic_smiley"-->
+    <!--                app:layout_constraintBottom_toBottomOf="@+id/textView3"-->
+    <!--                app:layout_constraintStart_toEndOf="@+id/textView3"-->
+    <!--                app:layout_constraintTop_toTopOf="@+id/textView3" />-->
+
+    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <!--        <EditText-->
+    <!--            android:id="@+id/etFullName"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:backgroundTint="@color/labelColor"-->
+    <!--            android:fontFamily="@font/roboto"-->
+    <!--            android:hint="Full name"-->
+    <!--            android:inputType="textPersonName"-->
+    <!--            android:text=""-->
+    <!--            android:textColor="@color/labelColor"-->
+    <!--            android:textColorHint="@color/labelColor"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />-->
+
+    <!--        <EditText-->
+    <!--            android:id="@+id/etEmailAddress"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:backgroundTint="@color/labelColor"-->
+    <!--            android:fontFamily="@font/roboto"-->
+    <!--            android:hint="Email Address"-->
+    <!--            android:inputType="textEmailAddress"-->
+    <!--            android:text=""-->
+    <!--            android:textColor="@color/labelColor"-->
+    <!--            android:textColorHint="@color/labelColor"-->
+    <!--            app:layout_constraintEnd_toEndOf="@+id/etFullName"-->
+    <!--            app:layout_constraintStart_toStartOf="@+id/etFullName"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/etFullName" />-->
+
+    <!--        <EditText-->
+    <!--            android:id="@+id/etContactNumber"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:backgroundTint="@color/labelColor"-->
+    <!--            android:fontFamily="@font/roboto"-->
+    <!--            android:hint="Contact Number"-->
+    <!--            android:inputType="phone"-->
+    <!--            android:text=""-->
+    <!--            android:textColor="@color/labelColor"-->
+    <!--            android:textColorHint="@color/labelColor"-->
+    <!--            app:layout_constraintEnd_toEndOf="@+id/etEmailAddress"-->
+    <!--            app:layout_constraintStart_toStartOf="@+id/etEmailAddress"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/etEmailAddress" />-->
+
+    <!--        <EditText-->
+    <!--            android:id="@+id/etPassword"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:backgroundTint="@color/labelColor"-->
+    <!--            android:fontFamily="@font/roboto"-->
+    <!--            android:hint="Password"-->
+    <!--            android:inputType="textPassword"-->
+    <!--            android:text=""-->
+    <!--            android:textColor="@color/labelColor"-->
+    <!--            android:textColorHint="@color/labelColor"-->
+    <!--            app:layout_constraintEnd_toEndOf="@+id/etContactNumber"-->
+    <!--            app:layout_constraintStart_toStartOf="@+id/etContactNumber"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/etContactNumber" />-->
+
+    <!--        <EditText-->
+    <!--            android:id="@+id/etConfirmPassword"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:backgroundTint="@color/labelColor"-->
+    <!--            android:fontFamily="@font/roboto"-->
+    <!--            android:hint="Confirm Password"-->
+    <!--            android:inputType="textPassword"-->
+    <!--            android:text=""-->
+    <!--            android:textColor="@color/labelColor"-->
+    <!--            android:textColorHint="@color/labelColor"-->
+    <!--            app:layout_constraintEnd_toEndOf="@+id/etPassword"-->
+    <!--            app:layout_constraintStart_toStartOf="@+id/etPassword"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/etPassword" />-->
+
+    <!--        <Button-->
+    <!--            android:id="@+id/btnSignup"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginTop="44dp"-->
+    <!--            android:background="@drawable/login_button"-->
+    <!--            android:text="Sign Up"-->
+    <!--            android:textAllCaps="false"-->
+    <!--            app:backgroundTint="@color/loginColor"-->
+    <!--            app:layout_constraintEnd_toEndOf="@+id/etConfirmPassword"-->
+    <!--            app:layout_constraintHorizontal_bias="0.0"-->
+    <!--            app:layout_constraintStart_toStartOf="@+id/etConfirmPassword"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/etConfirmPassword" />-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/tvLogin"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginTop="10dp"-->
+    <!--            android:gravity="center_horizontal"-->
+    <!--            android:text="Already have an account? Log In here"-->
+    <!--            android:textAlignment="center"-->
+    <!--            android:textColor="@color/loginColor"-->
+    <!--            app:layout_constraintEnd_toEndOf="@+id/btnSignup"-->
+    <!--            app:layout_constraintStart_toStartOf="@+id/btnSignup"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/btnSignup" />-->
+
+
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="60dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/etRName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edit_text_rounded"
+            android:drawableLeft="@drawable/ic_register_person"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/montserrat"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:text=""
+            android:textColorHint="@color/labelColor"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etREmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edit_text_rounded"
+            android:drawableLeft="@drawable/ic_email_address"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/montserrat"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:text=""
+            android:textColorHint="@color/labelColor"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etRContactNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edit_text_rounded"
+            android:drawableLeft="@drawable/ic_phone"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/montserrat"
+            android:hint="Contact Number"
+            android:inputType="phone"
+            android:padding="10dp"
+            android:text=""
+            android:textColorHint="@color/labelColor"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etRPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edit_text_rounded"
+            android:drawableLeft="@drawable/ic_lock"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/montserrat"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:text=""
+            android:textColorHint="@color/labelColor"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etRConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/edit_text_rounded"
+            android:drawableLeft="@drawable/ic_check"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/montserrat"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:text=""
+            android:textColorHint="@color/labelColor"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnSignup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_button"
+            android:fontFamily="@font/montserrat"
+            android:text="Sign Up"
+            android:textAllCaps="false"
+            android:layout_marginBottom="30dp"
+            app:backgroundTint="@color/loginColor"
+            app:layout_constraintEnd_toEndOf="@+id/etRConfirmPassword"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/etRConfirmPassword"
+            app:layout_constraintTop_toBottomOf="@+id/etRConfirmPassword" />
+
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:text="Already have an account? Login here"
+            android:textAlignment="center"
+            android:textColor="@color/loginColor"
+            app:layout_constraintEnd_toEndOf="@+id/btnSignup"
+            app:layout_constraintStart_toStartOf="@+id/btnSignup"
+            app:layout_constraintTop_toBottomOf="@+id/btnSignup" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

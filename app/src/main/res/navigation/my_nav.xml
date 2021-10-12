@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.altwav.samquicksal2.mainActivityFragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/restaurantsFragment"
+        android:name="com.altwav.samquicksal2.mainActivityFragments.RestaurantsFragment"
+        android:label="fragment_restaurants"
+        tools:layout="@layout/fragment_restaurants" />
+    <fragment
+        android:id="@+id/promosFragment"
+        android:name="com.altwav.samquicksal2.mainActivityFragments.PromosFragment"
+        android:label="fragment_promos"
+        tools:layout="@layout/fragment_promos" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.altwav.samquicksal2.mainActivityFragments.NotificationsFragment"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_notifications" />
+</navigation>
