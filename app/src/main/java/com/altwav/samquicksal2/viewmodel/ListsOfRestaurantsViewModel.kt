@@ -10,11 +10,7 @@ import retrofit2.Call
 import retrofit2.Response
 
 class ListsOfRestaurantsViewModel:ViewModel() {
-    var liveDataList: MutableLiveData<List<ListOfRestaurantModel>>
-
-    init {
-        liveDataList = MutableLiveData()
-    }
+    var liveDataList: MutableLiveData<List<ListOfRestaurantModel>> = MutableLiveData()
 
     fun getLiveDataObserver(): MutableLiveData<List<ListOfRestaurantModel>> {
         return liveDataList

@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Samquicksal2"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".RestaurantPromoViewActivity"
+            android:exported="true" />
+        <activity
             android:name=".TransactionDetailsActivity"
             android:theme="@style/HomeScreen" />
         <activity

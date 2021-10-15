@@ -11,12 +11,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.altwav.samquicksal2.Adapters.ListOfStoreHoursAdapter
 import com.altwav.samquicksal2.Adapters.ListsOfPostsAdapter
 import com.altwav.samquicksal2.Adapters.RatedRestaurantsAdapter
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.RestaurantViewActivity
 import com.altwav.samquicksal2.viewmodel.ListsOfRestaurantsViewModel
 import com.altwav.samquicksal2.viewmodel.RestaurantAboutViewModel
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.activity_account.*
 import kotlinx.android.synthetic.main.fragment_about.view.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -36,6 +39,9 @@ class AboutFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ListsOfPostsAdapter
+
+    private lateinit var recyclerView2: RecyclerView
+    private lateinit var adapter2: ListOfStoreHoursAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,18 +66,26 @@ class AboutFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
 
+        recyclerView2 = view.findViewById(R.id.storeHoursRecyclerView)
+        adapter2 = ListOfStoreHoursAdapter()
+        recyclerView2.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        recyclerView2.adapter = adapter2
 
         val viewModel = ViewModelProvider(this).get<RestaurantAboutViewModel>()
         viewModel.getRestaurantAboutObserver().observe(viewLifecycleOwner, {
             if (it != null){
                 adapter.setRestaurantPost(it.rPosts)
                 adapter.notifyDataSetChanged()
+
+                adapter2.setRestaurantSchedule(it.rSchedule)
+                adapter2.notifyDataSetChanged()
                 view.tvAboutRestaurantName.text = it.rName
                 view.tvAboutRestaurantAddress.text = it.rAddress
                 view.tvAboutTablesCapacity.text = "${it.rTableStatus} / ${it.rTableCapacity}"
                 view.tvAboutReservedTables.text = it.rReservedTables.toString()
                 view.tvAboutNumberOfPeople.text = it.rNumberOfPeople.toString()
                 view.tvAboutNumberOfQueues.text = it.rNumberOfQueues.toString()
+                Glide.with(this).load(it.rImage).into(view.ivAboutRestaurantImage)
             } else {
                 Toast.makeText(activity, "Error in getting list", Toast.LENGTH_SHORT).show()
             }

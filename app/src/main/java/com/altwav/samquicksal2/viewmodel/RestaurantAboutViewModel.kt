@@ -2,7 +2,6 @@ package com.altwav.samquicksal2.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.altwav.samquicksal2.models.AccountCustomerModelResponse
 import com.altwav.samquicksal2.models.RestaurantModelResponse
 import com.altwav.samquicksal2.retrofit.RetroInstance
 import com.altwav.samquicksal2.retrofit.RetroServiceInterface

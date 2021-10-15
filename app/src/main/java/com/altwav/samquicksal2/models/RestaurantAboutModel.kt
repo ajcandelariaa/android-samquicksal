@@ -5,24 +5,25 @@ data class RestaurantAboutModel(
 )
 
 data class RestaurantModelResponse(
-    val rName: String,
-    val rAddress: String,
-    val rSchedule: List<RSchedule>,
-    val rTableCapacity: Int,
-    val rTableStatus: Int,
-    val rReservedTables: Int,
-    val rNumberOfPeople: Int,
-    val rNumberOfQueues: Int,
-    val rPosts: List<RPosts>,
+    val rName: String? = null,
+    val rAddress: String? = null,
+    val rImage: String? = null,
+    val rSchedule: List<RSchedule>? = null,
+    val rTableCapacity: Int? = null,
+    val rTableStatus: Int? = null,
+    val rReservedTables: Int? = null,
+    val rNumberOfPeople: Int? = null,
+    val rNumberOfQueues: Int? = null,
+    val rPosts: List<RPosts>? = null,
 )
 
 data class RSchedule(
-    val Closing: String,
-    val Day: String,
+    val Closing: String? = null,
+    val Day: String? = null,
     val Opening: String
 )
 
 data class RPosts(
-    val description: String,
-    val image: String
+    val description: String? = null,
+    val image: String? = null,
 )

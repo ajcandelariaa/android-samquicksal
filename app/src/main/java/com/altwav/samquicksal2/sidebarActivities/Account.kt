@@ -15,6 +15,9 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_account.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_nav_drawer.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class Account : AppCompatActivity() {
     private lateinit var viewModel: AccountCustomerViewModel
@@ -60,8 +63,6 @@ class Account : AppCompatActivity() {
                 Glide.with(this).load(it.profileImage).into(ivAccountImageOuter)
             }
         })
-
-
 
         if (customerId != 0){
             viewModel.getAccountInfoCustomer(customerId)

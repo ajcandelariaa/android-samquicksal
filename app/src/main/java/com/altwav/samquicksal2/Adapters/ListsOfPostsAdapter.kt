@@ -1,6 +1,5 @@
 package com.altwav.samquicksal2.Adapters
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,11 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.R
-import com.altwav.samquicksal2.models.ListOfRestaurantModel
 import com.altwav.samquicksal2.models.RPosts
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.lists_of_posts.view.*
-import kotlinx.android.synthetic.main.lists_of_restaurant.view.*
 
 class ListsOfPostsAdapter : RecyclerView.Adapter<ListsOfPostsAdapter.MyViewHolder>() {
 
@@ -46,6 +43,5 @@ class ListsOfPostsAdapter : RecyclerView.Adapter<ListsOfPostsAdapter.MyViewHolde
             postDescription.text = data.description
             Glide.with(itemView).load(data.image).into(postImage)
         }
-
     }
 }

@@ -13,9 +13,6 @@ import com.altwav.samquicksal2.models.ListOfRestaurantModel
 import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.lists_of_restaurant.view.*
-import android.os.Bundle
-import com.altwav.samquicksal2.restaurantViewFragments.AboutFragment
-
 
 class ListsOfRestaurantAdapter : RecyclerView.Adapter<ListsOfRestaurantAdapter.MyViewHolder>() {
 

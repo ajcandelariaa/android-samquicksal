@@ -21,7 +21,7 @@
     <color name="searchBackgroundColor">#F1F1F1</color>
     <color name="restaurantAddressTextColor">#387BAB</color>
     <color name="restaurantOpeningTextColor">#0AA034</color>
-    <color name="promosBackgroundColorHeader">#FBF6F6</color>
+    <color name="promosBackgroundColorHeader">#FBF6F6</color>C8C8C8
     <color name="promosSubTextColor">#8A8585</color>
     <color name="closingTimeTextColor">#A70000</color>
     <color name="notificationBgColor">#E5EFF5</color>

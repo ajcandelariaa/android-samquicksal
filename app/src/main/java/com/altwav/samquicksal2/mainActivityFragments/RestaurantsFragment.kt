@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.ListsOfRestaurantAdapter
 import com.altwav.samquicksal2.R
+import com.altwav.samquicksal2.RestaurantViewActivity
 import com.altwav.samquicksal2.viewmodel.ListsOfRestaurantsViewModel
+import kotlinx.android.synthetic.main.fragment_restaurants.view.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -57,12 +59,14 @@ class RestaurantsFragment : Fragment()  {
 
         val viewModel = ViewModelProvider(this).get<ListsOfRestaurantsViewModel>()
         viewModel.getLiveDataObserver().observe(viewLifecycleOwner, {
-            if (it != null){
+            if (it == null || it.isEmpty()){
+                view.tvNoRestaurant.visibility = View.VISIBLE
+            } else {
                 adapter.setRestaurantList(it)
                 adapter.notifyDataSetChanged()
-            } else {
-                Toast.makeText(activity, "Error in getting list", Toast.LENGTH_SHORT).show()
+                view.tvNoRestaurant.visibility = View.GONE
             }
+            Log.d("message", "IT : $it")
         })
         viewModel.makeApiCall()
         return view

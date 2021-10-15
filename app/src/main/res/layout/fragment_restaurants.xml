@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mainActivityFragments.RestaurantsFragment"
-    android:layout_marginHorizontal="30dp">
+    android:layout_marginHorizontal="30dp"
+    tools:context=".mainActivityFragments.RestaurantsFragment">
 
     <EditText
         android:id="@+id/editText"
@@ -38,6 +38,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tvNoRestaurant"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/loginColor"
+        android:textSize="16sp"
+        android:text="There are no Restaurant as of Now"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

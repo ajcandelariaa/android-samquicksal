@@ -21,20 +21,24 @@
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_scan_qr_code.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_transaction_details.xml" value="0.25" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_transaction_history.xml" value="0.25" />
-        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_about.xml" value="0.5" />
-        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_book.xml" value="0.33695652173913043" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_about.xml" value="0.33" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_book.xml" value="0.5" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_notifications.xml" value="0.19927536231884058" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_promo.xml" value="0.33695652173913043" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_promos.xml" value="0.33" />
-        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_restaurants.xml" value="0.33" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_restaurants.xml" value="0.5" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_reviews.xml" value="0.33695652173913043" />
-        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_rewards.xml" value="0.33" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_rewards.xml" value="0.49633699633699635" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/list_of_food_sets.xml" value="0.9" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/list_of_notifications.xml" value="0.5" />
-        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/lists_of_particular_promos.xml" value="0.25" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/list_of_order_sets.xml" value="0.33" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/list_of_store_hours.xml" value="0.4654126213592233" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/list_of_tasks.xml" value="0.40747330960854095" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/lists_of_particular_promos.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/lists_of_posts.xml" value="0.327445652173913" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/lists_of_promos.xml" value="0.33695652173913043" />
-        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/lists_of_restaurant.xml" value="0.33" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/lists_of_restaurant.xml" value="0.67" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/lists_of_reviews.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/lists_of_transactions.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/main_nav_drawer.xml" value="0.22" />

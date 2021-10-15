@@ -1,5 +1,6 @@
 package com.altwav.samquicksal2.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.altwav.samquicksal2.models.LoginCustomerModel
@@ -24,15 +25,16 @@ class LoginCustomerViewModel: ViewModel() {
             override fun onFailure(call: Call<LoginCustomerModelResponse>?, t: Throwable?) {
                 createLoginCustomerModelResponseLD.postValue(null)
             }
-
             override fun onResponse(
                 call: Call<LoginCustomerModelResponse>?,
                 response: Response<LoginCustomerModelResponse>?
             ) {
                 if(response != null){
                     createLoginCustomerModelResponseLD.postValue(response.body())
+                    Log.d("message", "SUCESSS")
                 } else {
                     createLoginCustomerModelResponseLD.postValue(null)
+                    Log.d("message", "FAILED")
                 }
             }
 

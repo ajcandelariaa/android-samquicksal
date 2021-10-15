@@ -19,10 +19,9 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="20dp"
-            android:scaleType="centerCrop"
             android:layout_marginLeft="20dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/sample_rlogo"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

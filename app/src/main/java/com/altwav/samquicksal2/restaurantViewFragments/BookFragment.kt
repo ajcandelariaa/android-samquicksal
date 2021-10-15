@@ -1,11 +1,21 @@
 package com.altwav.samquicksal2.restaurantViewFragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.altwav.samquicksal2.Adapters.ListOfFoodSetsAdapter
+import com.altwav.samquicksal2.Adapters.ListOfOrderSetsAdapter
 import com.altwav.samquicksal2.R
+import com.altwav.samquicksal2.RestaurantViewActivity
+import com.altwav.samquicksal2.viewmodel.RestaurantMenuViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +32,9 @@ class BookFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: ListOfOrderSetsAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,7 +48,32 @@ class BookFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_book, container, false)
+        val view = inflater.inflate(R.layout.fragment_book, container, false)
+        val restaurantId = (activity as RestaurantViewActivity?)?.getRestaurantId()
+
+        recyclerView = view.findViewById(R.id.orderSetRecyclerView)
+        adapter = ListOfOrderSetsAdapter()
+        recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        recyclerView.adapter = adapter
+
+        val viewModel = ViewModelProvider(this).get<RestaurantMenuViewModel>()
+        viewModel.getRestaurantMenuObserver().observe(viewLifecycleOwner, {
+            if(it != null){
+                adapter.setRestaurantMenu(it)
+                adapter.notifyDataSetChanged()
+
+            } else {
+
+            }
+            Log.d("message", "$it")
+        })
+
+        if (restaurantId != null) {
+            viewModel.getMenuInfo(restaurantId)
+        }
+
+
+        return view
     }
 
     companion object {

@@ -18,6 +18,12 @@ interface RetroServiceInterface {
     @GET("get-restaurants/about/{id}")
     fun getRestaurantAboutInfo(@Path("id") id: Int): Call<RestaurantModelResponse>
 
+    @GET("get-restaurants/rewards/{id}")
+    fun getRestaurantRewardPromoInfo(@Path("id") id: Int): Call<RestaurantRewardPromoModelResponse>
+
+    @GET("get-restaurants/menu/{id}")
+    fun getRestaurantMenuInfo(@Path("id") id: Int): Call<List<RestaurantMenuModelResponse>>
+
 
 
 
