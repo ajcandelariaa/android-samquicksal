@@ -19,6 +19,7 @@ import com.altwav.samquicksal2.viewmodel.RestaurantRewardPromoViewModel
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_rewards.view.*
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.altwav.samquicksal2.R
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -55,7 +56,8 @@ class RewardsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(com.altwav.samquicksal2.R.layout.fragment_rewards, container, false)
+        val view =
+            inflater.inflate(com.altwav.samquicksal2.R.layout.fragment_rewards, container, false)
         val restaurantId = (activity as RestaurantViewActivity?)?.getRestaurantId()
 
         val imageView = view.findViewById<ImageView>(com.altwav.samquicksal2.R.id.gifImage)
@@ -63,53 +65,56 @@ class RewardsFragment : Fragment() {
 
         recyclerView = view.findViewById(com.altwav.samquicksal2.R.id.tasksRecyclerView)
         adapter = ListOfTasksAdapter()
-        recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
 
         recyclerView2 = view.findViewById(com.altwav.samquicksal2.R.id.particularPromosRecyclerview)
         adapter2 = ListsOfParticularPromosAdapter()
-        recyclerView2.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        recyclerView2.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView2.adapter = adapter2
 
         val viewModel = ViewModelProvider(this).get<RestaurantRewardPromoViewModel>()
         viewModel.getRestaurantRewardPromoObserver().observe(viewLifecycleOwner, {
 
-
-            // REWARDS SECTION
-            if(it.stampTasks != null){
-                adapter.setRestaurantTask(it.stampTasks)
-                adapter.notifyDataSetChanged()
-
-                view.tvNoStampCard.visibility = View.GONE
-                view.tvStampReward.text = it.stampReward
-                view.tvStampCapacity.text = it.stampCapacity.toString()
-                view.tvStampValidity.text = it.stampValidity
+            if (it.stampTasks == null && it.promos == null) {
+                view.containerRewardsAndPromo.visibility = ViewGroup.GONE
             } else {
-                view.stampCardContainer.visibility = ViewGroup.GONE
-                view.tvNoStampCard.visibility = View.VISIBLE
-                val constraintLayout: ConstraintLayout = view.parentConstraint
-                val constraintSet = ConstraintSet()
-                constraintSet.clone(constraintLayout)
-                constraintSet.connect(
-                    com.altwav.samquicksal2.R.id.constraintLayout2,
-                    ConstraintSet.TOP,
-                    com.altwav.samquicksal2.R.id.tvNoStampCard,
-                    ConstraintSet.BOTTOM,
-                    80,
-                )
-                constraintSet.applyTo(constraintLayout)
-            }
+                view.containerNoRewardsNoPromo.visibility = ViewGroup.GONE
 
-            // PROMO SECTION
-            if(it.promos != null){
-                adapter2.setRestaurantParticularPromo(it.promos)
-                adapter2.notifyDataSetChanged()
-                view.tvNoPromos.visibility = View.GONE
-            } else {
-                view.tvNoPromos.visibility = View.VISIBLE
+                if (it.stampTasks != null) {
+                    view.containerNoRewards.visibility = ViewGroup.GONE
+                    adapter.setRestaurantTask(it.stampTasks)
+                    adapter.notifyDataSetChanged()
+
+                    view.tvStampReward.text = it.stampReward
+                    view.tvStampCapacity.text = it.stampCapacity.toString()
+                    view.tvStampValidity.text = it.stampValidity
+                } else {
+                    view.stampCardContainer.visibility = ViewGroup.GONE
+                    val constraintLayout: ConstraintLayout = view.containerRewardsAndPromo
+                    val constraintSet = ConstraintSet()
+                    constraintSet.clone(constraintLayout)
+                    constraintSet.connect(
+                        R.id.containerPromoTitle,
+                        ConstraintSet.TOP,
+                        R.id.containerNoRewards,
+                        ConstraintSet.BOTTOM,
+                        80,
+                    )
+                    constraintSet.applyTo(constraintLayout)
+                }
+
+                // PROMO SECTION
+                if (it.promos != null) {
+                    view.containerNoPromos.visibility = ViewGroup.GONE
+                    adapter2.setRestaurantParticularPromo(it.promos, restaurantId!!)
+                    adapter2.notifyDataSetChanged()
+                } else {
+                    view.particularPromosRecyclerview.visibility = View.GONE
+                }
             }
-            Log.d("message", "${it.promos}")
-            Log.d("message", "${it.stampTasks}")
         })
 
 

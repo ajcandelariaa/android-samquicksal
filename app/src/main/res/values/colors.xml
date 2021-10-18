@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="loginColor">#D8345F</color>
-    <color name="labelColor">#588DA8</color>C8C8C8
+    <color name="labelColor">#588DA8</color>
     <color name="gradient2TopColor">#F9BEBE</color>
     <color name="gradient3TopColor">#588DA8</color>
     <color name="sideBarViewColor">#7A7A7A</color>
@@ -21,7 +21,7 @@
     <color name="searchBackgroundColor">#F1F1F1</color>
     <color name="restaurantAddressTextColor">#387BAB</color>
     <color name="restaurantOpeningTextColor">#0AA034</color>
-    <color name="promosBackgroundColorHeader">#FBF6F6</color>C8C8C8
+    <color name="promosBackgroundColorHeader">#FBF6F6</color>
     <color name="promosSubTextColor">#8A8585</color>
     <color name="closingTimeTextColor">#A70000</color>
     <color name="notificationBgColor">#E5EFF5</color>

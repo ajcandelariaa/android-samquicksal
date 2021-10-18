@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/restaurantImage"
+            android:id="@+id/ivListPromoRestaurantImage"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="20dp"
@@ -24,8 +24,9 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/restaurantName"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvListPromoTitle"
+            android:layout_width="0dp"
+            android:layout_marginRight="30dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:fontFamily="@font/montserrat"
@@ -33,29 +34,32 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/restaurantImage"
-            app:layout_constraintTop_toTopOf="@+id/restaurantImage" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivListPromoRestaurantImage"
+            app:layout_constraintTop_toTopOf="@+id/ivListPromoRestaurantImage" />
 
         <TextView
-            android:id="@+id/restaurantAddress"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvListPromoAddress"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Padre Noval St., España Ave."
             android:textColor="@color/restaurantAddressTextColor"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/restaurantName"
-            app:layout_constraintTop_toBottomOf="@+id/restaurantName" />
+            app:layout_constraintEnd_toEndOf="@+id/tvListPromoTitle"
+            app:layout_constraintStart_toStartOf="@+id/tvListPromoTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvListPromoTitle" />
 
         <TextView
-            android:id="@+id/restaurantSchedule"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvListPromoValidity"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:text="June 10, 2021 - July 10, 2021  "
             android:textColor="@color/loginColor"
-            app:layout_constraintBottom_toBottomOf="@+id/restaurantImage"
-            app:layout_constraintStart_toStartOf="@+id/restaurantAddress" />
+            app:layout_constraintBottom_toBottomOf="@+id/ivListPromoRestaurantImage"
+            app:layout_constraintEnd_toEndOf="@+id/tvListPromoAddress"
+            app:layout_constraintStart_toStartOf="@+id/tvListPromoAddress" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

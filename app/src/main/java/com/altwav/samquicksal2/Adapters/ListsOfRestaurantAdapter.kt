@@ -39,10 +39,10 @@ class ListsOfRestaurantAdapter : RecyclerView.Adapter<ListsOfRestaurantAdapter.M
     }
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        private val restaurantName: TextView = itemView.restaurantName
-        private val restaurantAddress: TextView = itemView.restaurantAddress
-        private val restaurantImage: CircleImageView = itemView.restaurantImage
-        private val restaurantSchedule: TextView = itemView.restaurantSchedule
+        private val restaurantName: TextView = itemView.tvListRestaurantTitle
+        private val restaurantAddress: TextView = itemView.tvListRestaurantAddress
+        private val restaurantImage: CircleImageView = itemView.ivListRestaurantRestaurantImage
+        private val restaurantSchedule: TextView = itemView.tvRestaurantSchedule
         private var restaurantId: Int? = null
 
         fun bind(data: ListOfRestaurantModel){

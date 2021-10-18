@@ -24,6 +24,15 @@ interface RetroServiceInterface {
     @GET("get-restaurants/menu/{id}")
     fun getRestaurantMenuInfo(@Path("id") id: Int): Call<List<RestaurantMenuModelResponse>>
 
+    @GET("get-restaurants/promo/detail/{promoId}/{restaurantId}")
+    fun getRestaurantPromoDetailInfo(@Path("promoId") promoId: Int, @Path("restaurantId") restaurantId:Int): Call<RestaurantPromoDetailModelResponse>
+
+    @GET("promos")
+    fun getPromosList(): Call<List<ListOfPromosModel>>
+
+    @GET("get-restaurants/choose-order-set/{id}")
+    fun getRestaurantOrderSet(@Path("id") id: Int): Call<ChooseOrderSetModelResponse>
+
 
 
 

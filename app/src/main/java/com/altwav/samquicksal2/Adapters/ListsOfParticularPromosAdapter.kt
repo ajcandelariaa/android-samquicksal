@@ -13,16 +13,18 @@ import com.altwav.samquicksal2.models.Promo
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.lists_of_particular_promos.view.*
 
-class ListsOfParticularPromosAdapter : RecyclerView.Adapter<ListsOfParticularPromosAdapter.MyViewHolder>() {
+class ListsOfParticularPromosAdapter() : RecyclerView.Adapter<ListsOfParticularPromosAdapter.MyViewHolder>() {
 
     private var restaurantParticularPromo : List<Promo>? = null
-    fun setRestaurantParticularPromo(restaurantParticularPromo1: List<Promo>?){
+    private var restaurantId : Int? = null
+    fun setRestaurantParticularPromo(restaurantParticularPromo1: List<Promo>?, restaurantId1: Int){
         this.restaurantParticularPromo = restaurantParticularPromo1
+        this.restaurantId = restaurantId1
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.lists_of_particular_promos, parent, false)
-        return MyViewHolder(view)
+        return MyViewHolder(view, restaurantId!!)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -37,7 +39,7 @@ class ListsOfParticularPromosAdapter : RecyclerView.Adapter<ListsOfParticularPro
         }
     }
 
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class MyViewHolder(itemView: View, restaurantId2: Int): RecyclerView.ViewHolder(itemView) {
         private val promoName: TextView = itemView.tvPromoName
         private val promoImage: ImageView = itemView.ivPromoImage
         private var promoId: Int? = null
@@ -53,6 +55,7 @@ class ListsOfParticularPromosAdapter : RecyclerView.Adapter<ListsOfParticularPro
                 val context = itemView.context
                 val intent = Intent(context, RestaurantPromoViewActivity::class.java)
                 intent.putExtra("promoId", promoId)
+                intent.putExtra("restaurantId", restaurantId2)
                 context.startActivity(intent)
             }
         }

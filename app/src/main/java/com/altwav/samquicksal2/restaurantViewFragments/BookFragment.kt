@@ -1,5 +1,6 @@
 package com.altwav.samquicksal2.restaurantViewFragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,9 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.ListOfFoodSetsAdapter
 import com.altwav.samquicksal2.Adapters.ListOfOrderSetsAdapter
+import com.altwav.samquicksal2.ChooseOrderSetActivity
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.RestaurantViewActivity
+import com.altwav.samquicksal2.sidebarActivities.Account
 import com.altwav.samquicksal2.viewmodel.RestaurantMenuViewModel
+import kotlinx.android.synthetic.main.fragment_book.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,11 +66,22 @@ class BookFragment : Fragment() {
                 adapter.setRestaurantMenu(it)
                 adapter.notifyDataSetChanged()
 
-            } else {
-
             }
-            Log.d("message", "$it")
         })
+
+        view.btnBookQueue.setOnClickListener {
+            val intent = Intent(context, ChooseOrderSetActivity::class.java)
+            intent.putExtra("restaurantId", restaurantId)
+            intent.putExtra("bookType", "Queue-in")
+            startActivity(intent)
+        }
+
+        view.btnBookReserve.setOnClickListener {
+            val intent = Intent(context, ChooseOrderSetActivity::class.java)
+            intent.putExtra("restaurantId", restaurantId)
+            intent.putExtra("bookType", "Reservation")
+            startActivity(intent)
+        }
 
         if (restaurantId != null) {
             viewModel.getMenuInfo(restaurantId)

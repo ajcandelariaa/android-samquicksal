@@ -2,7 +2,9 @@ package com.altwav.samquicksal2
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -42,7 +44,7 @@ import kotlinx.android.synthetic.main.main_nav_drawer.*
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: HomepageCustomerViewModel
 
-    var drawerLayout: DrawerLayout? = null
+    private var drawerLayout: DrawerLayout? = null
 
     private val fragment1: Fragment = HomeFragment()
     private val fragment2: Fragment = RestaurantsFragment()
@@ -55,7 +57,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val customerId = intent.getIntExtra("id", 0)
+
+        val sharedPreferences: SharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val customerId = sharedPreferences.getInt("CUSTOMER_ID", 0)
+
         getCustomerId(customerId)
 
         viewModel = ViewModelProvider(this).get(HomepageCustomerViewModel::class.java)
@@ -72,7 +77,6 @@ class MainActivity : AppCompatActivity() {
                         overridePendingTransition( 0, 0);
                         startActivity(intent);
                         overridePendingTransition( 0, 0);
-                        Log.d("message",  "$customerId")
                     }
                 } else {
                     ivOngoingGif.visibility = View.GONE
@@ -84,12 +88,6 @@ class MainActivity : AppCompatActivity() {
             viewModel.getHomepageInfoCustomer(customerId)
         }
 
-
-
-
-
-
-
         drawerLayout = findViewById(R.id.drawer_layout)
 
         tvTitle.visibility = View.GONE
@@ -98,7 +96,6 @@ class MainActivity : AppCompatActivity() {
         fm.beginTransaction().add(R.id.fragment, fragment3, "3").hide(fragment3).commit();
         fm.beginTransaction().add(R.id.fragment, fragment2, "2").hide(fragment2).commit();
         fm.beginTransaction().add(R.id.fragment,fragment1, "1").commit();
-
 
 
         bottomNavigationView.setOnItemSelectedListener {
@@ -193,6 +190,8 @@ class MainActivity : AppCompatActivity() {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+                sharedPreferences.edit().remove("CUSTOMER_ID").apply()
                 startActivity(intent)
                 finish()
             }

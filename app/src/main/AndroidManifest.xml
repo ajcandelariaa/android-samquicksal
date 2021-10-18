@@ -14,8 +14,17 @@
         android:theme="@style/Theme.Samquicksal2"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".QueueFormActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".ReservationFormActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".ChooseOrderSetActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
             android:name=".RestaurantPromoViewActivity"
-            android:exported="true" />
+            android:theme="@style/HomeScreen" />
         <activity
             android:name=".TransactionDetailsActivity"
             android:theme="@style/HomeScreen" />

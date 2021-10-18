@@ -41,9 +41,9 @@
             android:fontFamily="@font/montserrat"
             android:textSize="18sp"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/restaurantName"
+            app:layout_constraintBottom_toBottomOf="@+id/tvListPromoTitle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/restaurantName" />
+            app:layout_constraintTop_toTopOf="@+id/tvListPromoTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

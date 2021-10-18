@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/restaurantImage"
+            android:id="@+id/ivListNearbyRestaurantImage"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="20dp"
@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/restaurantName"
+            android:id="@+id/tvListNearbyRestaurantTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Golden Baboy"
@@ -33,32 +33,32 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/restaurantImage"
-            app:layout_constraintTop_toTopOf="@+id/restaurantImage" />
+            app:layout_constraintStart_toEndOf="@+id/ivListNearbyRestaurantImage"
+            app:layout_constraintTop_toTopOf="@+id/ivListNearbyRestaurantImage" />
 
         <TextView
-            android:id="@+id/restaurantAddress"
+            android:id="@+id/tvListNearbyRestaurantAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="14sp"
             android:textColor="@color/restaurantAddressTextColor"
             android:text="Morayta, Metro manila"
-            app:layout_constraintEnd_toEndOf="@+id/restaurantName"
-            app:layout_constraintStart_toStartOf="@+id/restaurantName"
-            app:layout_constraintTop_toBottomOf="@+id/restaurantName" />
+            app:layout_constraintEnd_toEndOf="@+id/tvListNearbyRestaurantTitle"
+            app:layout_constraintStart_toStartOf="@+id/tvListNearbyRestaurantTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvListNearbyRestaurantTitle" />
 
         <TextView
-            android:id="@+id/restaurantSchedule"
+            android:id="@+id/tvListNearbyRestaurantSchedule"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:layout_marginTop="10dp"
             android:textColor="@color/restaurantOpeningTextColor"
             android:text="Open today until 10:00 pm"
-            app:layout_constraintEnd_toEndOf="@+id/restaurantAddress"
-            app:layout_constraintStart_toStartOf="@+id/restaurantAddress"
-            app:layout_constraintTop_toBottomOf="@+id/restaurantAddress" />
+            app:layout_constraintEnd_toEndOf="@+id/tvListNearbyRestaurantAddress"
+            app:layout_constraintStart_toStartOf="@+id/tvListNearbyRestaurantAddress"
+            app:layout_constraintTop_toBottomOf="@+id/tvListNearbyRestaurantAddress" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
