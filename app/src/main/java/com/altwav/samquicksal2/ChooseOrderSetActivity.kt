@@ -23,7 +23,7 @@ class ChooseOrderSetActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_order_set)
 
-        val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val sharedPreferences: SharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val customerId = sharedPreferences.getInt("CUSTOMER_ID", 0)
 
         val restaurantId = intent.getIntExtra("restaurantId", 0)
@@ -43,13 +43,22 @@ class ChooseOrderSetActivity : AppCompatActivity() {
         val viewModel = ViewModelProvider(this).get<ChooseOrderSetViewModel>()
         viewModel.getAccountCustomerObserver().observe(this, Observer <ChooseOrderSetModelResponse>{
             if(it != null){
-                adapter.setChooseOrderSet(it.orderSets, restaurantId, bookType!!)
+                adapter.setChooseOrderSet(
+                    it.orderSets,
+                    restaurantId,
+                    bookType!!,
+                    it.rTimeLimit!!,
+                    it.rCapacityPerTable!!,
+                    it.rewardStatus!!,
+                    it.rewardType!!,
+                    it.rewardInput!!
+                )
                 adapter.notifyDataSetChanged()
                 tvChooseOrderSetRestaurantName.text = "${it.restaurantName} Order Sets"
             }
         })
 
-        viewModel.getAccountInfoCustomer(restaurantId)
+        viewModel.getAccountInfoCustomer(restaurantId, customerId)
 
     }
 }

@@ -1,15 +1,22 @@
 package com.altwav.samquicksal2.mainActivityFragments
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.ListOfNotificationsAdapter
 import com.altwav.samquicksal2.Adapters.ListsOfPromosAdapter
 import com.altwav.samquicksal2.R
+import com.altwav.samquicksal2.viewmodel.ListsOfRestaurantsViewModel
+import com.altwav.samquicksal2.viewmodel.NotificationListViewModel
+import kotlinx.android.synthetic.main.fragment_restaurants.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,6 +56,21 @@ class NotificationsFragment : Fragment() {
 
         recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
+
+        val viewModel = ViewModelProvider(this).get<NotificationListViewModel>()
+        viewModel.getNotificationListObserver().observe(viewLifecycleOwner, {
+            if (it == null || it.isEmpty()){
+
+            } else {
+                adapter.setNotificationList(it)
+                adapter.notifyDataSetChanged()
+            }
+        })
+
+        val sharedPreferences = this.activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val customerId = sharedPreferences?.getInt("CUSTOMER_ID", 0)
+
+        viewModel.getNotificationsInfo(customerId!!)
 
         return view
     }

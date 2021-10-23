@@ -53,7 +53,6 @@ class RestaurantsFragment : Fragment()  {
 
         recyclerView = view.findViewById(R.id.restaurantsRecyclerView)
         adapter = ListsOfRestaurantAdapter()
-
         recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
 
@@ -64,9 +63,9 @@ class RestaurantsFragment : Fragment()  {
             } else {
                 adapter.setRestaurantList(it)
                 adapter.notifyDataSetChanged()
+                Log.d("message", "$it")
                 view.tvNoRestaurant.visibility = View.GONE
             }
-            Log.d("message", "IT : $it")
         })
         viewModel.makeApiCall()
         return view

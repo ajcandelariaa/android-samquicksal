@@ -1,76 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:backgroundTint="@color/white"
-        android:contentInsetStart="0dp"
-        android:contentInsetLeft="0dp"
-        android:contentInsetEnd="0dp"
-        android:contentInsetRight="0dp"
-        android:elevation="4dp"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:contentInsetEnd="0dp"
-        app:contentInsetLeft="0dp"
-        app:contentInsetRight="0dp"
-        app:contentInsetStart="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp">
-
-            <ImageView
-                android:id="@+id/btn_queue_form_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/ic_back2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvChooseOrderSetTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Queue-in"
-                android:textColor="@color/loginColor"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/btn_queue_form_back"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/btn_queue_form_back" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2">
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:backgroundTint="@color/white"
+            android:contentInsetStart="0dp"
+            android:contentInsetLeft="0dp"
+            android:contentInsetEnd="0dp"
+            android:contentInsetRight="0dp"
+            android:elevation="4dp"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:contentInsetEnd="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="16dp">
+
+                <ImageView
+                    android:id="@+id/btn_queue_form_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:src="@drawable/ic_back2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvChooseOrderSetTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Queue-in"
+                    android:textColor="@color/loginColor"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_queue_form_back"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/btn_queue_form_back" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.Toolbar>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clQueueForm"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="200dp">
-
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar2">
 
             <TextView
                 android:id="@+id/textView11"
@@ -88,11 +90,11 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/editText2"
+                android:id="@+id/tvQueueFormOrderSet"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:background="@color/notificationBgColor"
+                android:background="@drawable/edit_text_queue_form_disabled"
                 android:fontFamily="@font/montserrat"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="8dp"
@@ -102,7 +104,6 @@
                 app:layout_constraintEnd_toEndOf="@+id/textView11"
                 app:layout_constraintStart_toStartOf="@+id/textView11"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
 
             <TextView
                 android:id="@+id/textView111"
@@ -117,20 +118,21 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText2" />
+                app:layout_constraintTop_toBottomOf="@+id/tvQueueFormOrderSet" />
 
             <EditText
-                android:id="@+id/editText22"
+                android:id="@+id/etQueueFormNumberOfPeople"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/edit_text_queue_form"
                 android:fontFamily="@font/montserrat"
+                android:hint="(e.g. 10)"
+                android:inputType="number"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="8dp"
-                android:hint="(e.g. 10)"
-                android:textColorHint="@color/restaurantAddressTextColor"
                 android:textColor="@color/restaurantAddressTextColor"
+                android:textColorHint="@color/starColorNotActive"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView111"
                 app:layout_constraintStart_toStartOf="@+id/textView111"
@@ -138,11 +140,11 @@
 
 
             <TextView
-                android:id="@+id/textView1111"
+                android:id="@+id/tvQueueFormHoursOfStayLabel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="28dp"
                 android:fontFamily="@font/montserrat"
                 android:text="Estimated Hours of Stay"
                 android:textColor="@color/restaurantAddressTextColor"
@@ -150,10 +152,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText22" />
+                app:layout_constraintTop_toBottomOf="@+id/etQueueFormNumberOfPeople" />
 
             <Spinner
-                android:id="@+id/spinner_hours_of_stay"
+                android:id="@+id/spinnerQueueFormHoursOfStay"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -162,9 +164,26 @@
                 android:paddingVertical="4dp"
                 android:textColor="@color/restaurantAddressTextColor"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView1111"
-                app:layout_constraintStart_toStartOf="@+id/textView1111"
-                app:layout_constraintTop_toBottomOf="@+id/textView1111" />
+                app:layout_constraintEnd_toEndOf="@+id/tvQueueFormHoursOfStayLabel"
+                app:layout_constraintStart_toStartOf="@+id/tvQueueFormHoursOfStayLabel"
+                app:layout_constraintTop_toBottomOf="@+id/tvQueueFormHoursOfStayLabel" />
+
+
+            <TextView
+                android:id="@+id/tvQueueFormHoursOfStay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edit_text_queue_form_disabled"
+                android:fontFamily="@font/montserrat"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="8dp"
+                android:text="2 hours"
+                android:textColor="@color/restaurantAddressTextColor"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/tvQueueFormHoursOfStayLabel"
+                app:layout_constraintStart_toStartOf="@+id/tvQueueFormHoursOfStayLabel"
+                app:layout_constraintTop_toBottomOf="@+id/tvQueueFormHoursOfStayLabel" />
 
             <LinearLayout
                 android:id="@+id/linearLayout11"
@@ -172,13 +191,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="@+id/spinner_hours_of_stay"
-                app:layout_constraintStart_toStartOf="@+id/spinner_hours_of_stay"
-                app:layout_constraintTop_toBottomOf="@+id/spinner_hours_of_stay">
+                app:layout_constraintEnd_toEndOf="@+id/spinnerQueueFormHoursOfStay"
+                app:layout_constraintStart_toStartOf="@+id/spinnerQueueFormHoursOfStay"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerQueueFormHoursOfStay">
 
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/cbQueueFormChildren"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -188,7 +207,7 @@
                     android:textStyle="bold" />
 
                 <CheckBox
-                    android:id="@+id/checkBox3"
+                    android:id="@+id/cbQueueFormSenior"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -198,13 +217,63 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/linearLayout111"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout11"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout11"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
+
+                <EditText
+                    android:id="@+id/etQueueFormNumberOfChildren"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_queue_form_disabled"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="(e.g. 2)"
+                    android:inputType="number"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="8dp"
+                    android:textColor="@color/restaurantAddressTextColor"
+                    android:textColorHint="@color/starColorNotActive"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etQueueFormNumberOfPwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_queue_form_disabled"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="(e.g. 1)"
+                    android:inputType="number"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="8dp"
+                    android:textColor="@color/restaurantAddressTextColor"
+                    android:textColorHint="@color/starColorNotActive"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/textView11111"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:fontFamily="@font/montserrat"
                 android:text="Notes"
                 android:textColor="@color/restaurantAddressTextColor"
@@ -212,12 +281,13 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout11" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout111" />
 
             <EditText
-                android:id="@+id/editTextTextMultiLine"
+                android:id="@+id/etQueueFormNotes"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/edit_text_queue_form"
                 android:fontFamily="@font/montserrat"
                 android:gravity="start|top"
@@ -225,32 +295,31 @@
                 android:inputType="textMultiLine"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="8dp"
-                android:layout_marginTop="5dp"
                 android:textColor="@color/restaurantAddressTextColor"
-                android:textColorHint="@color/restaurantAddressTextColor"
+                android:textColorHint="@color/starColorNotActive"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView11111"
                 app:layout_constraintStart_toStartOf="@+id/textView11111"
                 app:layout_constraintTop_toBottomOf="@+id/textView11111" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnQueueFormNext"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
-                android:text="Next"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/login_button"
                 android:fontFamily="@font/montserrat"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="30dp"
+                android:text="Next"
                 android:textAllCaps="false"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etQueueFormNotes" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

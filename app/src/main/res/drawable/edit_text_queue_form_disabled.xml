@@ -3,7 +3,7 @@
     <!--The outline turns to colorPrimary when the EditText is in focus-->
     <item android:state_enabled="true" android:state_focused="true">
         <shape android:shape="rectangle">
-            <solid android:color="@android:color/white" />
+            <solid android:color="@color/notificationBgColor" />
             <corners android:radius="4dp" />
             <stroke android:width="1dp" android:color="@color/black" />
         </shape>
@@ -12,7 +12,7 @@
     <!--The outline turns to grey when the EditText is out of focus-->
     <item android:state_enabled="true">
         <shape android:shape="rectangle">
-            <solid android:color="@android:color/white" />
+            <solid android:color="@color/notificationBgColor" />
             <corners android:radius="4dp" />
             <stroke android:width="1dp" android:color="@color/starColorNotActive" />
         </shape>

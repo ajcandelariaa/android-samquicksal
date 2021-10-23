@@ -30,9 +30,11 @@ interface RetroServiceInterface {
     @GET("promos")
     fun getPromosList(): Call<List<ListOfPromosModel>>
 
-    @GET("get-restaurants/choose-order-set/{id}")
-    fun getRestaurantOrderSet(@Path("id") id: Int): Call<ChooseOrderSetModelResponse>
+    @GET("get-restaurants/choose-order-set/{id}/{custId}")
+    fun getRestaurantOrderSet(@Path("id") id: Int, @Path("custId") custId:Int): Call<ChooseOrderSetModelResponse>
 
+    @GET("get-notifications/{id}")
+    fun getNotificationsList(@Path("id") id: Int): Call<List<NotificationListModelResponse>>
 
 
 
@@ -41,4 +43,7 @@ interface RetroServiceInterface {
 
     @POST("login-customer")
     fun loginCustomer(@Body params: LoginCustomerModel): Call<LoginCustomerModelResponse>
+
+    @POST("submit-queue-form")
+    fun submitQueueForm(@Body params: SubmitQueueFormModel): Call<SubmitQueueFormModelResponse>
 }

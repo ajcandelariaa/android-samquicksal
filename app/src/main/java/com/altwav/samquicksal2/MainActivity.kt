@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                 Glide.with(this).load(it.profileImage).into(customerImage)
                 if(it.status == "onGoing"){
                     ivOngoingGif.visibility = View.VISIBLE
-                    Glide.with(view).load(R.drawable.ongoing_icon).into(ivOngoingGif)
+                    Glide.with(this).load(R.drawable.ongoing_icon).into(ivOngoingGif)
                     ivOngoingGif.setOnClickListener {
                         finish()
                         overridePendingTransition( 0, 0);

@@ -14,6 +14,27 @@
         android:theme="@style/Theme.Samquicksal2"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".notificationsActivity.RunawayNotificationActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".notificationsActivity.NoShowNotificationActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".notificationsActivity.ApprovedNotificationActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".notificationsActivity.NewAccountNotificationActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".notificationsActivity.PendingNotificationActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".LiveStatusActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".BookingDetailsActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
             android:name=".QueueFormActivity"
             android:theme="@style/HomeScreen" />
         <activity

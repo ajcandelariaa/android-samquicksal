@@ -1,23 +1,16 @@
 package com.altwav.samquicksal2.sidebarActivities
 
+import android.content.Context
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.models.AccountCustomerModelResponse
-import com.altwav.samquicksal2.models.HomepageCustomerModelResponse
 import com.altwav.samquicksal2.viewmodel.AccountCustomerViewModel
-import com.altwav.samquicksal2.viewmodel.HomepageCustomerViewModel
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_account.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.main_nav_drawer.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 
 class Account : AppCompatActivity() {
     private lateinit var viewModel: AccountCustomerViewModel
@@ -26,13 +19,19 @@ class Account : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account)
 
-        val customerId = intent.getIntExtra("id", 0)
+        val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val customerId = sharedPreferences.getInt("CUSTOMER_ID", 0)
 
         btn_account_back.setOnClickListener {
             finish()
         }
 
         viewModel = ViewModelProvider(this).get(AccountCustomerViewModel::class.java)
+
+        if (customerId != 0){
+            viewModel.getAccountInfoCustomer(customerId)
+        }
+
         viewModel.getAccountCustomerObserver().observe(this, Observer <AccountCustomerModelResponse>{
             if(it != null){
                 tvAccountName.text = it.name
@@ -63,10 +62,6 @@ class Account : AppCompatActivity() {
                 Glide.with(this).load(it.profileImage).into(ivAccountImageOuter)
             }
         })
-
-        if (customerId != 0){
-            viewModel.getAccountInfoCustomer(customerId)
-        }
 
 
 

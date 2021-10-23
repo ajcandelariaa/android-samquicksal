@@ -17,9 +17,9 @@ class ChooseOrderSetViewModel:ViewModel() {
         return createChooseOrderSetModelResponseLD
     }
 
-    fun getAccountInfoCustomer(customer: Int){
+    fun getAccountInfoCustomer(restaurantId: Int, customerId: Int){
         val retroService = RetroInstance.getRetroInstance().create(RetroServiceInterface::class.java)
-        val call = retroService.getRestaurantOrderSet(customer)
+        val call = retroService.getRestaurantOrderSet(restaurantId, customerId)
         call.enqueue(object : retrofit2.Callback<ChooseOrderSetModelResponse> {
             override fun onFailure(call: Call<ChooseOrderSetModelResponse>?, t: Throwable?) {
                 createChooseOrderSetModelResponseLD.postValue(null)
