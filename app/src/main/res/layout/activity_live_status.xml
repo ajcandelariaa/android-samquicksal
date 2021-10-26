@@ -90,6 +90,7 @@
         <TextView
             android:id="@+id/tvLiveStatusHeader"
             android:layout_width="wrap_content"
+            android:textAlignment="center"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:fontFamily="@font/montserrat"
@@ -98,10 +99,38 @@
             app:layout_constraintEnd_toEndOf="@+id/ivLiveStatusGif"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="@+id/ivLiveStatusGif"
-            app:layout_constraintTop_toTopOf="@+id/ivLiveStatusGif" />
+            app:layout_constraintTop_toTopOf="@+id/ivLiveStatusGif"
+            android:gravity="center_horizontal" />
 
         <TextView
-            android:id="@+id/tvLiveStatusDescription"
+            android:id="@+id/tvLiveStatusNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="70dp"
+            android:textColor="@color/white"
+            android:gravity="center_horizontal"
+            android:textSize="80sp"
+            android:text="15"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/ivLiveStatusGif"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="@+id/ivLiveStatusGif"
+            app:layout_constraintTop_toBottomOf="@+id/tvLiveStatusHeader" />
+
+        <TextView
+            android:id="@+id/tvLiveStatusNumberDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:layout_marginTop="-10dp"
+            android:textColor="@color/white"
+            android:text="minutes"
+            app:layout_constraintEnd_toEndOf="@+id/tvLiveStatusNumber"
+            app:layout_constraintStart_toStartOf="@+id/tvLiveStatusNumber"
+            app:layout_constraintTop_toBottomOf="@+id/tvLiveStatusNumber" />
+
+        <TextView
+            android:id="@+id/tvLiveStatusBody"
             android:layout_width="157dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="70dp"
@@ -116,7 +145,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvLiveStatusHeader" />
 
         <TextView
-            android:id="@+id/tvLiveStatusDesc"
+            android:id="@+id/tvLiveStatusDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
@@ -135,10 +164,10 @@
             android:text="Go back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLiveStatusDesc" />
+            app:layout_constraintTop_toBottomOf="@+id/tvLiveStatusDescription" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btn_live_status_cancel_booking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

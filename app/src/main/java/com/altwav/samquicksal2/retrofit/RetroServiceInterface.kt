@@ -36,6 +36,11 @@ interface RetroServiceInterface {
     @GET("get-notifications/{id}")
     fun getNotificationsList(@Path("id") id: Int): Call<List<NotificationListModelResponse>>
 
+    @GET("get-live-status/{id}")
+    fun getLiveStatus(@Path("id") id: Int): Call<LiveStatusModelResponse>
+
+    @GET("cancel-booking/{id}")
+    fun cancelBooking(@Path("id") id: Int): Call<CancelBookingModelResponse>
 
 
     @POST("register-customer")

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -64,308 +64,326 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout3"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="@color/tabBackgroundColor"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar2">
 
-            <ImageView
-                android:id="@+id/ivAccountImageOuter"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:alpha="0.3"
-                android:scaleType="centerCrop"
-                android:src="@drawable/aj_profile"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/ivAccountImageInner"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/aj_profile"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:drawableLeft="@drawable/ic_outline_edit_24_2"
-                android:drawablePadding="5dp"
-                android:fontFamily="@font/montserrat"
-                android:text="Edit Image"
-                android:textColor="@color/loginColor"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/ivAccountImageInner"
-                app:layout_constraintStart_toStartOf="@+id/ivAccountImageInner"
-                app:layout_constraintTop_toBottomOf="@+id/ivAccountImageInner" />
+                android:paddingBottom="40dp">
 
-            <TextView
-                android:id="@+id/tvHeaderAccountName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/montserrat"
-                android:text="Albert Joseph Candelaria"
-                android:textColor="@color/loginColor"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/textView10"
-                app:layout_constraintStart_toStartOf="@+id/textView10"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:background="@color/tabBackgroundColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!--NAME-->
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/montserrat"
-            android:text="Name"
-            android:textColor="@color/sideBarViewColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
-
-        <TextView
-            android:id="@+id/tvAccountName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
-            android:text="Albert Joseph Candelaria"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@+id/textView13"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-        <TextView
-            android:id="@+id/textView15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/edit_rounded"
-            android:drawableLeft="@drawable/ic_outline_edit_24_2"
-            android:paddingHorizontal="1dp"
-            android:paddingVertical="1dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvAccountName"
-            app:layout_constraintStart_toEndOf="@+id/tvAccountName"
-            app:layout_constraintTop_toTopOf="@+id/tvAccountName" />
-
-        <View
-            android:id="@+id/view2"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/starColorNotActive"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAccountName" />
+                    <ImageView
+                        android:id="@+id/ivAccountImageOuter"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:alpha="0.3"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/aj_profile"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
-        <!--EMAIL ADDRES-->
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/ivAccountImageInner"
+                        android:layout_width="170dp"
+                        android:layout_height="170dp"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/aj_profile"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView132"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/montserrat"
-            android:text="Email Address"
-            android:textColor="@color/sideBarViewColor"
-            app:layout_constraintStart_toStartOf="@+id/view2"
-            app:layout_constraintTop_toBottomOf="@+id/view2" />
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:drawableLeft="@drawable/ic_outline_edit_24_2"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text="Edit Image"
+                        android:textColor="@color/loginColor"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@+id/ivAccountImageInner"
+                        app:layout_constraintStart_toStartOf="@+id/ivAccountImageInner"
+                        app:layout_constraintTop_toBottomOf="@+id/ivAccountImageInner" />
 
-        <ImageView
-            android:id="@+id/ivEmailAddressStatus"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ic_verified"
-            app:layout_constraintBottom_toBottomOf="@+id/textView132"
-            app:layout_constraintEnd_toStartOf="@+id/tvEmailAddressStatus"
-            app:layout_constraintTop_toTopOf="@+id/textView132" />
+                    <TextView
+                        android:id="@+id/tvHeaderAccountName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text="Albert Joseph Candelaria"
+                        android:textColor="@color/loginColor"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/textView10"
+                        app:layout_constraintStart_toStartOf="@+id/textView10"
+                        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
-        <TextView
-            android:id="@+id/tvEmailAddressStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
-            android:text="Verified"
-            android:textColor="@color/restaurantOpeningTextColor"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/ivEmailAddressStatus"
-            app:layout_constraintEnd_toEndOf="@+id/view2"
-            app:layout_constraintTop_toTopOf="@+id/ivEmailAddressStatus" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/tvAccountEmailAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
-            android:text="ajajcandelarai@gmail.com"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@+id/textView132"
-            app:layout_constraintTop_toBottomOf="@+id/ivEmailAddressStatus" />
+                <!--NAME-->
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Name"
+                    android:textColor="@color/sideBarViewColor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
-        <TextView
-            android:id="@+id/textView152"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/edit_rounded"
-            android:drawableLeft="@drawable/ic_outline_edit_24_2"
-            android:paddingHorizontal="1dp"
-            android:paddingVertical="1dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvAccountEmailAddress"
-            app:layout_constraintStart_toEndOf="@+id/tvAccountEmailAddress"
-            app:layout_constraintTop_toTopOf="@+id/tvAccountEmailAddress" />
+                <TextView
+                    android:id="@+id/tvAccountName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Albert Joseph Candelaria"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/textView13"
+                    app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
-        <View
-            android:id="@+id/view3"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/starColorNotActive"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAccountEmailAddress" />
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/edit_rounded"
+                    android:drawableLeft="@drawable/ic_outline_edit_24_2"
+                    android:paddingHorizontal="1dp"
+                    android:paddingVertical="1dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvAccountName"
+                    app:layout_constraintStart_toEndOf="@+id/tvAccountName"
+                    app:layout_constraintTop_toTopOf="@+id/tvAccountName" />
 
-
-        <!--CONTACT NUMBER-->
-        <TextView
-            android:id="@+id/textView133"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/montserrat"
-            android:text="Contact Number"
-            android:textColor="@color/sideBarViewColor"
-            app:layout_constraintStart_toStartOf="@+id/view3"
-            app:layout_constraintTop_toBottomOf="@+id/view3" />
-
-        <TextView
-            android:id="@+id/tvAccountContactNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
-            android:text="09123456789"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@+id/textView133"
-            app:layout_constraintTop_toBottomOf="@+id/ivContactNumberStatus" />
-
-        <TextView
-            android:id="@+id/textView153"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/edit_rounded"
-            android:drawableLeft="@drawable/ic_outline_edit_24_2"
-            android:paddingHorizontal="1dp"
-            android:paddingVertical="1dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvAccountContactNumber"
-            app:layout_constraintStart_toEndOf="@+id/tvAccountContactNumber"
-            app:layout_constraintTop_toTopOf="@+id/tvAccountContactNumber"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <View
-            android:id="@+id/view4"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/starColorNotActive"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAccountContactNumber" />
-
-        <!--PASSWORD-->
-        <TextView
-            android:id="@+id/tvAccountPassword"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
-            android:gravity=""
-            android:text="***********"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@+id/textView134"
-            app:layout_constraintTop_toBottomOf="@+id/textView134" />
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/starColorNotActive"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAccountName" />
 
 
-        <TextView
-            android:id="@+id/textView134"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/montserrat"
-            android:text="Password"
-            android:textColor="@color/sideBarViewColor"
-            app:layout_constraintStart_toStartOf="@+id/view4"
-            app:layout_constraintTop_toBottomOf="@+id/view4" />
+                <!--EMAIL ADDRES-->
 
-        <TextView
-            android:id="@+id/textView154"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/edit_rounded"
-            android:drawableLeft="@drawable/ic_outline_edit_24_2"
-            android:inputType="textPassword"
-            android:paddingHorizontal="1dp"
-            android:paddingVertical="1dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvAccountPassword"
-            app:layout_constraintStart_toEndOf="@+id/tvAccountPassword"
-            app:layout_constraintTop_toTopOf="@+id/tvAccountPassword" />
+                <TextView
+                    android:id="@+id/textView132"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Email Address"
+                    android:textColor="@color/sideBarViewColor"
+                    app:layout_constraintStart_toStartOf="@+id/view2"
+                    app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-        <View
-            android:id="@+id/view5"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/starColorNotActive"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAccountPassword" />
+                <ImageView
+                    android:id="@+id/ivEmailAddressStatus"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_verified"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView132"
+                    app:layout_constraintEnd_toStartOf="@+id/tvEmailAddressStatus"
+                    app:layout_constraintTop_toTopOf="@+id/textView132" />
 
-        <ImageView
-            android:id="@+id/ivContactNumberStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_not_verified"
-            app:layout_constraintBottom_toBottomOf="@+id/textView133"
-            app:layout_constraintEnd_toStartOf="@+id/tvContactNumberStatus"
-            app:layout_constraintTop_toTopOf="@+id/textView133" />
+                <TextView
+                    android:id="@+id/tvEmailAddressStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Verified"
+                    android:textColor="@color/restaurantOpeningTextColor"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivEmailAddressStatus"
+                    app:layout_constraintEnd_toEndOf="@+id/view2"
+                    app:layout_constraintTop_toTopOf="@+id/ivEmailAddressStatus" />
 
-        <TextView
-            android:id="@+id/tvContactNumberStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
-            android:text="Not Verified"
-            android:textColor="@color/menuTextColor"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/ivContactNumberStatus"
-            app:layout_constraintEnd_toEndOf="@+id/view3"
-            app:layout_constraintTop_toTopOf="@+id/ivContactNumberStatus" />
+                <TextView
+                    android:id="@+id/tvAccountEmailAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:text="ajajcandelarai@gmail.com"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/textView132"
+                    app:layout_constraintTop_toBottomOf="@+id/ivEmailAddressStatus" />
+
+                <TextView
+                    android:id="@+id/textView152"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/edit_rounded"
+                    android:drawableLeft="@drawable/ic_outline_edit_24_2"
+                    android:paddingHorizontal="1dp"
+                    android:paddingVertical="1dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvAccountEmailAddress"
+                    app:layout_constraintStart_toEndOf="@+id/tvAccountEmailAddress"
+                    app:layout_constraintTop_toTopOf="@+id/tvAccountEmailAddress" />
+
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/starColorNotActive"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAccountEmailAddress" />
+
+
+                <!--CONTACT NUMBER-->
+                <TextView
+                    android:id="@+id/textView133"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Contact Number"
+                    android:textColor="@color/sideBarViewColor"
+                    app:layout_constraintStart_toStartOf="@+id/view3"
+                    app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+                <TextView
+                    android:id="@+id/tvAccountContactNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:text="09123456789"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/textView133"
+                    app:layout_constraintTop_toBottomOf="@+id/ivContactNumberStatus" />
+
+                <TextView
+                    android:id="@+id/textView153"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/edit_rounded"
+                    android:drawableLeft="@drawable/ic_outline_edit_24_2"
+                    android:paddingHorizontal="1dp"
+                    android:paddingVertical="1dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvAccountContactNumber"
+                    app:layout_constraintStart_toEndOf="@+id/tvAccountContactNumber"
+                    app:layout_constraintTop_toTopOf="@+id/tvAccountContactNumber"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/starColorNotActive"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAccountContactNumber" />
+
+                <!--PASSWORD-->
+                <TextView
+                    android:id="@+id/tvAccountPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity=""
+                    android:text="***********"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/textView134"
+                    app:layout_constraintTop_toBottomOf="@+id/textView134" />
+
+
+                <TextView
+                    android:id="@+id/textView134"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Password"
+                    android:textColor="@color/sideBarViewColor"
+                    app:layout_constraintStart_toStartOf="@+id/view4"
+                    app:layout_constraintTop_toBottomOf="@+id/view4" />
+
+                <TextView
+                    android:id="@+id/textView154"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/edit_rounded"
+                    android:drawableLeft="@drawable/ic_outline_edit_24_2"
+                    android:inputType="textPassword"
+                    android:paddingHorizontal="1dp"
+                    android:paddingVertical="1dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvAccountPassword"
+                    app:layout_constraintStart_toEndOf="@+id/tvAccountPassword"
+                    app:layout_constraintTop_toTopOf="@+id/tvAccountPassword" />
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/starColorNotActive"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAccountPassword" />
+
+                <ImageView
+                    android:id="@+id/ivContactNumberStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_not_verified"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView133"
+                    app:layout_constraintEnd_toStartOf="@+id/tvContactNumberStatus"
+                    app:layout_constraintTop_toTopOf="@+id/textView133" />
+
+                <TextView
+                    android:id="@+id/tvContactNumberStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Not Verified"
+                    android:textColor="@color/menuTextColor"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivContactNumberStatus"
+                    app:layout_constraintEnd_toEndOf="@+id/view3"
+                    app:layout_constraintTop_toTopOf="@+id/ivContactNumberStatus" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

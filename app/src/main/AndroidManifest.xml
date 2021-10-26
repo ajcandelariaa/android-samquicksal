@@ -14,6 +14,51 @@
         android:theme="@style/Theme.Samquicksal2"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".BdNoshowActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".BdCancelledActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".BdDeclinedActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".BdRunawayActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".BdCompleteActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".RateFeedbackActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".GcashCheckoutActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".OrderingFoodItemActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".OrderingActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".notificationsActivity.GeofencingNotificationActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".notificationsActivity.QRScannedNotificationActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".notificationsActivity.CheckoutNotificationActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".notificationsActivity.BlockedNotificationActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".notificationsActivity.CancelledNotificationActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".notificationsActivity.DeclinedNotificationActivity"
+            android:theme="@style/HomeScreen" />
+        <activity
             android:name=".notificationsActivity.RunawayNotificationActivity"
             android:theme="@style/HomeScreen" />
         <activity

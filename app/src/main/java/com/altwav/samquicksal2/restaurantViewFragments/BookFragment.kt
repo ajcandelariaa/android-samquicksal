@@ -1,5 +1,7 @@
 package com.altwav.samquicksal2.restaurantViewFragments
 
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.ListOfFoodSetsAdapter
 import com.altwav.samquicksal2.Adapters.ListOfOrderSetsAdapter
 import com.altwav.samquicksal2.ChooseOrderSetActivity
+import com.altwav.samquicksal2.Login
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.RestaurantViewActivity
 import com.altwav.samquicksal2.sidebarActivities.Account
@@ -65,15 +68,25 @@ class BookFragment : Fragment() {
             if(it != null){
                 adapter.setRestaurantMenu(it)
                 adapter.notifyDataSetChanged()
-
             }
         })
 
         view.btnBookQueue.setOnClickListener {
-            val intent = Intent(context, ChooseOrderSetActivity::class.java)
-            intent.putExtra("restaurantId", restaurantId)
-            intent.putExtra("bookType", "Queue-in")
-            startActivity(intent)
+            AlertDialog.Builder(context)
+                .setTitle("Queue")
+                .setIcon(R.mipmap.ic_launcher)
+                .setMessage("Please note that you may be wait listed from queueing if the restaurant is experiencing a lot of customer?")
+                .setCancelable(false)
+                .setPositiveButton("Yes") { dialog, id ->
+                    val intent = Intent(context, ChooseOrderSetActivity::class.java)
+                    intent.putExtra("restaurantId", restaurantId)
+                    intent.putExtra("bookType", "Queue-in")
+                    startActivity(intent)
+                }
+                .setNegativeButton("No") { dialog, id ->
+                    dialog.cancel()
+                }
+                .show()
         }
 
         view.btnBookReserve.setOnClickListener {

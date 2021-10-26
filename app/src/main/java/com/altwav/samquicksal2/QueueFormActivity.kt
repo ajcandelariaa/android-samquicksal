@@ -159,19 +159,6 @@ class QueueFormActivity : AppCompatActivity() {
                 }
             }
 
-//            Log.d("messageForm", "$restaurantId")
-//            Log.d("messageForm", "$orderSetId")
-//            Log.d("messageForm", "$orderSetName")
-//            Log.d("messageForm", "$numberOfPersons")
-//            Log.d("messageForm", "$numberOfTables")
-//            Log.d("messageForm", "$finalHoursOfStay")
-//            Log.d("messageForm", "$numberOfChildren")
-//            Log.d("messageForm", "$numberOfPwd")
-//            Log.d("messageForm", "$notes")
-//            Log.d("messageForm", "$rewardStatus")
-//            Log.d("messageForm", "$rewardType")
-//            Log.d("messageForm", "$rewardInput")
-
             if(countError == 0){
                 val intent = Intent(this, BookingDetailsActivity::class.java)
                 intent.putExtra("bookType", "Queue")

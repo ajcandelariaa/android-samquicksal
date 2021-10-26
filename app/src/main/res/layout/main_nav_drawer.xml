@@ -100,12 +100,12 @@
             android:id="@+id/textView69"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_dollars"
+            android:drawableLeft="@drawable/ic_stamp_card"
             android:drawablePadding="20dp"
             android:gravity="center_vertical"
             android:textSize="16sp"
             android:paddingLeft="20dp"
-            android:text="Rewards"
+            android:text="Stamp Cards"
             android:textColor="@color/sideBarViewColor" />
     </LinearLayout>
 
@@ -130,7 +130,7 @@
             android:textSize="16sp"
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
-            android:text="Transaction History"
+            android:text="Booking History"
             android:textColor="@color/sideBarViewColor" />
     </LinearLayout>
 

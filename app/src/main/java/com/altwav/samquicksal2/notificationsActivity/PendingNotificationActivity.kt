@@ -26,5 +26,9 @@ class PendingNotificationActivity : AppCompatActivity() {
         } else {
             btn_pending_notification_status.visibility = View.GONE
         }
+
+
+
+
     }
 }

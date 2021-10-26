@@ -73,14 +73,15 @@ class MainActivity : AppCompatActivity() {
                     ivOngoingGif.visibility = View.VISIBLE
                     Glide.with(this).load(R.drawable.ongoing_icon).into(ivOngoingGif)
                     ivOngoingGif.setOnClickListener {
+                        val intent = Intent(this, OrderingActivity::class.java)
+                        startActivity(intent)
                         finish()
-                        overridePendingTransition( 0, 0);
-                        startActivity(intent);
-                        overridePendingTransition( 0, 0);
                     }
                 } else {
                     ivOngoingGif.visibility = View.GONE
                 }
+            } else {
+                ivOngoingGif.visibility = View.GONE
             }
         })
 
