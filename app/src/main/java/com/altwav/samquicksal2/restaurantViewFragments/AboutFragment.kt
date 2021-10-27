@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.ListOfStoreHoursAdapter
 import com.altwav.samquicksal2.Adapters.ListsOfPostsAdapter
 import com.altwav.samquicksal2.Adapters.RatedRestaurantsAdapter
+import com.altwav.samquicksal2.Adapters.RestaurantPolicyAdapter
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.RestaurantViewActivity
 import com.altwav.samquicksal2.viewmodel.ListsOfRestaurantsViewModel
@@ -43,6 +44,9 @@ class AboutFragment : Fragment() {
     private lateinit var recyclerView2: RecyclerView
     private lateinit var adapter2: ListOfStoreHoursAdapter
 
+    private lateinit var recyclerView3: RecyclerView
+    private lateinit var adapter3: RestaurantPolicyAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -71,6 +75,12 @@ class AboutFragment : Fragment() {
         recyclerView2.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView2.adapter = adapter2
 
+        recyclerView3 = view.findViewById(R.id.restaurantPolicyRecyclerview)
+        adapter3 = RestaurantPolicyAdapter()
+        recyclerView3.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        recyclerView3.adapter = adapter3
+
+
         val viewModel = ViewModelProvider(this).get<RestaurantAboutViewModel>()
         viewModel.getRestaurantAboutObserver().observe(viewLifecycleOwner, {
             if (it != null){
@@ -79,6 +89,9 @@ class AboutFragment : Fragment() {
 
                 adapter2.setRestaurantSchedule(it.rSchedule)
                 adapter2.notifyDataSetChanged()
+
+                adapter3.setRestaurantPolicy(it.rPolicy)
+                adapter3.notifyDataSetChanged()
                 view.tvAboutRestaurantName.text = it.rName
                 view.tvAboutRestaurantAddress.text = it.rAddress
                 view.tvAboutTablesCapacity.text = "${it.rTableStatus} / ${it.rTableCapacity}"

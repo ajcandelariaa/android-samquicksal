@@ -90,7 +90,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView12"
-            app:srcCompat="@drawable/declined_notif_icon" />
+            app:srcCompat="@drawable/approve_notif_icon" />
 
         <TextView
             android:id="@+id/textView51"

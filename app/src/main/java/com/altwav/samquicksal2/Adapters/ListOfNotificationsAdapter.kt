@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.altwav.samquicksal2.LiveStatusActivity
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.RestaurantViewActivity
 import com.altwav.samquicksal2.models.ListOfRestaurantModel
@@ -68,25 +69,67 @@ class ListOfNotificationsAdapter : RecyclerView.Adapter<ListOfNotificationsAdapt
             itemView.setOnClickListener {
                 val context = itemView.context
                 when(notificationType){
+                    "New Account" -> {
+                        val intent = Intent(context, NewAccountNotificationActivity::class.java)
+                        intent.putExtra("notificationId", notificationId)
+                        context.startActivity(intent)
+                    }
+                    "Geofencing" -> {
+                        val intent = Intent(context, GeofencingNotificationActivity::class.java)
+                        intent.putExtra("notificationId", notificationId)
+                        context.startActivity(intent)
+                    }
                     "Pending" -> {
                         val intent = Intent(context, PendingNotificationActivity::class.java)
                         intent.putExtra("notificationId", notificationId)
                         context.startActivity(intent)
                     }
-                    "New Account" -> {
-                        val intent = Intent(context, NewAccountNotificationActivity::class.java)
+                    "Cancelled" -> {
+                        val intent = Intent(context, CancelledNotificationActivity::class.java)
+                        intent.putExtra("notificationId", notificationId)
+                        context.startActivity(intent)
+                    }
+                    "Declined" -> {
+                        val intent = Intent(context, DeclinedNotificationActivity::class.java)
+                        intent.putExtra("notificationId", notificationId)
                         context.startActivity(intent)
                     }
                     "Approved" -> {
                         val intent = Intent(context, ApprovedNotificationActivity::class.java)
+                        intent.putExtra("notificationId", notificationId)
                         context.startActivity(intent)
                     }
                     "No Show" -> {
                         val intent = Intent(context, NoShowNotificationActivity::class.java)
+                        intent.putExtra("notificationId", notificationId)
                         context.startActivity(intent)
                     }
                     "Runaway" -> {
                         val intent = Intent(context, RunawayNotificationActivity::class.java)
+                        intent.putExtra("notificationId", notificationId)
+                        context.startActivity(intent)
+                    }
+                    "QR Request" -> {
+                        val intent = Intent(context, QRScannedNotificationActivity::class.java)
+                        intent.putExtra("notificationId", notificationId)
+                        context.startActivity(intent)
+                    }
+                    "Complete" -> {
+                        val intent = Intent(context, CheckoutNotificationActivity::class.java)
+                        intent.putExtra("notificationId", notificationId)
+                        context.startActivity(intent)
+                    }
+                    "Blocked" -> {
+                        val intent = Intent(context, BlockedNotificationActivity::class.java)
+                        intent.putExtra("notificationId", notificationId)
+                        context.startActivity(intent)
+                    }
+                    "Validation" -> {
+                        val intent = Intent(context, LiveStatusActivity::class.java)
+                        context.startActivity(intent)
+                    }
+                    "Table Setting Up" -> {
+                        val intent = Intent(context, LiveStatusActivity::class.java)
                         context.startActivity(intent)
                     }
                 }

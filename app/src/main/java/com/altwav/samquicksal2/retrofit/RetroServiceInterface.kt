@@ -42,6 +42,25 @@ interface RetroServiceInterface {
     @GET("cancel-booking/{id}")
     fun cancelBooking(@Path("id") id: Int): Call<CancelBookingModelResponse>
 
+    // NOTIFICATIONS RESPONSE
+    @GET("get-notifications/pending/{cust_id}/{notif_id}")
+    fun notifPending(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifPendingModel>
+
+    @GET("get-notifications/cancelled/{cust_id}/{notif_id}")
+    fun notifCancelled(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifCancelledModel>
+
+    @GET("get-notifications/declined/{cust_id}/{notif_id}")
+    fun notifDeclined(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifDeclinedModel>
+
+    @GET("get-notifications/approved/{cust_id}/{notif_id}")
+    fun notifApproved(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifApprovedModel>
+
+    @GET("get-notifications/no-show/{cust_id}/{notif_id}")
+    fun notifNoShow(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifNoShowModel>
+
+    @GET("get-notifications/runaway/{cust_id}/{notif_id}")
+    fun notifRunaway(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifRunawayModel>
+
 
     @POST("register-customer")
     fun registerCustomer(@Body params: RegisterCustomerModel): Call<RegisterCustomerModelResponse>
@@ -51,4 +70,7 @@ interface RetroServiceInterface {
 
     @POST("submit-queue-form")
     fun submitQueueForm(@Body params: SubmitQueueFormModel): Call<SubmitQueueFormModelResponse>
+
+    @POST("forgot-password")
+    fun forgotPassword(@Body params: ForgotPasswordModel): Call<ForgotPasswordModelResponse>
 }

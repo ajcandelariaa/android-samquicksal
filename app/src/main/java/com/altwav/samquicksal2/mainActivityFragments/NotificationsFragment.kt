@@ -16,7 +16,10 @@ import com.altwav.samquicksal2.Adapters.ListsOfPromosAdapter
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.viewmodel.ListsOfRestaurantsViewModel
 import com.altwav.samquicksal2.viewmodel.NotificationListViewModel
+import kotlinx.android.synthetic.main.fragment_notifications.*
+import kotlinx.android.synthetic.main.fragment_notifications.view.*
 import kotlinx.android.synthetic.main.fragment_restaurants.view.*
+import kotlinx.android.synthetic.main.fragment_rewards.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,8 +63,9 @@ class NotificationsFragment : Fragment() {
         val viewModel = ViewModelProvider(this).get<NotificationListViewModel>()
         viewModel.getNotificationListObserver().observe(viewLifecycleOwner, {
             if (it == null || it.isEmpty()){
-
+                view.containerNoNotifications.visibility = ViewGroup.VISIBLE
             } else {
+                view.containerNoNotifications.visibility = ViewGroup.GONE
                 adapter.setNotificationList(it)
                 adapter.notifyDataSetChanged()
             }
@@ -71,6 +75,11 @@ class NotificationsFragment : Fragment() {
         val customerId = sharedPreferences?.getInt("CUSTOMER_ID", 0)
 
         viewModel.getNotificationsInfo(customerId!!)
+
+        view.refreshNotifications.setOnRefreshListener {
+            viewModel.getNotificationsInfo(customerId)
+            refreshNotifications.isRefreshing = false
+        }
 
         return view
     }

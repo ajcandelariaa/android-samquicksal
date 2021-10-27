@@ -2,34 +2,43 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:paddingBottom="50dp"
     android:layout_height="wrap_content">
+
+
+    <View
+        android:id="@+id/view8"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@color/starColorNotActive"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/tvOrderSetName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat"
         android:text="499"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/view8" />
 
     <TextView
         android:id="@+id/tvOrderSetTagline"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="30dp"
         android:fontFamily="@font/montserrat"
         android:text="5 different Flavors of Pork, and 10 Side dishes"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvOrderSetName"
         app:layout_constraintStart_toStartOf="@+id/tvOrderSetName"
         app:layout_constraintTop_toBottomOf="@+id/tvOrderSetName" />
 
@@ -38,11 +47,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="30dp"
         android:fontFamily="@font/montserrat"
         android:text="Eat all you can Samgyeopsal chuchu description to"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvOrderSetTagline"
         app:layout_constraintStart_toStartOf="@+id/tvOrderSetTagline"
         app:layout_constraintTop_toBottomOf="@+id/tvOrderSetTagline" />
 
@@ -74,21 +82,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:paddingLeft="45dp"
+        android:paddingLeft="15dp"
         android:paddingRight="25dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView25" />
-    
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/starColorNotActive"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@+id/foodSetsRecyclerView"/>
 
     <TextView
         android:id="@+id/tvOrderSetPrice"
@@ -100,4 +100,5 @@
         android:text="Price: 499.00"
         app:layout_constraintStart_toStartOf="@+id/tvOrderSetDecription"
         app:layout_constraintTop_toBottomOf="@+id/tvOrderSetDecription" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

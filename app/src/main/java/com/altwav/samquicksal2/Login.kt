@@ -1,5 +1,6 @@
 package com.altwav.samquicksal2
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.altwav.samquicksal2.models.LoginCustomerModel
 import com.altwav.samquicksal2.models.LoginCustomerModelResponse
 import com.altwav.samquicksal2.viewmodel.LoginCustomerViewModel
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 class Login : AppCompatActivity() {
@@ -25,10 +27,30 @@ class Login : AppCompatActivity() {
             startActivity(intent)
         }
 
+        tvForgotPassword.setOnClickListener {
+            val intent = Intent(this, ForgotPasswordActivity::class.java)
+            startActivity(intent)
+        }
+
         loadData()
         checkIfLoggedIn()
         getLogin()
 
+    }
+
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.app_name)
+            .setIcon(R.mipmap.ic_launcher)
+            .setMessage("Are you sure you want to exit?")
+            .setCancelable(false)
+            .setPositiveButton("Yes") { dialog, id ->
+                finish()
+            }
+            .setNegativeButton("No") { dialog, id ->
+                dialog.cancel()
+            }
+            .show()
     }
 
     private fun loadData(){

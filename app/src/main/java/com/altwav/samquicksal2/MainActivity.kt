@@ -73,9 +73,15 @@ class MainActivity : AppCompatActivity() {
                     ivOngoingGif.visibility = View.VISIBLE
                     Glide.with(this).load(R.drawable.ongoing_icon).into(ivOngoingGif)
                     ivOngoingGif.setOnClickListener {
+                        val intent = Intent(this, LiveStatusActivity::class.java)
+                        startActivity(intent)
+                    }
+                } else if (it.status == "eating"){
+                    ivOngoingGif.visibility = View.VISIBLE
+                    Glide.with(this).load(R.drawable.ongoing_icon).into(ivOngoingGif)
+                    ivOngoingGif.setOnClickListener {
                         val intent = Intent(this, OrderingActivity::class.java)
                         startActivity(intent)
-                        finish()
                     }
                 } else {
                     ivOngoingGif.visibility = View.GONE

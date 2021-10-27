@@ -1,4 +1,4 @@
-package com.altwav.samquicksal2.models
+    package com.altwav.samquicksal2.models
 
 data class RestaurantAboutModel(
     val id: Int? = null,
@@ -15,6 +15,7 @@ data class RestaurantModelResponse(
     val rNumberOfPeople: Int? = null,
     val rNumberOfQueues: Int? = null,
     val rPosts: List<RPosts>? = null,
+    val rPolicy: List<RPolicy>? = null,
 )
 
 data class RSchedule(
@@ -26,4 +27,8 @@ data class RSchedule(
 data class RPosts(
     val description: String? = null,
     val image: String? = null,
+)
+
+data class RPolicy(
+    val policy: String? = null,
 )

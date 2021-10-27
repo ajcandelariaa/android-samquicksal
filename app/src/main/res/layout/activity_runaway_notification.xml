@@ -66,7 +66,7 @@
 
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/tvRunawayHeader"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
@@ -83,12 +83,12 @@
 
         <ImageView
             android:id="@+id/imageView9"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12"
+            app:layout_constraintTop_toBottomOf="@+id/tvRunawayHeader"
             app:srcCompat="@drawable/runaway_notif_icon" />
 
         <TextView

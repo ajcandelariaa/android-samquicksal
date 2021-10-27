@@ -67,7 +67,7 @@ tools:context=".notificationsActivity.DeclinedNotificationActivity">
 
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/tvDeclinedHeader"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
@@ -84,12 +84,12 @@ tools:context=".notificationsActivity.DeclinedNotificationActivity">
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/tvDeclinedHeader"
         app:srcCompat="@drawable/declined_notif_icon" />
 
     <LinearLayout
@@ -112,7 +112,7 @@ tools:context=".notificationsActivity.DeclinedNotificationActivity">
             android:text="Reason for Declining:" />
 
         <TextView
-            android:id="@+id/tvBookDetailsNotes"
+            android:id="@+id/tvDNotifOrderNotes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"

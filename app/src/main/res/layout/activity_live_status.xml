@@ -1,183 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp">
+        android:background="?attr/colorPrimary"
+        android:backgroundTint="@color/white"
+        android:contentInsetStart="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetEnd="0dp"
+        android:contentInsetRight="0dp"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar2"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:backgroundTint="@color/white"
-            android:contentInsetStart="0dp"
-            android:contentInsetLeft="0dp"
-            android:contentInsetEnd="0dp"
-            android:contentInsetRight="0dp"
-            android:elevation="4dp"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:contentInsetEnd="0dp"
-            app:contentInsetLeft="0dp"
-            app:contentInsetRight="0dp"
-            app:contentInsetStart="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="16dp">
+
+            <ImageView
+                android:id="@+id/btn_live_status_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_back2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvLiveStatusTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Queue Status"
+                android:textColor="@color/loginColor"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_live_status_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btn_live_status_back" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLiveStatus"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="16dp">
+                android:paddingBottom="40dp">
 
                 <ImageView
-                    android:id="@+id/btn_live_status_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:src="@drawable/ic_back2"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvLiveStatusTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Queue Status"
-                    android:textColor="@color/loginColor"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/btn_live_status_back"
+                    android:id="@+id/imageView5"
+                    android:layout_width="181dp"
+                    android:layout_height="81dp"
+                    android:layout_marginTop="40dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/btn_live_status_back" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/samquicksal_text_logo" />
+
+
+                <ImageView
+                    android:id="@+id/ivLiveStatusGif"
+                    android:layout_width="0dp"
+                    android:layout_height="279dp"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.494"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView5"
+                    app:srcCompat="@drawable/live_status_circle" />
+
+                <TextView
+                    android:id="@+id/tvLiveStatusHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center_horizontal"
+                    android:text="Note"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/ivLiveStatusGif"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="@+id/ivLiveStatusGif"
+                    app:layout_constraintTop_toTopOf="@+id/ivLiveStatusGif" />
+
+                <TextView
+                    android:id="@+id/tvLiveStatusNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="70dp"
+                    android:gravity="center_horizontal"
+                    android:text="15"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="80sp"
+                    app:layout_constraintEnd_toEndOf="@+id/ivLiveStatusGif"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="@+id/ivLiveStatusGif"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLiveStatusHeader" />
+
+                <TextView
+                    android:id="@+id/tvLiveStatusNumberDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-10dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="minutes"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/tvLiveStatusNumber"
+                    app:layout_constraintStart_toStartOf="@+id/tvLiveStatusNumber"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLiveStatusNumber" />
+
+                <TextView
+                    android:id="@+id/tvLiveStatusBody"
+                    android:layout_width="157dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="70dp"
+                    android:layout_marginTop="32dp"
+                    android:gravity="center_horizontal"
+                    android:text="Cancellation is void when time exceeds 15 minutes"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="@+id/ivLiveStatusGif"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="@+id/ivLiveStatusGif"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLiveStatusHeader" />
+
+                <TextView
+                    android:id="@+id/tvLiveStatusDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:gravity="center_horizontal"
+                    android:text="Please wait for the restaurant stafff to review your queuing request"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="@+id/ivLiveStatusGif"
+                    app:layout_constraintStart_toStartOf="@+id/ivLiveStatusGif"
+                    app:layout_constraintTop_toBottomOf="@+id/ivLiveStatusGif" />
+
+                <android.widget.Button
+                    android:id="@+id/btn_live_status_back2"
+                    android:layout_width="180dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@drawable/login_button"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Go back"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLiveStatusDescription" />
+
+                <android.widget.Button
+                    android:id="@+id/btn_live_status_cancel_booking"
+                    android:layout_width="180dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/transparent_button_border"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Cancel Booking"
+                    android:textAllCaps="false"
+                    android:textColor="@color/loginColor"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_live_status_back2"
+                    app:layout_constraintHorizontal_bias="0.492"
+                    app:layout_constraintStart_toStartOf="@+id/btn_live_status_back2"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_live_status_back2" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.appcompat.widget.Toolbar>
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="181dp"
-            android:layout_height="81dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-            app:srcCompat="@drawable/samquicksal_text_logo" />
+        </androidx.core.widget.NestedScrollView>
 
 
-        <ImageView
-            android:id="@+id/ivLiveStatusGif"
-            android:layout_width="0dp"
-            android:layout_height="279dp"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5"
-            app:srcCompat="@drawable/live_status_circle" />
-
-        <TextView
-            android:id="@+id/tvLiveStatusHeader"
-            android:layout_width="wrap_content"
-            android:textAlignment="center"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:fontFamily="@font/montserrat"
-            android:text="Note"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/ivLiveStatusGif"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="@+id/ivLiveStatusGif"
-            app:layout_constraintTop_toTopOf="@+id/ivLiveStatusGif"
-            android:gravity="center_horizontal" />
-
-        <TextView
-            android:id="@+id/tvLiveStatusNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="70dp"
-            android:textColor="@color/white"
-            android:gravity="center_horizontal"
-            android:textSize="80sp"
-            android:text="15"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@+id/ivLiveStatusGif"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="@+id/ivLiveStatusGif"
-            app:layout_constraintTop_toBottomOf="@+id/tvLiveStatusHeader" />
-
-        <TextView
-            android:id="@+id/tvLiveStatusNumberDesc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
-            android:layout_marginTop="-10dp"
-            android:textColor="@color/white"
-            android:text="minutes"
-            app:layout_constraintEnd_toEndOf="@+id/tvLiveStatusNumber"
-            app:layout_constraintStart_toStartOf="@+id/tvLiveStatusNumber"
-            app:layout_constraintTop_toBottomOf="@+id/tvLiveStatusNumber" />
-
-        <TextView
-            android:id="@+id/tvLiveStatusBody"
-            android:layout_width="157dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="70dp"
-            android:layout_marginTop="32dp"
-            android:textColor="@color/white"
-            android:gravity="center_horizontal"
-            android:text="Cancellation is void when time exceeds 15 minutes"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@+id/ivLiveStatusGif"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="@+id/ivLiveStatusGif"
-            app:layout_constraintTop_toBottomOf="@+id/tvLiveStatusHeader" />
-
-        <TextView
-            android:id="@+id/tvLiveStatusDescription"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:gravity="center_horizontal"
-            android:text="Please wait for the restaurant stafff to review your queuing request"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@+id/ivLiveStatusGif"
-            app:layout_constraintStart_toStartOf="@+id/ivLiveStatusGif"
-            app:layout_constraintTop_toBottomOf="@+id/ivLiveStatusGif" />
-
-        <Button
-            android:id="@+id/btn_live_status_back2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="Go back"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLiveStatusDescription" />
-
-        <Button
-            android:id="@+id/btn_live_status_cancel_booking"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Cancel Booking"
-            app:layout_constraintEnd_toEndOf="@+id/btn_live_status_back2"
-            app:layout_constraintHorizontal_bias="0.492"
-            app:layout_constraintStart_toStartOf="@+id/btn_live_status_back2"
-            app:layout_constraintTop_toBottomOf="@+id/btn_live_status_back2" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

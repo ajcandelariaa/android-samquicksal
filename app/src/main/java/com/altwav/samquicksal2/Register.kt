@@ -1,5 +1,6 @@
 package com.altwav.samquicksal2
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -33,8 +34,7 @@ class Register : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         tvLogin.setOnClickListener{
-            val intent = Intent(this, Login::class.java)
-            startActivity(intent)
+            finish()
         }
 
         viewModel = ViewModelProvider(this).get(RegisterCustomerViewModel::class.java)
@@ -44,6 +44,14 @@ class Register : AppCompatActivity() {
             } else {
                 if(it.status == "Registered Successfully"){
                     Toast.makeText(this, "${it.status}", Toast.LENGTH_SHORT).show()
+
+                    //SAVE CUSTOMER ID TO SHARED PREFERENCES
+                    val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.apply {
+                        putInt("CUSTOMER_ID", it.id!!)
+                    }.apply()
+
                     val intent = Intent(this, MainActivity::class.java)
                     intent.putExtra("id", it.id)
                     startActivity(intent)
