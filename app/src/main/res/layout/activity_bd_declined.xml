@@ -128,6 +128,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout17">
 
                 <TextView
+                    android:id="@+id/tvBDDDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -136,6 +137,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:id="@+id/tvBDDTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -172,6 +174,7 @@
                         android:text="Restaurant:"/>
 
                     <TextView
+                        android:id="@+id/tvBDDRestaurantName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -192,6 +195,7 @@
                         android:text="Address:"/>
 
                     <TextView
+                        android:id="@+id/tvBDDRestaurantAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -212,6 +216,7 @@
                         android:text="Order:"/>
 
                     <TextView
+                        android:id="@+id/tvBDDOrderName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -232,6 +237,7 @@
                         android:text="Hours of Stay:"/>
 
                     <TextView
+                        android:id="@+id/tvBDDHoursOfStay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -249,9 +255,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Senior Citizen/PWD"/>
+                        android:text="Senior Citizen/PWD:"/>
 
                     <TextView
+                        android:id="@+id/tvBDDNumberOfPwd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -272,6 +279,7 @@
                         android:text="Children:"/>
 
                     <TextView
+                        android:id="@+id/tvBDDNumberOfChildren"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -292,6 +300,7 @@
                         android:text="Reward:"/>
 
                     <TextView
+                        android:id="@+id/tvBDDReward"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -309,9 +318,31 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Booking Type"/>
+                        android:text="Reward Claimed:"/>
 
                     <TextView
+                        android:id="@+id/tvBDDRewardClaimed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:text="N/A"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Booking Type:"/>
+
+                    <TextView
+                        android:id="@+id/tvBDDBookingType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -330,9 +361,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Notes"/>
+                        android:text="Notes:"/>
 
                     <TextView
+                        android:id="@+id/tvBDDNotes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -352,9 +384,10 @@
                     android:layout_width="match_parent"
                     android:fontFamily="@font/montserrat"
                     android:layout_height="wrap_content"
-                    android:text="Reason"/>
+                    android:text="Reason for declined:"/>
 
                 <TextView
+                    android:id="@+id/tvBDDReason"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"

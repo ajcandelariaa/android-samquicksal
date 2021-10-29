@@ -93,11 +93,14 @@
 
                     <TextView
                         android:id="@+id/textView243"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/montserrat"
-                        android:text="Tables Capacity"
+                        android:gravity="center_horizontal"
+                        android:text="Current Table Capacity"
+                        android:textAlignment="center"
                         android:textColor="@color/restaurantAddressTextColor"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -116,7 +119,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView243" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -138,11 +141,15 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/textView41"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/montserrat"
-                        android:text="Reserved Tables"
+                        android:gravity="center_horizontal"
+                        android:text="Tables currently Reserved"
+                        android:textAlignment="center"
                         android:textColor="@color/restaurantAddressTextColor"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
@@ -162,7 +169,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView41" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -197,11 +204,14 @@
 
                     <TextView
                         android:id="@+id/textView242"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/montserrat"
-                        android:text="Number of People"
+                        android:gravity="center_horizontal"
+                        android:text="Current Number of People"
+                        android:textAlignment="center"
                         android:textColor="@color/restaurantAddressTextColor"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -220,7 +230,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView242" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -242,11 +252,15 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/textView42"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/montserrat"
-                        android:text="Number of Queues"
+                        android:gravity="center_horizontal"
+                        android:text="Tables currently Queued"
+                        android:textAlignment="center"
                         android:textColor="@color/restaurantAddressTextColor"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
@@ -266,7 +280,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView42" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -42,6 +42,8 @@ interface RetroServiceInterface {
     @GET("cancel-booking/{id}")
     fun cancelBooking(@Path("id") id: Int): Call<CancelBookingModelResponse>
 
+
+
     // NOTIFICATIONS RESPONSE
     @GET("get-notifications/pending/{cust_id}/{notif_id}")
     fun notifPending(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifPendingModel>
@@ -62,6 +64,19 @@ interface RetroServiceInterface {
     fun notifRunaway(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifRunawayModel>
 
 
+
+    @GET("get-booking-history/{cust_id}")
+    fun bookingHistory(@Path("cust_id") id: Int): Call<List<BookingHistoryModelResponse>>
+
+    @POST("get-booking-history/cancelled")
+    fun bookingHistoryCancelled(@Body params: BHCancelledModel): Call<BHCancelledModelResponse>
+
+
+
+
+
+
+    // POST METHODS
     @POST("register-customer")
     fun registerCustomer(@Body params: RegisterCustomerModel): Call<RegisterCustomerModelResponse>
 

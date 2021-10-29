@@ -159,6 +159,16 @@ class BookingDetailsActivity : AppCompatActivity() {
 
         btnBookDetailsSubmit.setOnClickListener {
             val totalPrice = tvBookDetailsTotalPrice.text.toString().toDouble()
+            var rewardClaimed: String? = null
+
+            if (rewardStatus == "Complete"){
+                if(cbBookDetailsReward.isChecked){
+                    rewardClaimed = "Yes"
+                } else {
+                    rewardClaimed = "No"
+                }
+            }
+
             AlertDialog.Builder(this)
                 .setTitle("Submit")
                 .setIcon(R.mipmap.ic_launcher)
@@ -179,6 +189,7 @@ class BookingDetailsActivity : AppCompatActivity() {
                         rewardStatus,
                         rewardType,
                         rewardInput,
+                        rewardClaimed,
                         totalPrice,
                     )
                     Log.d("message", "SUBMIT $customer")

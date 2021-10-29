@@ -14,6 +14,7 @@ data class SubmitQueueFormModel(
     val rewardStatus: String? = null,
     val rewardType: String? = null,
     val rewardInput: Int? = null,
+    val rewardClaimed: String? = null,
     val totalPrice: Double? = null,
 )
 

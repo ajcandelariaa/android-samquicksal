@@ -99,6 +99,10 @@ class ListOfNotificationsAdapter : RecyclerView.Adapter<ListOfNotificationsAdapt
                         intent.putExtra("notificationId", notificationId)
                         context.startActivity(intent)
                     }
+                    "Validation" -> {
+                        val intent = Intent(context, LiveStatusActivity::class.java)
+                        context.startActivity(intent)
+                    }
                     "No Show" -> {
                         val intent = Intent(context, NoShowNotificationActivity::class.java)
                         intent.putExtra("notificationId", notificationId)
@@ -122,10 +126,6 @@ class ListOfNotificationsAdapter : RecyclerView.Adapter<ListOfNotificationsAdapt
                     "Blocked" -> {
                         val intent = Intent(context, BlockedNotificationActivity::class.java)
                         intent.putExtra("notificationId", notificationId)
-                        context.startActivity(intent)
-                    }
-                    "Validation" -> {
-                        val intent = Intent(context, LiveStatusActivity::class.java)
                         context.startActivity(intent)
                     }
                     "Table Setting Up" -> {
