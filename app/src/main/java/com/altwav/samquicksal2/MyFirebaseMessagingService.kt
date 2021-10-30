@@ -6,19 +6,28 @@ import android.app.PendingIntent
 import android.app.PendingIntent.FLAG_ONE_SHOT
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.altwav.samquicksal2.notificationsActivity.*
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import kotlin.random.Random
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.widget.Toast
+import java.io.IOException
+import java.io.InputStream
+import java.net.HttpURLConnection
+import java.net.URL
+
 
 private const val channelId = "notfication_channel"
 private const val channelName = "com.altwav.samquicksal2"
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
-    private fun generateNotification(title: String, message: String, notificationType: String, notificationId: Int){
+    private fun generateNotification(title: String, message: String, notificationType: String, notificationId: Int, notificationRLogo: String){
         var intent: Intent? = null
         when(notificationType){
             "New Account" -> {
@@ -86,18 +95,21 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             }
         }
 
-
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, FLAG_ONE_SHOT)
 
-        //channel id , channel name
         val builder: NotificationCompat.Builder = NotificationCompat.Builder(applicationContext, channelId)
             .setSmallIcon(R.drawable.samquicksal_logo)
-            .setAutoCancel(true)
-            .setVibrate(longArrayOf(1000, 1000, 1000, 1000))
-            .setOnlyAlertOnce(true)
-            .setContentIntent(pendingIntent)
             .setContentTitle(title)
             .setContentText(message)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(message))
+            .setVibrate(longArrayOf(1000, 1000, 1000, 1000))
+            .setAutoCancel(true)
+            .setOnlyAlertOnce(true)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+            .setContentIntent(pendingIntent)
+            .setLargeIcon(getBitmapFromURL(notificationRLogo))
+            .setColor(Color.parseColor("#D8345F"))
 
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -107,7 +119,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             notificationManager.createNotificationChannel(notificationChannel)
         }
 
-        val notificationId = Random.nextInt()
+        val notificationId: Int = Random.nextInt()
         notificationManager.notify(notificationId, builder.build())
     }
 
@@ -118,15 +130,28 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 remoteMessage.notification!!.title!!,
                 remoteMessage.notification!!.body!!,
                 remoteMessage.data["notificationType"]!!,
-                remoteMessage.data["notificationId"]!!.toInt()
+                remoteMessage.data["notificationId"]!!.toInt(),
+                remoteMessage.data["notificationRLogo"]!!
             )
         }
     }
 
     override fun onNewToken(deviceToken: String) {
         super.onNewToken(deviceToken)
-        if(deviceToken != null){
-            MainActivity().sendRegistrationToServer(deviceToken)
+        MainActivity().sendRegistrationToServer(deviceToken)
+    }
+
+    fun getBitmapFromURL(src: String?): Bitmap? {
+        return try {
+            val url = URL(src)
+            val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
+            connection.doInput = true
+            connection.connect()
+            val input: InputStream = connection.inputStream
+            BitmapFactory.decodeStream(input)
+        } catch (e: IOException) {
+            e.printStackTrace()
+            null
         }
     }
 
