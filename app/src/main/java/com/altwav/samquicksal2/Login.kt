@@ -5,12 +5,15 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.altwav.samquicksal2.models.LoginCustomerModel
 import com.altwav.samquicksal2.models.LoginCustomerModelResponse
 import com.altwav.samquicksal2.viewmodel.LoginCustomerViewModel
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_register.*
@@ -115,8 +118,16 @@ class Login : AppCompatActivity() {
 
             // CHECK ERRORS
             if(countError == 0) {
-                val customer = LoginCustomerModel(emailAddress, password)
-                viewModel.loginCustomer(customer)
+                FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        return@OnCompleteListener
+                    }
+
+                    val token = task.result
+                    val customer = LoginCustomerModel(emailAddress, password, token)
+                    viewModel.loginCustomer(customer)
+                })
+
             }
         }
     }

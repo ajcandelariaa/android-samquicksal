@@ -5,6 +5,7 @@ data class RegisterCustomerModel(
     val emailAddress: String? = null,
     val contactNumber: String? = null,
     val password: String? = null,
+    val deviceToken: String? = null,
 )
 
 data class RegisterCustomerModelResponse(

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "23972211283",
+    "project_id": "fir-pushnoti-e034e",
+    "storage_bucket": "fir-pushnoti-e034e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23972211283:android:47ef2bd422de51c9ea34a6",
+        "android_client_info": {
+          "package_name": "com.altwav.samquicksal2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "23972211283-2opk0a0998m4jpidmj6qgf00ojbtjoma.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.altwav.samquicksal2",
+            "certificate_hash": "cab4c4bab42351befc2add0f814999e3ce61ee03"
+          }
+        },
+        {
+          "client_id": "23972211283-6fnpj290uml7e8eraph44ipj7ec317er.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdjzFadCfJEz-g4sh1eIhdALWKDXYlYY8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "23972211283-6fnpj290uml7e8eraph44ipj7ec317er.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

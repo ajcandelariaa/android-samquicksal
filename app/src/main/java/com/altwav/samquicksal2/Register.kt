@@ -8,9 +8,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.altwav.samquicksal2.models.LoginCustomerModel
 import com.altwav.samquicksal2.models.RegisterCustomerModel
 import com.altwav.samquicksal2.models.RegisterCustomerModelResponse
 import com.altwav.samquicksal2.viewmodel.RegisterCustomerViewModel
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_register.*
 import java.util.regex.Pattern
 
@@ -152,8 +155,15 @@ class Register : AppCompatActivity() {
 
             // CHECK ERRORS
             if(countError == 0) {
-                val customer = RegisterCustomerModel(fullName, emailAddress, contactNumber, password)
-                viewModel.registerNewCustomer(customer)
+                FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        return@OnCompleteListener
+                    }
+
+                    val token = task.result
+                    val customer = RegisterCustomerModel(fullName, emailAddress, contactNumber, password, token)
+                    viewModel.registerNewCustomer(customer)
+                })
             }
         }
     }

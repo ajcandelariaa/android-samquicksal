@@ -88,4 +88,7 @@ interface RetroServiceInterface {
 
     @POST("forgot-password")
     fun forgotPassword(@Body params: ForgotPasswordModel): Call<ForgotPasswordModelResponse>
+
+    @POST("update-device-token")
+    fun updateDeviceToken(@Body params: DeviceTokenModel): Call<DeviceTokenModelResponse>
 }

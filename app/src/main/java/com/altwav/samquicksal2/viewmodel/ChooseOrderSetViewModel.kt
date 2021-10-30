@@ -11,7 +11,7 @@ import retrofit2.Response
 
 class ChooseOrderSetViewModel:ViewModel() {
     var createChooseOrderSetModelResponseLD: MutableLiveData<ChooseOrderSetModelResponse> =
-        MutableLiveData()
+    MutableLiveData()
 
     fun getAccountCustomerObserver(): MutableLiveData<ChooseOrderSetModelResponse> {
         return createChooseOrderSetModelResponseLD

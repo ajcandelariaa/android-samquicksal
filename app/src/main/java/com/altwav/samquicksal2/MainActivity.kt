@@ -21,14 +21,12 @@ import com.altwav.samquicksal2.mainActivityFragments.HomeFragment
 import com.altwav.samquicksal2.mainActivityFragments.NotificationsFragment
 import com.altwav.samquicksal2.mainActivityFragments.PromosFragment
 import com.altwav.samquicksal2.mainActivityFragments.RestaurantsFragment
-import com.altwav.samquicksal2.models.HomepageCustomerModel
-import com.altwav.samquicksal2.models.HomepageCustomerModelResponse
-import com.altwav.samquicksal2.models.LoginCustomerModel
-import com.altwav.samquicksal2.models.LoginCustomerModelResponse
+import com.altwav.samquicksal2.models.*
 import com.altwav.samquicksal2.sidebarActivities.Account
 import com.altwav.samquicksal2.sidebarActivities.Rewards
 import com.altwav.samquicksal2.sidebarActivities.ScanQrCode
 import com.altwav.samquicksal2.sidebarActivities.TransactionHistory
+import com.altwav.samquicksal2.viewmodel.DeviceTokenViewModel
 import com.altwav.samquicksal2.viewmodel.HomepageCustomerViewModel
 import com.altwav.samquicksal2.viewmodel.LoginCustomerViewModel
 import com.bumptech.glide.Glide
@@ -43,6 +41,7 @@ import kotlinx.android.synthetic.main.main_nav_drawer.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: HomepageCustomerViewModel
+    private lateinit var viewModel2: DeviceTokenViewModel
 
     private var drawerLayout: DrawerLayout? = null
 
@@ -138,6 +137,15 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+    }
+
+    fun sendRegistrationToServer(deviceToken: String){
+        val sharedPreferences: SharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val customerId = sharedPreferences.getInt("CUSTOMER_ID", 0)
+
+        viewModel2 = ViewModelProvider(this).get(DeviceTokenViewModel::class.java)
+        val customer = DeviceTokenModel(customerId, deviceToken)
+        viewModel2.getDeviceTokenInfo(customer)
     }
 
     override fun onBackPressed() {
