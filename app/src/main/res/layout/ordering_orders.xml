@@ -7,6 +7,7 @@
     android:orientation="horizontal">
 
     <TextView
+        android:id="@+id/tvCOFoodName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -25,6 +26,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/btnCOFoodMinus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1.3"
@@ -36,6 +38,7 @@
 
 
         <TextView
+            android:id="@+id/tvCOFoodQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -47,6 +50,7 @@
 
 
         <TextView
+            android:id="@+id/btnCOFoodPlus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1.3"
@@ -60,6 +64,7 @@
 
 
     <TextView
+        android:id="@+id/tvCOFoodPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1.3"
@@ -68,6 +73,7 @@
         android:textAlignment="center" />
 
     <ImageView
+        android:id="@+id/btnCOFoodDelete"
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:layout_weight="1.5"

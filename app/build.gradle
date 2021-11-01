@@ -66,5 +66,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+
 
 }

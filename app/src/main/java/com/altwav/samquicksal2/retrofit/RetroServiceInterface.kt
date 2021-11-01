@@ -72,6 +72,19 @@ interface RetroServiceInterface {
     fun bookingHistoryCancelled(@Body params: BHCancelledModel): Call<BHCancelledModelResponse>
 
 
+    @GET("ordering/food-set/{cust_id}")
+    fun orderingFoodSet(@Path("cust_id") id: Int): Call<OrderingFoodSetModelResponse>
+    @GET("ordering/food-item/{restAcc_id}/{orderSet_id}/{foodSet_id}")
+    fun orderingFoodItem(
+        @Path("restAcc_id") restAcc_id: Int,
+        @Path("orderSet_id") orderSet_id: Int,
+        @Path("foodSet_id") foodSet_id: Int): Call<List<OrderingFoodItemModelResponse>>
+
+    @POST("ordering/food-item/add")
+    fun orderingAddFoodItem(@Body params: AddFooditemModel): Call<AddFooditemModelResponse>
+
+    @GET("ordering/orders/{cust_id}")
+    fun getCurrentOrders(@Path("cust_id") cust_id: Int): Call<List<CurrentOrdersModel>>
 
 
 
