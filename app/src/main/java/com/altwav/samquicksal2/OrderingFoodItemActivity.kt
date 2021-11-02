@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.OrderFoodItemAdapter
 import com.altwav.samquicksal2.models.AddFooditemModel
 import com.altwav.samquicksal2.models.AddFooditemModelResponse
+import com.altwav.samquicksal2.orderingFragments.OrdersFragment
 import com.altwav.samquicksal2.viewmodel.AddFoodItemViewModel
 import com.altwav.samquicksal2.viewmodel.OrderingFoodItemViewModel
 import kotlinx.android.synthetic.main.activity_ordering_food_item.*

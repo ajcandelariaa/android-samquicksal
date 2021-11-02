@@ -83,10 +83,20 @@ interface RetroServiceInterface {
     @POST("ordering/food-item/add")
     fun orderingAddFoodItem(@Body params: AddFooditemModel): Call<AddFooditemModelResponse>
 
+    @POST("ordering/food-item/update")
+    fun orderingUpdateFoodItem(@Body params: UpdateFoodItemModel): Call<UpdateFoodItemModelResponse>
+
     @GET("ordering/orders/{cust_id}")
     fun getCurrentOrders(@Path("cust_id") cust_id: Int): Call<List<CurrentOrdersModel>>
 
+    @GET("ordering/orders/submit/{cust_id}")
+    fun submitCurrentOrders(@Path("cust_id") cust_id: Int): Call<SubmitOrdersModel>
 
+    @POST("ordering/assistance")
+    fun orderingAssistance(@Body params: OrderingAssistanceModel): Call<OrderingAssistanceModelResponse>
+
+    @GET("ordering/assistance/history/{cust_id}")
+    fun orderingAssistanceHistory(@Path("cust_id") cust_id: Int): Call<List<OrderAsstHistModel>>
 
 
     // POST METHODS

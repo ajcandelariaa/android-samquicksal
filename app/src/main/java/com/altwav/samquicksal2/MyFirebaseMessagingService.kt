@@ -93,6 +93,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 intent = Intent(this, LiveStatusActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
+            "Table is Ready" -> {
+                intent = Intent(this, LiveStatusActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
         }
 
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, FLAG_ONE_SHOT)

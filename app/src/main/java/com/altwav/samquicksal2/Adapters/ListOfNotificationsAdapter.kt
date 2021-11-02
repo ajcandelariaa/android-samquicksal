@@ -132,6 +132,10 @@ class ListOfNotificationsAdapter : RecyclerView.Adapter<ListOfNotificationsAdapt
                         val intent = Intent(context, LiveStatusActivity::class.java)
                         context.startActivity(intent)
                     }
+                    "Table is Ready" -> {
+                        val intent = Intent(context, LiveStatusActivity::class.java)
+                        context.startActivity(intent)
+                    }
                 }
             }
         }

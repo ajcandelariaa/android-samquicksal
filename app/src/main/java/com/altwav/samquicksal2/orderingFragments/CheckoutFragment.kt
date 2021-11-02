@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.OrderingBillAdapter
 import com.altwav.samquicksal2.Adapters.OrderingOrdersAdapter
 import com.altwav.samquicksal2.R
+import kotlinx.android.synthetic.main.fragment_checkout.*
+import kotlinx.android.synthetic.main.fragment_checkout.view.*
+import kotlinx.android.synthetic.main.fragment_orders.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,9 +49,19 @@ class CheckoutFragment : Fragment() {
 
         recyclerView = view.findViewById(R.id.orderingBillRecyclerView)
         adapter = OrderingBillAdapter()
-
         recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
+
+
+
+
+
+
+
+        view.refreshCheckoutBill.setOnRefreshListener{
+
+            refreshCheckoutBill.isRefreshing = false
+        }
 
         return view
     }
