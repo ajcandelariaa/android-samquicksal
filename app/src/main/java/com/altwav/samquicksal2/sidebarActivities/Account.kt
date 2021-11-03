@@ -49,15 +49,6 @@ class Account : AppCompatActivity() {
                     Glide.with(this).load(R.drawable.ic_verified).into(ivEmailAddressStatus)
                 }
 
-                if(it.contactNumberVerified == "No"){
-                    tvContactNumberStatus.text = "Not Verified"
-                    tvContactNumberStatus.setTextColor(Color.parseColor("#91001B"))
-                    Glide.with(this).load(R.drawable.ic_not_verified).into(ivContactNumberStatus)
-                } else {
-                    tvContactNumberStatus.text = "Verified"
-                    tvContactNumberStatus.setTextColor(Color.parseColor("#0AA034"))
-                    Glide.with(this).load(R.drawable.ic_verified).into(ivContactNumberStatus)
-                }
                 Glide.with(this).load(it.profileImage).into(ivAccountImageInner)
                 Glide.with(this).load(it.profileImage).into(ivAccountImageOuter)
             }

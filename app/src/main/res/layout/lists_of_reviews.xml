@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleImageView4"
+            android:id="@+id/ivRRCustImage"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginLeft="10dp"
@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView38"
+            android:id="@+id/tvRRCustName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -34,45 +34,45 @@
             android:text="Aj Candelaria"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/circleImageView4"
+            app:layout_constraintStart_toEndOf="@+id/ivRRCustImage"
             app:layout_constraintTop_toTopOf="parent" />
 
         <RatingBar
-            android:id="@+id/ratingBar2"
+            android:id="@+id/rbRRStar"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:isIndicator="false"
+            android:layout_marginTop="2dp"
             android:numStars="5"
             android:progressBackgroundTint="@color/starColorNotActive"
             android:progressTint="@color/starColorActive"
             android:rating="3"
             android:stepSize="0.5"
-            app:layout_constraintStart_toStartOf="@+id/textView38"
-            app:layout_constraintTop_toBottomOf="@+id/textView38" />
+            app:layout_constraintStart_toStartOf="@+id/tvRRCustName"
+            app:layout_constraintTop_toBottomOf="@+id/tvRRCustName" />
 
         <TextView
-            android:id="@+id/textView39"
+            android:id="@+id/tvRRCustComment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="3dp"
             android:text="The service was superb and thanks to this app everything was fast and easy."
             android:textColor="@color/black"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/ratingBar2"
-            app:layout_constraintTop_toBottomOf="@+id/ratingBar2" />
+            app:layout_constraintStart_toStartOf="@+id/rbRRStar"
+            app:layout_constraintTop_toBottomOf="@+id/rbRRStar" />
 
         <TextView
-            android:id="@+id/textView40"
+            android:id="@+id/tvRRCustDate"
             android:layout_width="wrap_content"
             android:layout_marginRight="20dp"
             android:layout_height="wrap_content"
             android:text="Jan 13"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView38" />
+            app:layout_constraintTop_toTopOf="@+id/tvRRCustName" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

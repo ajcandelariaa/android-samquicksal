@@ -52,9 +52,11 @@ class HomeFragment : Fragment() {
 
         val imageList = ArrayList<SlideModel>()
         val imageSlider = view.findViewById<ImageSlider>(R.id.image_slider)
-        imageList.add(SlideModel("https://scontent.ffjr1-6.fna.fbcdn.net/v/t1.6435-9/81670216_1032931623736363_3797509138506842112_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=Fp9Shd-KKDoAX98qbLJ&_nc_ht=scontent.ffjr1-6.fna&oh=4462d4c0bd6c3210c6695f6a409cc1d9&oe=61873FD5"))
-        imageList.add(SlideModel("https://www.manilaonsale.com/wp-content/uploads/2019/01/Jin-Joo.jpg"))
-        imageList.add(SlideModel("https://i1.wp.com/eatwalkplay.com/wp-content/uploads/2020/12/don-marquise-menu.jpg?w=450&ssl=1"))
+//        imageList.add(SlideModel("https://scontent.ffjr1-6.fna.fbcdn.net/v/t1.6435-9/81670216_1032931623736363_3797509138506842112_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=Fp9Shd-KKDoAX98qbLJ&_nc_ht=scontent.ffjr1-6.fna&oh=4462d4c0bd6c3210c6695f6a409cc1d9&oe=61873FD5"))
+//        imageList.add(SlideModel("https://www.manilaonsale.com/wp-content/uploads/2019/01/Jin-Joo.jpg"))
+//        imageList.add(SlideModel("https://i1.wp.com/eatwalkplay.com/wp-content/uploads/2020/12/don-marquise-menu.jpg?w=450&ssl=1"))
+        imageList.add(SlideModel(R.drawable.imgslider_1))
+        imageList.add(SlideModel(R.drawable.imgslider_2))
         imageSlider.setImageList(imageList, ScaleTypes.CENTER_CROP)
 
         recyclerView = view.findViewById(R.id.ratedRestaurantsRecycler)

@@ -5,11 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.ListOfReviewsAdapter
 import com.altwav.samquicksal2.Adapters.ListsOfPromosAdapter
 import com.altwav.samquicksal2.R
+import com.altwav.samquicksal2.RestaurantViewActivity
+import com.altwav.samquicksal2.viewmodel.RestaurantRewardPromoViewModel
+import com.altwav.samquicksal2.viewmodel.RestoReviewViewModel
+import kotlinx.android.synthetic.main.fragment_reviews.*
+import kotlinx.android.synthetic.main.fragment_rewards.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,12 +52,27 @@ class ReviewsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_reviews, container, false)
+        val restaurantId = (activity as RestaurantViewActivity?)?.getRestaurantId()
 
         recyclerView = view.findViewById(R.id.ratingReviewsRecyclerView)
         adapter = ListOfReviewsAdapter()
 
         recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
+
+        val viewModel = ViewModelProvider(this).get<RestoReviewViewModel>()
+        viewModel.getRestoReviewObserver().observe(viewLifecycleOwner, {
+            if (it!= null) {
+                adapter.setCustRestReview(it.custReviews)
+                adapter.notifyDataSetChanged()
+                tvRRAverageRate.text = it.averageRating
+                tvRRRateCount.text = "(${it.countReviews})"
+            }
+        })
+
+        if (restaurantId != null) {
+            viewModel.getRestoReviewInfo(restaurantId)
+        }
 
         return view
     }

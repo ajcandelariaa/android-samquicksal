@@ -22,7 +22,7 @@
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_adding_item_temp.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_approved_notification_activity.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_bd_cancelled.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_bd_complete.xml" value="0.22" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_bd_complete.xml" value="0.25" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_bd_declined.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_bd_noshow.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_bd_runaway.xml" value="0.33" />
@@ -54,6 +54,7 @@
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_rewards.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_runaway_notification.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_scan_qr_code.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_stamp_details.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_transaction_details.xml" value="0.25" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_transaction_history.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/choose_order_set.xml" value="0.33" />
@@ -93,6 +94,7 @@
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/ordering_food_sets.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/ordering_orders.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/rated_restaurants.xml" value="0.5" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/stamp_card_tasks.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

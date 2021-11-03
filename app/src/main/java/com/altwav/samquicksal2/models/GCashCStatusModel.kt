@@ -4,4 +4,5 @@ data class GCashCStatusModel(
     val amount: String? = null,
     val restGCashQr: String? = null,
     val status: String? = null,
+    val filename: String? = null,
 )

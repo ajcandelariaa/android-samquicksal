@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardElevation="2dp"
@@ -16,61 +17,71 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingVertical="20dp"
             android:layout_weight="1">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/circleImageView2"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginVertical="20dp"
+                android:id="@+id/ivSCRLogo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/sample_rlogo2"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView82"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
                 android:layout_marginHorizontal="10dp"
-                android:text="50 % Discount on total Bill"
-                android:textColor="@color/gradient3TopColor"
-                android:textStyle="bold"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/circleImageView2"
-                app:layout_constraintTop_toTopOf="@+id/circleImageView2" />
+                app:layout_constraintStart_toEndOf="@+id/ivSCRLogo"
+                app:layout_constraintTop_toTopOf="@+id/ivSCRLogo">
 
-            <TextView
-                android:id="@+id/textView81"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Golden Baboy, Morayta"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView82"
-                app:layout_constraintStart_toStartOf="@+id/textView82"
-                app:layout_constraintTop_toBottomOf="@+id/textView82" />
+                <TextView
+                    android:id="@+id/tvSCReward"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="50 % Discount on total Bill"
+                    android:textColor="@color/gradient3TopColor"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ivSCRLogo"
+                    app:layout_constraintTop_toTopOf="@+id/ivSCRLogo" />
 
-            <TextView
-                android:id="@+id/textView83"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Valid Until: 02/05/2022"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView81"
-                app:layout_constraintStart_toStartOf="@+id/textView81"
-                app:layout_constraintTop_toBottomOf="@+id/textView81" />
+                <TextView
+                    android:id="@+id/tvSCRAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Golden Baboy, Morayta"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tvSCReward"
+                    app:layout_constraintStart_toStartOf="@+id/tvSCReward"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSCReward" />
 
-            <TextView
-                android:id="@+id/textView84"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Claimed: Yes"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView83"
-                app:layout_constraintStart_toStartOf="@+id/textView83"
-                app:layout_constraintTop_toBottomOf="@+id/textView83" />
+                <TextView
+                    android:id="@+id/tvSCValidity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Valid Until: 02/05/2022"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tvSCRAddress"
+                    app:layout_constraintStart_toStartOf="@+id/tvSCRAddress"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSCRAddress" />
+
+                <TextView
+                    android:id="@+id/tvSCRewardClaimed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Claimed: Yes"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tvSCValidity"
+                    app:layout_constraintStart_toStartOf="@+id/tvSCValidity"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSCValidity" />
+
+            </LinearLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -91,7 +102,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView77"
+                android:id="@+id/tvSCCurrentStamp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10"
@@ -112,12 +123,12 @@
                 android:layout_marginTop="-19dp"
                 android:textSize="18sp"
                 android:layout_marginRight="-4dp"
-                app:layout_constraintEnd_toEndOf="@+id/textView77"
-                app:layout_constraintTop_toBottomOf="@+id/textView77"
+                app:layout_constraintEnd_toEndOf="@+id/tvSCCurrentStamp"
+                app:layout_constraintTop_toBottomOf="@+id/tvSCCurrentStamp"
                 app:layout_goneMarginTop="-10dp" />
 
             <TextView
-                android:id="@+id/textView85"
+                android:id="@+id/tvSCCapacity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10"

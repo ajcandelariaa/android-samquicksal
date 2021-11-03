@@ -280,7 +280,7 @@
                     android:text="09123456789"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/textView133"
-                    app:layout_constraintTop_toBottomOf="@+id/ivContactNumberStatus" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView133" />
 
                 <TextView
                     android:id="@+id/textView153"
@@ -355,27 +355,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvAccountPassword" />
-
-                <ImageView
-                    android:id="@+id/ivContactNumberStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_not_verified"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView133"
-                    app:layout_constraintEnd_toStartOf="@+id/tvContactNumberStatus"
-                    app:layout_constraintTop_toTopOf="@+id/textView133" />
-
-                <TextView
-                    android:id="@+id/tvContactNumberStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Not Verified"
-                    android:textColor="@color/menuTextColor"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/ivContactNumberStatus"
-                    app:layout_constraintEnd_toEndOf="@+id/view3"
-                    app:layout_constraintTop_toTopOf="@+id/ivContactNumberStatus" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

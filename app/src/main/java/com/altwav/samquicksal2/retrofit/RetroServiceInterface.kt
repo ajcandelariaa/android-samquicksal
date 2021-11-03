@@ -1,6 +1,7 @@
 package com.altwav.samquicksal2.retrofit
 
 import com.altwav.samquicksal2.models.*
+import com.altwav.samquicksal2.viewmodel.RestoReviewViewModel
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -90,7 +91,14 @@ interface RetroServiceInterface {
     @GET("ordering/gcash/status/{cust_id}")
     fun gCashCheckoutStatus(@Path("cust_id") cust_id: Int): Call<GCashCStatusModel>
 
+    @GET("get-stamp-cards/{cust_id}")
+    fun stampCards(@Path("cust_id") cust_id: Int): Call<List<StampCardsModel>>
 
+    @GET("get-stamp-cards/details/{stamp_id}")
+    fun stampCardDetails(@Path("stamp_id") stamp_id: Int): Call<StampDetailsModel>
+
+    @GET("get-restaurants/reviews/{rest_id}")
+    fun getRestaurantReviews(@Path("rest_id") rest_id: Int): Call<RestoReviewModel>
 
 
 
@@ -129,6 +137,9 @@ interface RetroServiceInterface {
 
     @POST("get-booking-history/cancelled")
     fun bookingHistoryCancelled(@Body params: BHCancelledModel): Call<BHCancelledModelResponse>
+
+    @POST("get-booking-history/complete")
+    fun bookingHistoryComplete(@Body params: BHCompleteModel): Call<BHCompleteModelResponse>
 
 
 }

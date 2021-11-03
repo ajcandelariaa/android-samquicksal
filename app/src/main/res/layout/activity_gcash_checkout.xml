@@ -69,7 +69,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="5dp"
+                app:cardElevation="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout21">
@@ -115,7 +115,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="48dp"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="5dp"
+                app:cardElevation="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.175"
                 app:layout_constraintStart_toStartOf="parent"
@@ -153,7 +153,7 @@
                         app:srcCompat="@drawable/upload_icon" />
 
                     <Button
-                        android:id="@+id/button7"
+                        android:id="@+id/btnCOGCCSubmitReceipt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30dp"
@@ -169,7 +169,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="60dp"
                         android:textColor="@color/restaurantAddressTextColor"
-                        android:text="Upload Image Here"
+                        android:text="Upload Receipt Here"
                         app:layout_constraintBottom_toBottomOf="@+id/btnCOGCCUploadImage"
                         app:layout_constraintEnd_toEndOf="@+id/btnCOGCCUploadImage"
                         app:layout_constraintStart_toStartOf="@+id/btnCOGCCUploadImage" />

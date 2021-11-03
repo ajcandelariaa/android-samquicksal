@@ -36,7 +36,7 @@
             android:layout_marginLeft="32dp"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/montserrat"
-            android:text="Top 5 Rated Restaurants"
+            android:text="Top Rated Restaurants"
             android:textColor="@color/topRatedRestaurantsColor"
             android:textSize="20sp"
             android:textStyle="bold"

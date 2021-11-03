@@ -26,7 +26,7 @@
     <color name="closingTimeTextColor">#A70000</color>
     <color name="notificationBgColor">#E5EFF5</color>
     <color name="menuTextColor">#91001B</color>
-    <color name="bookingDetailsBackground">#F8F8F8</color>91001B
+    <color name="bookingDetailsBackground">#F8F8F8</color>
     <color name="backgroundQrCode">#E1E1E1</color>
     <color name="backgroundOrderingQuantity">#F4F4F4</color>
 </resources>
