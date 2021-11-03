@@ -82,6 +82,21 @@ class MainActivity : AppCompatActivity() {
                         val intent = Intent(this, OrderingActivity::class.java)
                         startActivity(intent)
                     }
+                } else if (it.status == "gcashCheckout"){
+                    ivOngoingGif.visibility = View.GONE
+                    val intent = Intent(this, GcashCheckoutActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else if (it.status == "checkoutValidation"){
+                    ivOngoingGif.visibility = View.GONE
+                    val intent = Intent(this, CheckoutStatusActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else if (it.status == "customerFeedback"){
+                    ivOngoingGif.visibility = View.GONE
+                    val intent = Intent(this, RateFeedbackActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
                     ivOngoingGif.visibility = View.GONE
                 }

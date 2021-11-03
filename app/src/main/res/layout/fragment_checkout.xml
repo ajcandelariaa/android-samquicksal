@@ -14,19 +14,327 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="40dp">
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:id="@+id/textView543"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Payment Method"
+                android:textColor="@color/restaurantAddressTextColor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout19"
+                tools:layout_editor_absoluteY="660dp" />
+
+            <LinearLayout
+                android:id="@+id/llsteps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView543">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/ic_warning_info"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/menuTextColor"
+                        android:text="You may no longer change your chosen Mode of Payment"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:background="@drawable/ic_rp_circle"
+                        android:textAlignment="center"
+                        android:paddingTop="2dp"
+                        android:textColor="@color/white"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/gradient3TopColor"
+                        android:layout_weight="1"
+                        android:text="Choose your preferred Mode of Payment"/>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2"
+                        android:background="@drawable/ic_rp_circle"
+                        android:textAlignment="center"
+                        android:paddingTop="2dp"
+                        android:textColor="@color/white"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/gradient3TopColor"
+                        android:layout_weight="1"
+                        android:text="If you choose “Pay using Cash”,  please wait for the staff to come to your table."/>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3"
+                        android:background="@drawable/ic_rp_circle"
+                        android:textAlignment="center"
+                        android:paddingTop="2dp"
+                        android:textColor="@color/white"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/gradient3TopColor"
+                        android:layout_weight="1"
+                        android:text="If you choose “Pay using GCash”"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="40dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:background="@drawable/ic_rp_circle"
+                        android:layout_gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/gradient3TopColor"
+                        android:layout_weight="1"
+                        android:text="Download the GCash QR code"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="40dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:background="@drawable/ic_rp_circle"
+                        android:layout_gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/gradient3TopColor"
+                        android:layout_weight="1"
+                        android:text="Proceed to pay using GCash"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="40dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:background="@drawable/ic_rp_circle"
+                        android:layout_gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/gradient3TopColor"
+                        android:layout_weight="1"
+                        android:text="Upload your GCash receipt"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="40dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:background="@drawable/ic_rp_circle"
+                        android:layout_gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/gradient3TopColor"
+                        android:layout_weight="1"
+                        android:text="Wait for the notification for the validation of your receipt. "/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="40dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:background="@drawable/ic_rp_circle"
+                        android:layout_marginTop="5dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/gradient3TopColor"
+                        android:layout_weight="1"
+                        android:text="Take note that if you uploaded incorrect image, you will be asked to upload again and if payment is less than the total price then you can pay it through cash."/>
+
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4"
+                        android:background="@drawable/ic_rp_circle"
+                        android:textAlignment="center"
+                        android:paddingTop="2dp"
+                        android:textColor="@color/white"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/gradient3TopColor"
+                        android:layout_weight="1"
+                        android:text="You may give us a feedback after your transaction."/>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+                        android:background="@drawable/ic_rp_circle"
+                        android:textAlignment="center"
+                        android:paddingTop="2dp"
+                        android:textColor="@color/white"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/gradient3TopColor"
+                        android:layout_weight="1"
+                        android:text="Done."/>
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView2"
+                android:id="@+id/btnPayUsingCash"
                 android:layout_width="0dp"
+                android:layout_marginTop="30dp"
                 android:layout_height="160dp"
                 android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="20dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/llsteps">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -38,7 +346,7 @@
                         android:layout_height="100dp"
                         android:layout_marginTop="15dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/changegrill_icon"
+                        android:src="@drawable/paycash_icon"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.498"
                         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +359,7 @@
                         android:layout_marginTop="-10dp"
                         android:fontFamily="@font/montserrat"
                         android:text="Pay using Cash"
-                        android:textColor="@color/loginColor"
+                        android:textColor="@color/restaurantAddressTextColor"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +371,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView22"
+                android:id="@+id/btnPayUsingGCash"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 android:layout_marginHorizontal="40dp"
@@ -72,7 +380,7 @@
                 app:cardElevation="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView2">
+                app:layout_constraintTop_toBottomOf="@+id/btnPayUsingCash">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -84,7 +392,7 @@
                         android:layout_height="100dp"
                         android:layout_marginTop="15dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/callwaiter_icon"
+                        android:src="@drawable/paygcash_icon"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.498"
                         app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +405,7 @@
                         android:layout_marginTop="-10dp"
                         android:fontFamily="@font/montserrat"
                         android:text="Pay using GCash"
-                        android:textColor="@color/loginColor"
+                        android:textColor="@color/restaurantAddressTextColor"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -107,11 +415,19 @@
 
             </androidx.cardview.widget.CardView>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/btnPayUsingGCash"
+                android:background="@color/white"/>
+
             <TextView
                 android:id="@+id/textView54"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/montserrat"
                 android:text="Expected Bill"
                 android:textColor="@color/restaurantAddressTextColor"
@@ -119,14 +435,15 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView22" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
+                android:id="@+id/linearLayout19"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView54">
@@ -141,7 +458,7 @@
 
 
                     <TextView
-                        android:id="@+id/tvBookDetailsOrderSet2"
+                        android:id="@+id/tvCBillOrderSet"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -149,7 +466,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/tvBookDetailsPersons2"
+                        android:id="@+id/tvCBillOrderSetQuantity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -159,7 +476,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/tvBookDetailsOrderTotal"
+                        android:id="@+id/tvCBillOrderSetTPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.2"
@@ -183,26 +500,26 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:background="@color/black"
+                    android:layout_height="1dp"
                     android:layout_marginVertical="10dp"
-                    android:layout_height="1dp"/>
+                    android:background="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
-                    android:text="Orders:"/>
+                    android:text="Orders:" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/orderingBillRecyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:background="@color/black"
+                    android:layout_height="1dp"
                     android:layout_marginVertical="10dp"
-                    android:layout_height="1dp"/>
+                    android:background="@color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -216,7 +533,7 @@
                         android:text="Subtotal:" />
 
                     <TextView
-                        android:id="@+id/tvBookDetailsTotalPrice"
+                        android:id="@+id/tvCBillSubtotal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -249,9 +566,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:layout_weight="1"
-                        android:text="Service Fee" />
+                        android:text="Service Fee(0%)"
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -282,9 +599,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:layout_weight="1"
-                        android:text="Incl. Tax" />
+                        android:text="Incl. Tax"
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -310,15 +627,15 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:background="@color/black"
+                    android:layout_height="1dp"
                     android:layout_marginVertical="10dp"
-                    android:layout_height="1dp"/>
+                    android:background="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
-                    android:text="Discount:"/>
+                    android:text="Discount:" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -337,6 +654,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/tvCBillNumberPwd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -346,13 +664,13 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/tvCBillPwdTDiscount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.2"
                         android:gravity="end"
                         android:text="0.00"
-                        android:textAlignment="textEnd"
-                        android:textColor="@color/black" />
+                        android:textAlignment="textEnd" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -377,6 +695,7 @@
 
 
                     <TextView
+                        android:id="@+id/tvCBillChildrenPercent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -384,6 +703,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/tvCBillNumberChildren"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -393,13 +713,13 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/tvCBillChildrenTDiscount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.2"
                         android:gravity="end"
                         android:text="0.00"
-                        android:textAlignment="textEnd"
-                        android:textColor="@color/black" />
+                        android:textAlignment="textEnd" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -422,44 +742,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:layout_weight="1"
-                        android:text="Promo Discount" />
+                        android:text="Promo Discount"
+                        android:textColor="@color/black" />
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="end"
-                        android:text="0.00"
-                        android:textAlignment="textEnd" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.68"
-                        android:fontFamily="@font/montserrat"
-                        android:gravity="center_horizontal"
-                        android:text="Php"
-                        android:textAlignment="center"
-                        android:textColor="@color/sideBarViewColor"
-                        android:textSize="10sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:layout_weight="1"
-                        android:text="Additional Discount" />
-
-                    <TextView
+                        android:id="@+id/tvCBillPromoDiscount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -488,11 +776,47 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:layout_weight="1"
-                        android:text="Reward" />
+                        android:text="Additional Discount"
+                        android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/tvCBillAdditionalDiscount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="0.00"
+                        android:textAlignment="textEnd" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.68"
+                        android:fontFamily="@font/montserrat"
+                        android:gravity="center_horizontal"
+                        android:text="Php"
+                        android:textAlignment="center"
+                        android:textColor="@color/sideBarViewColor"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvCBillReward"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Reward"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tvCBillRewardDiscount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -516,15 +840,15 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:background="@color/black"
+                    android:layout_height="1dp"
                     android:layout_marginVertical="10dp"
-                    android:layout_height="1dp"/>
+                    android:background="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
-                    android:text="Charges:"/>
+                    android:text="Charges:" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -534,11 +858,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:layout_weight="1"
-                        android:text="Offense Charge" />
+                        android:text="Offense Charge"
+                        android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/tvCBillOffenseCharge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -561,9 +886,9 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:background="@color/black"
+                    android:layout_height="1dp"
                     android:layout_marginVertical="10dp"
-                    android:layout_height="1dp"/>
+                    android:background="@color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -577,6 +902,7 @@
                         android:text="Total Price:" />
 
                     <TextView
+                        android:id="@+id/tvCBillTotalPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

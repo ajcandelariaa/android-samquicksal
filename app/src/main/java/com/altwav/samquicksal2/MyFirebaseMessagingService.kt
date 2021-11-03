@@ -99,7 +99,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             }
         }
 
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent, FLAG_ONE_SHOT)
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, FLAG_ONE_SHOT)
 
         val builder: NotificationCompat.Builder = NotificationCompat.Builder(applicationContext, channelId)
             .setSmallIcon(R.drawable.samquicksal_logo)

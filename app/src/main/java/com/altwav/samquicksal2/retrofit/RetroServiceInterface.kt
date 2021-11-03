@@ -42,9 +42,6 @@ interface RetroServiceInterface {
     @GET("cancel-booking/{id}")
     fun cancelBooking(@Path("id") id: Int): Call<CancelBookingModelResponse>
 
-
-
-    // NOTIFICATIONS RESPONSE
     @GET("get-notifications/pending/{cust_id}/{notif_id}")
     fun notifPending(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifPendingModel>
 
@@ -63,28 +60,14 @@ interface RetroServiceInterface {
     @GET("get-notifications/runaway/{cust_id}/{notif_id}")
     fun notifRunaway(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifRunawayModel>
 
-
-
     @GET("get-booking-history/{cust_id}")
     fun bookingHistory(@Path("cust_id") id: Int): Call<List<BookingHistoryModelResponse>>
 
-    @POST("get-booking-history/cancelled")
-    fun bookingHistoryCancelled(@Body params: BHCancelledModel): Call<BHCancelledModelResponse>
-
-
     @GET("ordering/food-set/{cust_id}")
     fun orderingFoodSet(@Path("cust_id") id: Int): Call<OrderingFoodSetModelResponse>
+
     @GET("ordering/food-item/{restAcc_id}/{orderSet_id}/{foodSet_id}")
-    fun orderingFoodItem(
-        @Path("restAcc_id") restAcc_id: Int,
-        @Path("orderSet_id") orderSet_id: Int,
-        @Path("foodSet_id") foodSet_id: Int): Call<List<OrderingFoodItemModelResponse>>
-
-    @POST("ordering/food-item/add")
-    fun orderingAddFoodItem(@Body params: AddFooditemModel): Call<AddFooditemModelResponse>
-
-    @POST("ordering/food-item/update")
-    fun orderingUpdateFoodItem(@Body params: UpdateFoodItemModel): Call<UpdateFoodItemModelResponse>
+    fun orderingFoodItem(@Path("restAcc_id") restAcc_id: Int, @Path("orderSet_id") orderSet_id: Int, @Path("foodSet_id") foodSet_id: Int): Call<List<OrderingFoodItemModelResponse>>
 
     @GET("ordering/orders/{cust_id}")
     fun getCurrentOrders(@Path("cust_id") cust_id: Int): Call<List<CurrentOrdersModel>>
@@ -92,11 +75,25 @@ interface RetroServiceInterface {
     @GET("ordering/orders/submit/{cust_id}")
     fun submitCurrentOrders(@Path("cust_id") cust_id: Int): Call<SubmitOrdersModel>
 
-    @POST("ordering/assistance")
-    fun orderingAssistance(@Body params: OrderingAssistanceModel): Call<OrderingAssistanceModelResponse>
-
     @GET("ordering/assistance/history/{cust_id}")
     fun orderingAssistanceHistory(@Path("cust_id") cust_id: Int): Call<List<OrderAsstHistModel>>
+
+    @GET("ordering/bill/{cust_id}")
+    fun orderingBill(@Path("cust_id") cust_id: Int): Call<OrderingBillModel>
+
+    @GET("ordering/checkout/status/{cust_id}")
+    fun checkoutStatus(@Path("cust_id") cust_id: Int): Call<CheckoutStatusModel>
+
+    @GET("ordering/checkout/rating-feedback/{cust_id}")
+    fun ratingFeedback(@Path("cust_id") cust_id: Int): Call<RFStatusModel>
+
+    @GET("ordering/gcash/status/{cust_id}")
+    fun gCashCheckoutStatus(@Path("cust_id") cust_id: Int): Call<GCashCStatusModel>
+
+
+
+
+
 
 
     // POST METHODS
@@ -114,4 +111,24 @@ interface RetroServiceInterface {
 
     @POST("update-device-token")
     fun updateDeviceToken(@Body params: DeviceTokenModel): Call<DeviceTokenModelResponse>
+
+    @POST("ordering/checkout/rating-feedback/submit")
+    fun ratingFBSubmit(@Body params: RFSubmitFormModel): Call<RFSubmitFormModelResponse>
+
+    @POST("ordering/checkout")
+    fun orderingCheckout(@Body params: OrderingAssistanceModel): Call<OrderingAssistanceModelResponse>
+
+    @POST("ordering/assistance")
+    fun orderingAssistance(@Body params: OrderingAssistanceModel): Call<OrderingAssistanceModelResponse>
+
+    @POST("ordering/food-item/add")
+    fun orderingAddFoodItem(@Body params: AddFooditemModel): Call<AddFooditemModelResponse>
+
+    @POST("ordering/food-item/update")
+    fun orderingUpdateFoodItem(@Body params: UpdateFoodItemModel): Call<UpdateFoodItemModelResponse>
+
+    @POST("get-booking-history/cancelled")
+    fun bookingHistoryCancelled(@Body params: BHCancelledModel): Call<BHCancelledModelResponse>
+
+
 }

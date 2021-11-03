@@ -27,6 +27,10 @@ class OrderingFoodItemActivity : AppCompatActivity(), AddFoodItemInterface {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ordering_food_item)
 
+        btn_ordering_fi_back.setOnClickListener {
+            finish()
+        }
+
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val customerId = sharedPreferences.getInt("CUSTOMER_ID", 0)
 

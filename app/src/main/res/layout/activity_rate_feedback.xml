@@ -63,7 +63,7 @@
             android:paddingBottom="20dp">
 
             <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch1"
+                android:id="@+id/sRFAnonymously"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -84,7 +84,7 @@
                 app:cardElevation="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/switch1">
+                app:layout_constraintTop_toBottomOf="@+id/sRFAnonymously">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -106,7 +106,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView76"
+                        android:id="@+id/tvRFRName"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="30dp"
@@ -129,7 +129,7 @@
                         android:textColor="@color/black"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView76" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvRFRName" />
 
                     <TextView
                         android:id="@+id/textView79"
@@ -143,7 +143,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView78" />
 
                     <RatingBar
-                        android:id="@+id/ratingBar3"
+                        android:id="@+id/rbRFRatingStar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -152,20 +152,20 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView79" />
 
                     <EditText
-                        android:id="@+id/editTextTextMultiLine"
+                        android:id="@+id/etRFComment"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="20dp"
-                        android:layout_marginTop="10dp"
                         android:ems="10"
+                        android:layout_marginTop="20dp"
                         android:gravity="start|top"
                         android:inputType="textMultiLine"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/ratingBar3" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvRFRatingText" />
 
                     <Button
-                        android:id="@+id/button8"
+                        android:id="@+id/btnRatingSubmit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -173,17 +173,26 @@
                         android:textAllCaps="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+                        app:layout_constraintTop_toBottomOf="@+id/etRFComment" />
 
                     <Button
-                        android:id="@+id/button9"
+                        android:id="@+id/btnRatingNotNow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Not now"
                         android:textAllCaps="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/button8" />
+                        app:layout_constraintTop_toBottomOf="@+id/btnRatingSubmit" />
+
+                    <TextView
+                        android:id="@+id/tvRFRatingText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2.5"
+                        app:layout_constraintEnd_toEndOf="@+id/rbRFRatingStar"
+                        app:layout_constraintStart_toStartOf="@+id/rbRFRatingStar"
+                        app:layout_constraintTop_toBottomOf="@+id/rbRFRatingStar" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

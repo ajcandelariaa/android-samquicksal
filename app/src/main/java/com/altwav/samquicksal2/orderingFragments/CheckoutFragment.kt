@@ -1,15 +1,23 @@
 package com.altwav.samquicksal2.orderingFragments
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.altwav.samquicksal2.*
 import com.altwav.samquicksal2.Adapters.OrderingBillAdapter
 import com.altwav.samquicksal2.Adapters.OrderingOrdersAdapter
-import com.altwav.samquicksal2.R
+import com.altwav.samquicksal2.models.OrderingAssistanceModel
+import com.altwav.samquicksal2.viewmodel.*
 import kotlinx.android.synthetic.main.fragment_checkout.*
 import kotlinx.android.synthetic.main.fragment_checkout.view.*
 import kotlinx.android.synthetic.main.fragment_orders.*
@@ -32,6 +40,9 @@ class CheckoutFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: OrderingBillAdapter
 
+    private lateinit var viewModel: OrderingBillViewModel
+    private lateinit var viewModel2: OrderingCheckoutViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -47,19 +58,98 @@ class CheckoutFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_checkout, container, false)
 
+        val sharedPreferences = this.activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val customerId = sharedPreferences?.getInt("CUSTOMER_ID", 0)
+
         recyclerView = view.findViewById(R.id.orderingBillRecyclerView)
         adapter = OrderingBillAdapter()
         recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
 
 
+        viewModel = ViewModelProvider(this).get<OrderingBillViewModel>()
+        viewModel.getOrderingBillObserver().observe(viewLifecycleOwner, {
+            if (it != null){
+                adapter.setOrderingbill(it.orders)
+                adapter.notifyDataSetChanged()
+                tvCBillOrderSet.text = it.orderSetName
+                tvCBillOrderSetQuantity.text = "${it.numberOfPersons.toString()}x"
+                tvCBillOrderSetTPrice.text = it.orderSetPriceTotal
+                tvCBillSubtotal.text = it.subtotal
+                tvCBillNumberPwd.text = "${it.numberOfPwd.toString()}x"
+                tvCBillPwdTDiscount.text = it.pwdDiscount
+                tvCBillChildrenPercent.text = "Children (${it.childrenPercentage.toString()}%)"
+                tvCBillNumberChildren.text = "${it.numberOfChildren.toString()}x"
+                tvCBillChildrenTDiscount.text = it.childrenDiscount
+                tvCBillPromoDiscount.text = it.promoDiscount
+                tvCBillAdditionalDiscount.text = it.additionalDiscount
+                tvCBillReward.text = "Reward (${it.rewardName})"
+                tvCBillRewardDiscount.text = it.rewardDiscount
+                tvCBillOffenseCharge.text = it.offenseCharge
+                tvCBillTotalPrice.text = it.totalPrice
+            }
+        })
+
+        viewModel2 = ViewModelProvider(this).get<OrderingCheckoutViewModel>()
+        viewModel2.getOrderingCheckoutObserver().observe(viewLifecycleOwner, {
+            if (it != null){
+                if(it.status == "Cash Payment"){
+                    val intent = Intent(view.context, CheckoutStatusActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                } else if (it.status == "GCash Payment"){
+                    val intent = Intent(view.context, GcashCheckoutActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                } else {}
+                Toast.makeText(view.context, "${it.status}", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(view.context, "ERROR", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        view.btnPayUsingCash.setOnClickListener {
+            AlertDialog.Builder(view.context)
+                .setTitle("Pay Using Cash")
+                .setIcon(R.mipmap.ic_launcher)
+                .setMessage("Are you sure you want to checkout already? After you proceed you can not go back. If you really want to proceed please wait for the staff to come to your table")
+                .setCancelable(false)
+                .setPositiveButton("Yes") { dialog, id ->
+                    val assistance = OrderingAssistanceModel(customerId, "Cash Payment")
+                    viewModel2.getOrderingCheckoutInfo(assistance)
+                }
+                .setNegativeButton("No") { dialog, id ->
+                    dialog.cancel()
+                }
+                .show()
+        }
+
+        view.btnPayUsingGCash.setOnClickListener {
+            AlertDialog.Builder(view.context)
+                .setTitle("Pay Using GCash")
+                .setIcon(R.mipmap.ic_launcher)
+                .setMessage("Are you sure you want to checkout already? After you proceed you can not go back. If you really want to proceed please double check first your GCash account")
+                .setCancelable(false)
+                .setPositiveButton("Yes") { dialog, id ->
+                    val assistance = OrderingAssistanceModel(customerId, "GCash Payment")
+                    viewModel2.getOrderingCheckoutInfo(assistance)
+                }
+                .setNegativeButton("No") { dialog, id ->
+                    dialog.cancel()
+                }
+                .show()
+        }
 
 
-
+        viewModel.getOrderingBillInfo(customerId!!)
 
 
         view.refreshCheckoutBill.setOnRefreshListener{
-
+            viewModel.getOrderingBillInfo(customerId)
             refreshCheckoutBill.isRefreshing = false
         }
 
