@@ -4,18 +4,14 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.altwav.samquicksal2.LiveStatusActivity
 import com.altwav.samquicksal2.R
-import com.altwav.samquicksal2.models.NotifApprovedModel
 import com.altwav.samquicksal2.models.NotifPendingModel
-import com.altwav.samquicksal2.viewmodel.NotifApprovedViewModel
 import com.altwav.samquicksal2.viewmodel.NotifPendingViewModel
-import kotlinx.android.synthetic.main.activity_approved_notification_activity.*
 import kotlinx.android.synthetic.main.activity_pending_notification.*
 
 class PendingNotificationActivity : AppCompatActivity() {
@@ -46,6 +42,16 @@ class PendingNotificationActivity : AppCompatActivity() {
                 tvPNotifOrderHourStay.text = it.hoursOfStay.toString()
                 tvPNotifOrderNumChild.text = it.numberOfChildren.toString()
                 tvPNotifOrderNumPwd.text = it.numberOfPwd.toString()
+
+                if(it.date != null){
+                    llPNotifDate.visibility = View.VISIBLE
+                    llPNotifTime.visibility = View.VISIBLE
+                    tvPNotifDate.text = it.date
+                    tvPNotifTime.text = it.time
+                } else {
+                    llPNotifDate.visibility = View.GONE
+                    llPNotifTime.visibility = View.GONE
+                }
 
                 if(it.note == null){
                     tvPNotifOrderNotes.visibility = View.GONE

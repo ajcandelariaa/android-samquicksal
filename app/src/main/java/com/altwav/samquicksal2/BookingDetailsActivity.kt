@@ -13,11 +13,19 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.altwav.samquicksal2.models.SubmitQueueFormModel
 import com.altwav.samquicksal2.models.SubmitQueueFormModelResponse
+import com.altwav.samquicksal2.models.SubmitReserveFormModel
+import com.altwav.samquicksal2.models.SubmitReserveFormModelResponse
 import com.altwav.samquicksal2.viewmodel.SubmitQueueFormViewModel
+import com.altwav.samquicksal2.viewmodel.SubmitReserveFormViewModel
 import kotlinx.android.synthetic.main.activity_booking_details.*
 
 class BookingDetailsActivity : AppCompatActivity() {
+
     private lateinit var viewModel: SubmitQueueFormViewModel
+    private lateinit var viewModel2: SubmitReserveFormViewModel
+
+    private var date: String? = null
+    private var time: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,13 +53,13 @@ class BookingDetailsActivity : AppCompatActivity() {
         val rewardStatus = intent.getStringExtra("rewardStatus")
         val rewardType = intent.getStringExtra("rewardType")
         val rewardInput = intent.getIntExtra("rewardInput", 0)
-        var date: String? = null
-        var time: String? = null
+        var trueDate: String? = null
 
         if(bookType == "Reserve"){
+            trueDate = intent.getStringExtra("trueDate")
             date = intent.getStringExtra("date")
             time = intent.getStringExtra("time")
-            tvBookDetailsDate.text = date
+            tvBookDetailsDate.text = trueDate
             tvBookDetailsTime.text = time
         } else {
             llBookDetailsDate.visibility = ViewGroup.GONE
@@ -90,8 +98,7 @@ class BookingDetailsActivity : AppCompatActivity() {
             tvBookDetailsChildrenTotal.text =  "0.00"
         } else {
             tvBookDetailsChildren2.text = "${numberOfChildren}x"
-            val discount: Double = orderSetPrice.toDouble() * numberOfChildren
-            tvBookDetailsChildrenTotal.text =  "${String.format("%.2f", discount)}"
+            tvBookDetailsChildrenTotal.text =  "0.00"
         }
 
         llBookDetailsReward.visibility = View.GONE
@@ -155,6 +162,27 @@ class BookingDetailsActivity : AppCompatActivity() {
             }
         })
 
+
+        viewModel2 = ViewModelProvider(this).get(SubmitReserveFormViewModel::class.java)
+        viewModel2.getReserveFormObserver().observe(this, Observer <SubmitReserveFormModelResponse>{
+            if(it == null){
+                Toast.makeText(this, "Error Submitting Form", Toast.LENGTH_SHORT).show()
+            } else {
+                if(it.status == "Success"){
+                    Toast.makeText(this,"Form Submitted", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, LiveStatusActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    intent.putExtra("actType", "booking")
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(this, "${it.status}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
         val totalPwdChild = numberOfChildren + numberOfPwd
 
         btnBookDetailsSubmit.setOnClickListener {
@@ -175,25 +203,48 @@ class BookingDetailsActivity : AppCompatActivity() {
                 .setMessage("Are you sure you want to submit?")
                 .setCancelable(false)
                 .setPositiveButton("Yes") { dialog, id ->
-                    val customer = SubmitQueueFormModel(
-                        customerId,
-                        restaurantId,
-                        orderSetId,
-                        numberOfPersons,
-                        numberOfTables,
-                        hoursOfStay,
-                        numberOfChildren,
-                        numberOfPwd,
-                        totalPwdChild,
-                        notes,
-                        rewardStatus,
-                        rewardType,
-                        rewardInput,
-                        rewardClaimed,
-                        totalPrice,
-                    )
-                    Log.d("message", "SUBMIT $customer")
-                    viewModel.submitQueueForm(customer)
+                    if(bookType == "Reserve"){
+                        val customer = SubmitReserveFormModel(
+                            customerId,
+                            restaurantId,
+                            orderSetId,
+                            date,
+                            time,
+                            numberOfPersons,
+                            numberOfTables,
+                            hoursOfStay,
+                            numberOfChildren,
+                            numberOfPwd,
+                            totalPwdChild,
+                            notes,
+                            rewardStatus,
+                            rewardType,
+                            rewardInput,
+                            rewardClaimed,
+                            totalPrice,
+                        )
+                        viewModel2.submitReserveForm(customer)
+                    } else {
+                        val customer = SubmitQueueFormModel(
+                            customerId,
+                            restaurantId,
+                            orderSetId,
+                            numberOfPersons,
+                            numberOfTables,
+                            hoursOfStay,
+                            numberOfChildren,
+                            numberOfPwd,
+                            totalPwdChild,
+                            notes,
+                            rewardStatus,
+                            rewardType,
+                            rewardInput,
+                            rewardClaimed,
+                            totalPrice,
+                        )
+                        viewModel.submitQueueForm(customer)
+                    }
+
                 }
                 .setNegativeButton("No") { dialog, id ->
                     dialog.cancel()

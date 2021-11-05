@@ -106,9 +106,9 @@ class CheckoutFragment : Fragment() {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
                 } else {}
-                Toast.makeText(view.context, "${it.status}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(view.context, "${it.status}", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(view.context, "ERROR", Toast.LENGTH_SHORT).show()
+                Toast.makeText(view.context, "ERROR", Toast.LENGTH_LONG).show()
             }
         })
 

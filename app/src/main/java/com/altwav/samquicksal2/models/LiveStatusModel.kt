@@ -11,4 +11,5 @@ data class LiveStatusModelResponse(
     val liveStatusNumber: Int? = null,
     val liveStatusNumberDesc: String? = null,
     val liveStatusDescription: String? = null,
+    val liveStatusBookType: String? = null,
 )

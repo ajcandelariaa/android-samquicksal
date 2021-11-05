@@ -118,7 +118,6 @@ class MainActivity : AppCompatActivity() {
         fm.beginTransaction().add(R.id.fragment, fragment2, "2").hide(fragment2).commit();
         fm.beginTransaction().add(R.id.fragment,fragment1, "1").commit();
 
-
         bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.homeFragment1 -> {
@@ -151,7 +150,6 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
     }
 
     fun sendRegistrationToServer(deviceToken: String){

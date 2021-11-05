@@ -1,18 +1,22 @@
 package com.altwav.samquicksal2
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.DownloadManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import com.altwav.samquicksal2.models.OrderingAssistanceModel
@@ -23,7 +27,17 @@ import kotlinx.android.synthetic.main.activity_gcash_checkout.*
 class GcashCheckoutActivity : AppCompatActivity() {
 
     private lateinit var viewModel: GCashStatusViewModel
-    var mydownloadid: Long = 0
+    private var mydownloadid: Long = 0
+    private var IMG_REQUEST = 21
+    private lateinit var bitmap: Bitmap
+
+    private val getResult = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()) {
+        if(it.resultCode == Activity.RESULT_OK){
+            val value = it.data?.getStringExtra("input")
+            Log.d("message", "$value")
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +62,7 @@ class GcashCheckoutActivity : AppCompatActivity() {
                     }
                 }
 
-//                // DOWNLOAD IMAGE
+                // DOWNLOAD IMAGE
                 val qrUrl = it.restGCashQr
                 val fileName = it.filename
                 btnCOGCCDownloadQr.setOnClickListener {
@@ -77,7 +91,8 @@ class GcashCheckoutActivity : AppCompatActivity() {
 
                 btnCOGCCUploadImage.setOnClickListener {
                     val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                    startActivity(intent)
+                    intent.action = Intent.ACTION_GET_CONTENT
+                    getResult.launch(intent)
                 }
 
                 btnCOGCCSubmitReceipt.setOnClickListener {
@@ -101,33 +116,7 @@ class GcashCheckoutActivity : AppCompatActivity() {
 
             }
         })
-
         viewModel.getGCashStatusInfo(customerId!!)
-
-
-//        // DOWNLOAD IMAGE
-//        val qrUrl = "https://samquicksal.com/images/samquicksalLogo.png"
-//        btnCOGCCDownloadQr.setOnClickListener {
-//            val request = DownloadManager.Request(Uri.parse(qrUrl))
-//                .setTitle("GCash Qr Code")
-//                .setDescription("Downloading...")
-//                .setAllowedOverMetered(true)
-//                .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
-//                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-//                .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "test.png")
-//
-//            val dm = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-//            mydownloadid = dm.enqueue(request)
-//        }
-//        val br = object: BroadcastReceiver(){
-//            override fun onReceive(context: Context?, intent: Intent?) {
-//                val id: Long? = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
-//                if(id == mydownloadid){
-//                    Toast.makeText(applicationContext, "GCash QR Code Downloaded Successfully", Toast.LENGTH_LONG).show()
-//                }
-//            }
-//        }
-//        registerReceiver(br, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
 
     }
 }

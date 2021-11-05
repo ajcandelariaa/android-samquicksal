@@ -6,10 +6,11 @@ data class BHCancelledModel(
     val book_type: String? = null,
 )
 
-
 data class BHCancelledModelResponse(
     val bookDate: String? = null,
     val bookTime: String? = null,
+    val reserveDate: String? = null,
+    val reserveTime: String? = null,
     val rName: String? = null,
     val rAddress: String? = null,
     val orderName: String? = null,

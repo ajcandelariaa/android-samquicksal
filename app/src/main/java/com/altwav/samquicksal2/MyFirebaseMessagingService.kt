@@ -80,8 +80,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
             "Complete" -> {
-                intent = Intent(this, CheckoutNotificationActivity::class.java)
-                intent.putExtra("notificationId", notificationId)
+                intent = Intent(this, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
             "Blocked" -> {

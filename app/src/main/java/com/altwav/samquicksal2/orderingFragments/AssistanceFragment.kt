@@ -121,11 +121,11 @@ class AssistanceFragment : Fragment() {
         viewModel2 = ViewModelProvider(this).get<OrderingAssistanceViewModel>()
         viewModel2.getOrderingAssistanceObserver().observe(viewLifecycleOwner, {
             if (it != null){
-                Toast.makeText(view.context, "${it.status}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(view.context, "${it.status}", Toast.LENGTH_LONG).show()
                 viewModel.getOrderAsstHistInfo(customerId)
                 adapter.notifyDataSetChanged()
             } else {
-                Toast.makeText(view.context, "ERROR", Toast.LENGTH_SHORT).show()
+                Toast.makeText(view.context, "ERROR", Toast.LENGTH_LONG).show()
             }
         })
 

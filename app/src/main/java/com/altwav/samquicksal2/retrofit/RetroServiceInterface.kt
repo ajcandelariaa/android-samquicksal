@@ -2,6 +2,8 @@ package com.altwav.samquicksal2.retrofit
 
 import com.altwav.samquicksal2.models.*
 import com.altwav.samquicksal2.viewmodel.RestoReviewViewModel
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -100,6 +102,14 @@ interface RetroServiceInterface {
     @GET("get-restaurants/reviews/{rest_id}")
     fun getRestaurantReviews(@Path("rest_id") rest_id: Int): Call<RestoReviewModel>
 
+    @GET("rated-restaurants")
+    fun getRatedRestaurants(): Call<List<RatedRestaurantsModel>>
+
+    @GET("get-restaurants/get-date-time/{rest_id}")
+    fun getReservationDT(@Path("rest_id") rest_id: Int): Call<ReservationDTModel>
+
+
+
 
 
 
@@ -113,6 +123,9 @@ interface RetroServiceInterface {
 
     @POST("submit-queue-form")
     fun submitQueueForm(@Body params: SubmitQueueFormModel): Call<SubmitQueueFormModelResponse>
+
+    @POST("submit-reserve-form")
+    fun submitReserveForm(@Body params: SubmitReserveFormModel): Call<SubmitReserveFormModelResponse>
 
     @POST("forgot-password")
     fun forgotPassword(@Body params: ForgotPasswordModel): Call<ForgotPasswordModelResponse>
@@ -140,6 +153,10 @@ interface RetroServiceInterface {
 
     @POST("get-booking-history/complete")
     fun bookingHistoryComplete(@Body params: BHCompleteModel): Call<BHCompleteModelResponse>
+
+    @Multipart
+    @POST("ordering/checkout/gcash-upload-image")
+    fun gcashUploadImage(@Part part: MultipartBody.Part, @Part("somedata") requestBody: RequestBody): Call<OrderingAssistanceModelResponse>
 
 
 }

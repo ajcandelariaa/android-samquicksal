@@ -9,5 +9,7 @@ data class NotifPendingModel(
     val numberOfPwd: Int? = null,
     val note: String? = null,
     val restaurant: String? = null,
+    val date: String? = null,
+    val time: String? = null,
     val statusViewable: String? = null,
 )

@@ -35,8 +35,6 @@ class LiveStatusActivity : AppCompatActivity() {
 
         val actType = intent.getStringExtra("actType")
 
-        Log.d("message", "$actType")
-
         Glide.with(this).load(R.drawable.live_status_circle).into(ivLiveStatusGif)
 
         btn_live_status_back.setOnClickListener {
@@ -62,121 +60,235 @@ class LiveStatusActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(LiveStatusViewModel::class.java)
         viewModel.getLiveStatusObserver().observe(this, Observer <LiveStatusModelResponse>{
             if (it != null){
-                when(it.liveStatusHeader){
-                    // PENDING STATUS
-                    "Cancellation Time" -> {
-                        tvLiveStatusBody.visibility = View.GONE
-                        tvLiveStatusHeader.text = it.liveStatusHeader
-                        tvLiveStatusNumber.text = it.liveStatusNumber.toString()
-                        tvLiveStatusNumberDesc.text = it.liveStatusNumberDesc
-                        tvLiveStatusDescription.text = it.liveStatusDescription
-                        if (it.liveStatusNumber == 0 && it.liveStatusNumberDesc == "second"){
-                            btn_live_status_cancel_booking.visibility = View.GONE
-                        } else {
-                            val viewModel2: CancelBookingViewModel = ViewModelProvider(this).get(CancelBookingViewModel::class.java)
-                            viewModel2.getCancelBookObserver().observe(this, Observer <CancelBookingModelResponse>{ it2 ->
-                                if(it2.status != null){
-                                    Toast.makeText(this,"Cancelled Queue Successfully", Toast.LENGTH_SHORT).show()
-                                    val intent = Intent(this, MainActivity::class.java)
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                    startActivity(intent)
-                                    finish()
-                                } else {
-                                    Toast.makeText(this,"$it2.status", Toast.LENGTH_SHORT).show()
+                if(it.liveStatusBookType == "queue"){
+                    tvLiveStatusTitle.text = "Queue Status"
+                    when(it.liveStatusHeader){
+                        // PENDING STATUS
+                        "Cancellation Time" -> {
+                            tvLiveStatusBody.visibility = View.GONE
+                            tvLiveStatusHeader.text = it.liveStatusHeader
+                            tvLiveStatusNumber.text = it.liveStatusNumber.toString()
+                            tvLiveStatusNumberDesc.text = it.liveStatusNumberDesc
+                            tvLiveStatusDescription.text = it.liveStatusDescription
+                            if (it.liveStatusNumber == 0 && it.liveStatusNumberDesc == "second"){
+                                btn_live_status_cancel_booking.visibility = View.GONE
+                            } else {
+                                val viewModel2: CancelBookingViewModel = ViewModelProvider(this).get(CancelBookingViewModel::class.java)
+                                viewModel2.getCancelBookObserver().observe(this, Observer <CancelBookingModelResponse>{ it2 ->
+                                    if(it2.status != null){
+                                        Toast.makeText(this,"Cancelled Queue Successfully", Toast.LENGTH_SHORT).show()
+                                        val intent = Intent(this, MainActivity::class.java)
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                        startActivity(intent)
+                                        finish()
+                                    } else {
+                                        Toast.makeText(this,"$it2.status", Toast.LENGTH_SHORT).show()
+                                    }
+                                })
+                                btn_live_status_cancel_booking.setOnClickListener {
+                                    AlertDialog.Builder(this)
+                                        .setTitle("Cancel Queue")
+                                        .setIcon(R.mipmap.ic_launcher)
+                                        .setMessage("Are you sure you want to Cancel your Queue?")
+                                        .setCancelable(false)
+                                        .setPositiveButton("Yes") { dialog, id ->
+                                            viewModel2.getCancelBookInfo(customerId)
+                                        }
+                                        .setNegativeButton("No") { dialog, id ->
+                                            dialog.cancel()
+                                        }
+                                        .show()
                                 }
-                            })
-                            btn_live_status_cancel_booking.setOnClickListener {
-                                AlertDialog.Builder(this)
-                                    .setTitle("Cancel Queue")
-                                    .setIcon(R.mipmap.ic_launcher)
-                                    .setMessage("Are you sure you want to Cancel your Queue?")
-                                    .setCancelable(false)
-                                    .setPositiveButton("Yes") { dialog, id ->
-                                        viewModel2.getCancelBookInfo(customerId)
-                                    }
-                                    .setNegativeButton("No") { dialog, id ->
-                                        dialog.cancel()
-                                    }
-                                    .show()
                             }
                         }
-                    }
-                    // APPROVED STATUS
-                    "Queue Number" -> {
-                        tvLiveStatusBody.visibility = View.GONE
-                        tvLiveStatusHeader.text = it.liveStatusHeader
-                        tvLiveStatusNumber.text = it.liveStatusNumber.toString()
-                        tvLiveStatusNumberDesc.text = it.liveStatusNumberDesc
-                        tvLiveStatusDescription.text = it.liveStatusDescription
-                        if (it.liveStatusBody == "no"){
-                            btn_live_status_cancel_booking.visibility = View.GONE
-                        } else {
-                            btn_live_status_cancel_booking.text = "Unqueue"
-                            val viewModel2: CancelBookingViewModel = ViewModelProvider(this).get(CancelBookingViewModel::class.java)
-                            viewModel2.getCancelBookObserver().observe(this, Observer <CancelBookingModelResponse>{ it2 ->
-                                if(it2.status != null){
-                                    Toast.makeText(this,"Cancelled Queue Successfully", Toast.LENGTH_SHORT).show()
-                                    val intent = Intent(this, MainActivity::class.java)
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                    startActivity(intent)
-                                    finish()
-                                } else {
-                                    Toast.makeText(this,"$it2.status", Toast.LENGTH_SHORT).show()
+                        // APPROVED STATUS
+                        "Queue Number" -> {
+                            tvLiveStatusBody.visibility = View.GONE
+                            tvLiveStatusHeader.text = it.liveStatusHeader
+                            tvLiveStatusNumber.text = it.liveStatusNumber.toString()
+                            tvLiveStatusNumberDesc.text = it.liveStatusNumberDesc
+                            tvLiveStatusDescription.text = it.liveStatusDescription
+                            if (it.liveStatusBody == "no"){
+                                btn_live_status_cancel_booking.visibility = View.GONE
+                            } else {
+                                btn_live_status_cancel_booking.text = "Unqueue"
+                                val viewModel2: CancelBookingViewModel = ViewModelProvider(this).get(CancelBookingViewModel::class.java)
+                                viewModel2.getCancelBookObserver().observe(this, Observer <CancelBookingModelResponse>{ it2 ->
+                                    if(it2.status != null){
+                                        Toast.makeText(this,"Cancelled Queue Successfully", Toast.LENGTH_SHORT).show()
+                                        val intent = Intent(this, MainActivity::class.java)
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                        startActivity(intent)
+                                        finish()
+                                    } else {
+                                        Toast.makeText(this,"$it2.status", Toast.LENGTH_SHORT).show()
+                                    }
+                                })
+                                btn_live_status_cancel_booking.setOnClickListener {
+                                    AlertDialog.Builder(this)
+                                        .setTitle("Unqueue")
+                                        .setIcon(R.mipmap.ic_launcher)
+                                        .setMessage("Are you sure you want to Unqueue?")
+                                        .setCancelable(false)
+                                        .setPositiveButton("Yes") { dialog, id ->
+                                            viewModel2.getCancelBookInfo(customerId)
+                                        }
+                                        .setNegativeButton("No") { dialog, id ->
+                                            dialog.cancel()
+                                        }
+                                        .show()
                                 }
-                            })
-                            btn_live_status_cancel_booking.setOnClickListener {
-                                AlertDialog.Builder(this)
-                                    .setTitle("Unqueue")
-                                    .setIcon(R.mipmap.ic_launcher)
-                                    .setMessage("Are you sure you want to Unqueue?")
-                                    .setCancelable(false)
-                                    .setPositiveButton("Yes") { dialog, id ->
-                                        viewModel2.getCancelBookInfo(customerId)
-                                    }
-                                    .setNegativeButton("No") { dialog, id ->
-                                        dialog.cancel()
-                                    }
-                                    .show()
                             }
                         }
-                    }
-                    "Confirmation Time" -> {
-                        tvLiveStatusBody.visibility = View.GONE
-                        btn_live_status_cancel_booking.visibility = View.GONE
+                        "Confirmation Time" -> {
+                            tvLiveStatusBody.visibility = View.GONE
+                            btn_live_status_cancel_booking.visibility = View.GONE
 
-                        tvLiveStatusHeader.text = it.liveStatusHeader
-                        tvLiveStatusNumber.text = it.liveStatusNumber.toString()
-                        tvLiveStatusNumberDesc.text = it.liveStatusNumberDesc
-                        tvLiveStatusDescription.text = it.liveStatusDescription
-                    }
-                    "Note" -> {
-                        tvLiveStatusNumber.visibility = View.GONE
-                        tvLiveStatusNumberDesc.visibility = View.GONE
-                        btn_live_status_cancel_booking.visibility = View.GONE
+                            tvLiveStatusHeader.text = it.liveStatusHeader
+                            tvLiveStatusNumber.text = it.liveStatusNumber.toString()
+                            tvLiveStatusNumberDesc.text = it.liveStatusNumberDesc
+                            tvLiveStatusDescription.text = it.liveStatusDescription
+                        }
+                        "Note" -> {
+                            tvLiveStatusNumber.visibility = View.GONE
+                            tvLiveStatusNumberDesc.visibility = View.GONE
+                            btn_live_status_cancel_booking.visibility = View.GONE
 
-                        tvLiveStatusBody.visibility = View.VISIBLE
-                        tvLiveStatusBody.text = it.liveStatusBody
-                        tvLiveStatusHeader.text = it.liveStatusHeader
-                        tvLiveStatusDescription.text = it.liveStatusDescription
+                            tvLiveStatusBody.visibility = View.VISIBLE
+                            tvLiveStatusBody.text = it.liveStatusBody
+                            tvLiveStatusHeader.text = it.liveStatusHeader
+                            tvLiveStatusDescription.text = it.liveStatusDescription
+                        }
+                        else -> {
+                            val intent = Intent(this, MainActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            startActivity(intent)
+                            finish()
+                        }
                     }
-                    else -> {
-                        val intent = Intent(this, MainActivity::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        startActivity(intent)
-                        finish()
+                } else {
+                    tvLiveStatusTitle.text = "Reservation Status"
+                    when(it.liveStatusHeader){
+                        // PENDING STATUS
+                        "Cancellation Time" -> {
+                            tvLiveStatusBody.visibility = View.GONE
+                            tvLiveStatusHeader.text = it.liveStatusHeader
+                            tvLiveStatusNumber.text = it.liveStatusNumber.toString()
+                            tvLiveStatusNumberDesc.text = it.liveStatusNumberDesc
+                            tvLiveStatusDescription.text = it.liveStatusDescription
+                            if (it.liveStatusNumber == 0 && it.liveStatusNumberDesc == "second"){
+                                btn_live_status_cancel_booking.visibility = View.GONE
+                            } else {
+                                val viewModel2: CancelBookingViewModel = ViewModelProvider(this).get(CancelBookingViewModel::class.java)
+                                viewModel2.getCancelBookObserver().observe(this, Observer <CancelBookingModelResponse>{ it2 ->
+                                    if(it2.status != null){
+                                        Toast.makeText(this,"Cancelled Reservation Successfully", Toast.LENGTH_SHORT).show()
+                                        val intent = Intent(this, MainActivity::class.java)
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                        startActivity(intent)
+                                        finish()
+                                    } else {
+                                        Toast.makeText(this,"$it2.status", Toast.LENGTH_SHORT).show()
+                                    }
+                                })
+                                btn_live_status_cancel_booking.setOnClickListener {
+                                    AlertDialog.Builder(this)
+                                        .setTitle("Cancel Reservation")
+                                        .setIcon(R.mipmap.ic_launcher)
+                                        .setMessage("Are you sure you want to Cancel your Reservation?")
+                                        .setCancelable(false)
+                                        .setPositiveButton("Yes") { dialog, id ->
+                                            viewModel2.getCancelBookInfo(customerId)
+                                        }
+                                        .setNegativeButton("No") { dialog, id ->
+                                            dialog.cancel()
+                                        }
+                                        .show()
+                                }
+                            }
+                        }
+                        // APPROVED STATUS
+                        "Reservation Status" -> {
+                            tvLiveStatusBody.visibility = View.GONE
+                            tvLiveStatusHeader.text = it.liveStatusHeader
+                            tvLiveStatusNumber.text = it.liveStatusNumber.toString()
+                            tvLiveStatusNumberDesc.text = it.liveStatusNumberDesc
+                            tvLiveStatusDescription.text = it.liveStatusDescription
+                            if (it.liveStatusBody == "no"){
+                                btn_live_status_cancel_booking.visibility = View.GONE
+                            } else {
+                                btn_live_status_cancel_booking.text = "Unreserve"
+                                val viewModel2: CancelBookingViewModel = ViewModelProvider(this).get(CancelBookingViewModel::class.java)
+                                viewModel2.getCancelBookObserver().observe(this, Observer <CancelBookingModelResponse>{ it2 ->
+                                    if(it2.status != null){
+                                        Toast.makeText(this,"Cancelled Reservation Successfully", Toast.LENGTH_SHORT).show()
+                                        val intent = Intent(this, MainActivity::class.java)
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                        startActivity(intent)
+                                        finish()
+                                    } else {
+                                        Toast.makeText(this,"$it2.status", Toast.LENGTH_SHORT).show()
+                                    }
+                                })
+                                btn_live_status_cancel_booking.setOnClickListener {
+                                    AlertDialog.Builder(this)
+                                        .setTitle("Unreserve")
+                                        .setIcon(R.mipmap.ic_launcher)
+                                        .setMessage("Are you sure you want to Unreserve?")
+                                        .setCancelable(false)
+                                        .setPositiveButton("Yes") { dialog, id ->
+                                            viewModel2.getCancelBookInfo(customerId)
+                                        }
+                                        .setNegativeButton("No") { dialog, id ->
+                                            dialog.cancel()
+                                        }
+                                        .show()
+                                }
+                            }
+                        }
+                        "Confirmation Time" -> {
+                            tvLiveStatusBody.visibility = View.GONE
+                            btn_live_status_cancel_booking.visibility = View.GONE
+
+                            tvLiveStatusHeader.text = it.liveStatusHeader
+                            tvLiveStatusNumber.text = it.liveStatusNumber.toString()
+                            tvLiveStatusNumberDesc.text = it.liveStatusNumberDesc
+                            tvLiveStatusDescription.text = it.liveStatusDescription
+                        }
+                        "Note" -> {
+                            tvLiveStatusNumber.visibility = View.GONE
+                            tvLiveStatusNumberDesc.visibility = View.GONE
+                            btn_live_status_cancel_booking.visibility = View.GONE
+
+                            tvLiveStatusBody.visibility = View.VISIBLE
+                            tvLiveStatusBody.text = it.liveStatusBody
+                            tvLiveStatusHeader.text = it.liveStatusHeader
+                            tvLiveStatusDescription.text = it.liveStatusDescription
+                        }
+                        else -> {
+                            val intent = Intent(this, MainActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            startActivity(intent)
+                            finish()
+                        }
                     }
                 }
             }
         })
 
         viewModel.getLiveStatusInfo(customerId)
-
 
         refreshLiveStatus.setOnRefreshListener {
             viewModel.getLiveStatusInfo(customerId)

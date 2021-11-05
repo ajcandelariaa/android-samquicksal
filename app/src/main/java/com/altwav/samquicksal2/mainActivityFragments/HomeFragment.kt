@@ -1,18 +1,24 @@
 package com.altwav.samquicksal2.mainActivityFragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.NearbyRestaurantsAdapter
 import com.altwav.samquicksal2.Adapters.RatedRestaurantsAdapter
 import com.altwav.samquicksal2.R
+import com.altwav.samquicksal2.viewmodel.CurrentOrdersViewModel
+import com.altwav.samquicksal2.viewmodel.RatedRestaurantsViewModel
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import kotlinx.android.synthetic.main.fragment_orders.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,6 +37,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: RatedRestaurantsAdapter
+    private lateinit var viewModel: RatedRestaurantsViewModel
 
     private lateinit var recyclerView2: RecyclerView
     private lateinit var adapter2: NearbyRestaurantsAdapter
@@ -52,9 +59,7 @@ class HomeFragment : Fragment() {
 
         val imageList = ArrayList<SlideModel>()
         val imageSlider = view.findViewById<ImageSlider>(R.id.image_slider)
-//        imageList.add(SlideModel("https://scontent.ffjr1-6.fna.fbcdn.net/v/t1.6435-9/81670216_1032931623736363_3797509138506842112_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=Fp9Shd-KKDoAX98qbLJ&_nc_ht=scontent.ffjr1-6.fna&oh=4462d4c0bd6c3210c6695f6a409cc1d9&oe=61873FD5"))
-//        imageList.add(SlideModel("https://www.manilaonsale.com/wp-content/uploads/2019/01/Jin-Joo.jpg"))
-//        imageList.add(SlideModel("https://i1.wp.com/eatwalkplay.com/wp-content/uploads/2020/12/don-marquise-menu.jpg?w=450&ssl=1"))
+        imageList.add(SlideModel(R.drawable.imgslider_3))
         imageList.add(SlideModel(R.drawable.imgslider_1))
         imageList.add(SlideModel(R.drawable.imgslider_2))
         imageSlider.setImageList(imageList, ScaleTypes.CENTER_CROP)
@@ -64,10 +69,23 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = adapter
 
+        viewModel = ViewModelProvider(this).get<RatedRestaurantsViewModel>()
+        viewModel.getRatedRestaurantsObserver().observe(viewLifecycleOwner, {
+            if (it != null){
+                adapter.setRatedRestaurants(it)
+                adapter.notifyDataSetChanged()
+            }
+        })
+
+        viewModel.getRatedRestaurantsInfo()
+
+
         recyclerView2 = view.findViewById(R.id.nearbyRestaurantsRecycler)
         adapter2 = NearbyRestaurantsAdapter()
         recyclerView2.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView2.adapter = adapter2
+
+
 
         return view
     }

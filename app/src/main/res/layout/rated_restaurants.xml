@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="150dp"
     android:layout_height="220dp"
     android:layout_marginHorizontal="10dp"
@@ -18,52 +19,90 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textSize="12sp"
-            android:textColor="@color/black"
             android:fontFamily="@font/montserrat"
             android:text="Restaurant Name"
+            android:textColor="@color/black"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvRatedBranchName"
-            android:layout_width="wrap_content"
-            android:textColor="@color/black"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="8sp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:fontFamily="@font/montserrat"
+            android:textAlignment="center"
             android:text="Branch Name"
+            android:textColor="@color/black"
+            android:textSize="8sp"
             app:layout_constraintLeft_toLeftOf="@id/tvRatedRestaurantName"
             app:layout_constraintRight_toRightOf="@id/tvRatedRestaurantName"
-            app:layout_constraintTop_toBottomOf="@id/tvRatedRestaurantName" />
+            app:layout_constraintTop_toBottomOf="@id/tvRatedRestaurantName"
+            android:gravity="center_horizontal" />
 
-        <RatingBar
-            android:id="@+id/ratingBar"
-            style="?android:attr/ratingBarStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:isIndicator="false"
-            android:numStars="5"
-            android:progressBackgroundTint="@color/starColorNotActive"
-            android:progressTint="@color/starColorActive"
-            android:rating="3"
-            android:stepSize="0.5"
-            app:layout_constraintEnd_toEndOf="@+id/tvRatedBranchName"
-            app:layout_constraintStart_toStartOf="@+id/tvRatedBranchName"
-            app:layout_constraintTop_toBottomOf="@+id/tvRatedBranchName" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout22"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRatedBranchName">
+
+            <RatingBar
+                android:id="@+id/rbRatedRestaurantStar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:progressBackgroundTint="@color/starColorNotActive"
+                android:progressTint="@color/starColorActive"
+                android:rating="3"
+                android:stepSize="0.5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvRatedRestaurantStarLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(20)"
+                android:textSize="8sp"
+                android:layout_marginLeft="2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/rbRatedRestaurantStar"
+                app:layout_constraintStart_toEndOf="@+id/rbRatedRestaurantStar"
+                app:layout_constraintTop_toTopOf="@+id/rbRatedRestaurantStar" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <ImageView
+            android:id="@+id/ivRatedRestaurantImage"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:scaleType="centerCrop"
             android:src="@drawable/sample_rlogo2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+            app:layout_constraintTop_toBottomOf="@+id/tvRatedRestaurantCount" />
+
+        <TextView
+            android:id="@+id/tvRatedRestaurantCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(20)"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout22" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

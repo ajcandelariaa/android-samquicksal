@@ -21,10 +21,10 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".StampDetailsActivity"
-            android:theme="@style/LoginScreen" />
+            android:theme="@style/HomeScreen" />
         <activity
             android:name=".CheckoutStatusActivity"
-            android:theme="@style/LoginScreen" />
+            android:theme="@style/HomeScreen" />
         <activity
             android:name=".ForgotPasswordActivity"
             android:theme="@style/LoginScreen" />

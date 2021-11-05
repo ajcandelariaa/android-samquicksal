@@ -87,12 +87,11 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/samquicksal_text_logo" />
 
-
                 <ImageView
                     android:id="@+id/ivLiveStatusGif"
                     android:layout_width="0dp"
-                    android:layout_height="279dp"
-                    android:layout_marginHorizontal="50dp"
+                    android:layout_height="300dp"
+                    android:layout_marginHorizontal="30dp"
                     android:layout_marginTop="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.494"
@@ -104,7 +103,7 @@
                     android:id="@+id/tvLiveStatusHeader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="70dp"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center_horizontal"
                     android:text="Note"

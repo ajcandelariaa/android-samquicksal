@@ -103,7 +103,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight=".7"
                     android:fontFamily="@font/montserrat"
                     android:text="Date:" />
 
@@ -135,14 +135,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout17">
 
                 <TextView
+                    android:id="@+id/tvBDRunDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight=".7"
                     android:fontFamily="@font/montserrat"
                     android:text="April 28, 2021"
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:id="@+id/tvBDRunCheckIn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -151,6 +153,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:id="@+id/tvBDRunCheckOut"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -161,19 +164,20 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginHorizontal="20dp"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout18">
 
                 <View
                     android:layout_width="match_parent"
-                    android:background="@color/sideBarViewColor"
+                    android:layout_height="1dp"
                     android:layout_marginVertical="15dp"
-                    android:layout_height="1dp"/>
+                    android:background="@color/sideBarViewColor" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -184,14 +188,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Restaurant:"/>
+                        android:text="Restaurant:" />
 
                     <TextView
+                        android:id="@+id/tvBDRunRestaurantName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/black"
-                        android:text="Golden Baboy, Morayta"/>
+                        android:text="Golden Baboy, Morayta"
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -204,14 +209,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Address:"/>
+                        android:text="Address:" />
 
                     <TextView
+                        android:id="@+id/tvBDRunRestaurantAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/black"
-                        android:text="Morayta St, Manila"/>
+                        android:text="Morayta St, Manila"
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -224,16 +230,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Table Number:"/>
+                        android:text="Table Number:" />
 
                     <TextView
+                        android:id="@+id/tvBDRunTableNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/black"
-                        android:text="1,2,3"/>
+                        android:text="399"
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -244,42 +252,38 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Number of Person:"/>
+                        android:text="Booking Type:" />
 
                     <TextView
+                        android:id="@+id/tvBDRunBookingType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/black"
-                        android:text="10"/>
+                        android:text="Queue"
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Booking Type"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColor="@color/black"
-                        android:text="Queue"/>
-
-                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:background="@color/sideBarViewColor"
+                    android:layout_height="1dp"
                     android:layout_marginVertical="15dp"
-                    android:layout_height="1dp"/>
+                    android:background="@color/sideBarViewColor" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout16">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -291,7 +295,7 @@
 
 
                     <TextView
-                        android:id="@+id/tvBookDetailsOrderSet2"
+                        android:id="@+id/tvBDRunOrderSet"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -299,7 +303,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/tvBookDetailsPersons2"
+                        android:id="@+id/tvBDRunOrderSetQuantity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -309,7 +313,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/tvBookDetailsOrderTotal"
+                        android:id="@+id/tvBDRunOrderSetTPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.2"
@@ -333,20 +337,26 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:background="@color/sideBarViewColor"
+                    android:layout_height="1dp"
                     android:layout_marginVertical="10dp"
-                    android:layout_height="1dp"/>
+                    android:background="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Orders:" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/bdRunRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-
                 <View
                     android:layout_width="match_parent"
-                    android:background="@color/sideBarViewColor"
-                    android:layout_marginVertical="15dp"
-                    android:layout_height="1dp"/>
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="@color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -360,7 +370,7 @@
                         android:text="Subtotal:" />
 
                     <TextView
-                        android:id="@+id/tvBookDetailsTotalPrice"
+                        android:id="@+id/tvBDRunSubtotal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -393,9 +403,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:layout_weight="1"
-                        android:text="Service Fee" />
+                        android:text="Service Fee(0%)"
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -426,9 +436,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:layout_weight="1"
-                        android:text="Incl. Tax" />
+                        android:text="Incl. Tax"
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -454,15 +464,15 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:background="@color/sideBarViewColor"
+                    android:layout_height="1dp"
                     android:layout_marginVertical="10dp"
-                    android:layout_height="1dp"/>
+                    android:background="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
-                    android:text="Discount:"/>
+                    android:text="Discount:" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -481,6 +491,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/tvBDRunNumberPwd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -490,13 +501,13 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/tvBDRunPwdTDiscount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.2"
                         android:gravity="end"
                         android:text="0.00"
-                        android:textAlignment="textEnd"
-                        android:textColor="@color/black" />
+                        android:textAlignment="textEnd" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -521,6 +532,7 @@
 
 
                     <TextView
+                        android:id="@+id/tvBDRunChildrenPercent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -528,6 +540,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/tvBDRunNumberChildren"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -537,13 +550,13 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/tvBDRunChildrenTDiscount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.2"
                         android:gravity="end"
                         android:text="0.00"
-                        android:textAlignment="textEnd"
-                        android:textColor="@color/black" />
+                        android:textAlignment="textEnd" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -566,11 +579,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:layout_weight="1"
-                        android:text="Promo Discount" />
+                        android:text="Promo Discount"
+                        android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/tvBDRunPromoDiscount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -581,7 +595,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.66"
+                        android:layout_weight="1.68"
                         android:fontFamily="@font/montserrat"
                         android:gravity="center_horizontal"
                         android:text="Php"
@@ -599,11 +613,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:layout_weight="1"
-                        android:text="Additional Discount" />
+                        android:text="Additional Discount"
+                        android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/tvBDRunAdditionalDiscount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -614,7 +629,42 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.66"
+                        android:layout_weight="1.68"
+                        android:fontFamily="@font/montserrat"
+                        android:gravity="center_horizontal"
+                        android:text="Php"
+                        android:textAlignment="center"
+                        android:textColor="@color/sideBarViewColor"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvBDRunReward"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Reward"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tvBDRunRewardDiscount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="0.00"
+                        android:textAlignment="textEnd" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.68"
                         android:fontFamily="@font/montserrat"
                         android:gravity="center_horizontal"
                         android:text="Php"
@@ -627,15 +677,15 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:background="@color/sideBarViewColor"
+                    android:layout_height="1dp"
                     android:layout_marginVertical="10dp"
-                    android:layout_height="1dp"/>
+                    android:background="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
-                    android:text="Charges:"/>
+                    android:text="Charges:" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -645,11 +695,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:layout_weight="1"
-                        android:text="Offense Charge" />
+                        android:text="Offense Charge"
+                        android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/tvBDRunOffenseCharge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -660,7 +711,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.66"
+                        android:layout_weight="1.68"
                         android:fontFamily="@font/montserrat"
                         android:gravity="center_horizontal"
                         android:text="Php"
@@ -672,9 +723,9 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:background="@color/sideBarViewColor"
+                    android:layout_height="1dp"
                     android:layout_marginVertical="10dp"
-                    android:layout_height="1dp"/>
+                    android:background="@color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -688,6 +739,7 @@
                         android:text="Total Price:" />
 
                     <TextView
+                        android:id="@+id/tvBDRunTotalPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -710,7 +762,6 @@
                         android:textSize="10sp" />
 
                 </LinearLayout>
-
 
             </LinearLayout>
 

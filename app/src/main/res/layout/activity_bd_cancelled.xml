@@ -105,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/montserrat"
-                    android:text="Date:" />
+                    android:text="Booking Date:" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -161,6 +161,50 @@
                     android:background="@color/sideBarViewColor"
                     android:layout_marginVertical="15dp"
                     android:layout_height="1dp"/>
+
+                <LinearLayout
+                    android:id="@+id/llBDCReserveDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Reserve Date:"/>
+
+                    <TextView
+                        android:id="@+id/tvBDCReserveDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:text="Golden Baboy, Morayta"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llBDCReserveTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Reserve Time:"/>
+
+                    <TextView
+                        android:id="@+id/tvBDCReserveTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:text="Golden Baboy, Morayta"/>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

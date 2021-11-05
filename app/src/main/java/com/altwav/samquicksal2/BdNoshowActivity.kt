@@ -3,6 +3,7 @@ package com.altwav.samquicksal2
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -39,6 +40,15 @@ class BdNoshowActivity : AppCompatActivity() {
                 tvBDNSRewardClaimed.text = it.rewardClaimed
                 tvBDNSBookingType.text = it.bookingType
                 tvBDNSNotes.text = it.notes
+                if(it.reserveDate == null){
+                    llBDNSReserveDate.visibility = View.GONE
+                    llBDNSReserveTime.visibility = View.GONE
+                } else {
+                    llBDNSReserveDate.visibility = View.VISIBLE
+                    llBDNSReserveTime.visibility = View.VISIBLE
+                    tvBDNSReserveDate.text = it.reserveDate
+                    tvBDNSReserveTime.text = it.reserveTime
+                }
             } else {
                 Toast.makeText(this,"Error loading form", Toast.LENGTH_SHORT).show()
             }

@@ -3,13 +3,28 @@ package com.altwav.samquicksal2
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
+import com.altwav.samquicksal2.viewmodel.GCashStatusViewModel
+import com.altwav.samquicksal2.viewmodel.ReservationDTViewModel
 import kotlinx.android.synthetic.main.activity_reservation_form.*
+import java.lang.reflect.TypeVariable
 
 class ReservationFormActivity : AppCompatActivity() {
+
+    private lateinit var viewModel: ReservationDTViewModel
+    private var date: String? = null
+    private var time: String? = null
+    private lateinit var arrayTrueDate: List<String>
+    private lateinit var arrayTempDate: List<String>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reservation_form)
@@ -28,6 +43,35 @@ class ReservationFormActivity : AppCompatActivity() {
         val hours = arrayOf("2 hours", "3 hours", "4 hours", "5 hours")
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, hours)
         spinnerReserveFormHoursOfStay.adapter = arrayAdapter
+
+        viewModel = ViewModelProvider(this).get<ReservationDTViewModel>()
+        viewModel.getReservationDTObserver().observe(this, {
+            if(it != null){
+                val date = it.storeTrueDates!!.toTypedArray()
+
+                arrayTrueDate = it.storeTrueDates
+                arrayTempDate = it.modDatesBFRAD!!
+
+                val dateAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, date)
+                spinnerReserveFormDate.adapter = dateAdapter
+
+                spinnerReserveFormDate.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                        val time2 = it.modTimeBFRAT!!.get(position).toTypedArray()
+
+                        val timeAdapter2 = ArrayAdapter(this@ReservationFormActivity, android.R.layout.simple_spinner_dropdown_item, time2)
+                        spinnerReserveFormTime.adapter = timeAdapter2
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>?) {
+                    }
+
+                }
+            }
+        })
+
+
+        viewModel.getReservationDTInfo(restaurantId)
 
         btn_reserve_form_back.setOnClickListener {
             finish()
@@ -82,13 +126,25 @@ class ReservationFormActivity : AppCompatActivity() {
             constraintSet.applyTo(constraintLayout)
         }
 
+
         btnReserveFormNext.setOnClickListener {
-            val numberOfPersons = etReserveFormNumberOfPeople.text.toString()
+            var numberOfPersons = etReserveFormNumberOfPeople.text.toString()
             var numberOfTables: Int? = null
             var numberOfChildren: Int? = null
             var numberOfPwd: Int? = null
             val notes = etReserveFormNotes.text.toString()
             var countError: Int = 0
+
+            val trueDate = spinnerReserveFormDate.selectedItem.toString()
+            time = spinnerReserveFormTime.selectedItem.toString()
+
+            var iterate = 0
+            for (dateT in arrayTrueDate){
+                if (dateT == trueDate){
+                    date = arrayTempDate.get(iterate)
+                }
+                iterate++
+            }
 
             if(rTimeLimit == 0){
                 when (spinnerReserveFormHoursOfStay.selectedItem.toString()){
@@ -110,6 +166,10 @@ class ReservationFormActivity : AppCompatActivity() {
                     numberOfTables = 1
                 } else {
                     numberOfTables = numberOfPersons.toInt() / rCapacityPerTable
+                    val getModule = numberOfPersons.toInt() % rCapacityPerTable
+                    if(getModule > 0){
+                        numberOfTables += 1
+                    }
                 }
             }
 
@@ -167,9 +227,11 @@ class ReservationFormActivity : AppCompatActivity() {
                 intent.putExtra("rewardStatus", rewardStatus)
                 intent.putExtra("rewardType", rewardType)
                 intent.putExtra("rewardInput", rewardInput)
+                intent.putExtra("trueDate", trueDate)
+                intent.putExtra("date", date)
+                intent.putExtra("time", time)
                 startActivity(intent)
             }
         }
-
     }
 }

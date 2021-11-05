@@ -75,7 +75,7 @@ class BookFragment : Fragment() {
             AlertDialog.Builder(context)
                 .setTitle("Queue")
                 .setIcon(R.mipmap.ic_launcher)
-                .setMessage("Please note that you may be wait listed from queueing if the restaurant is experiencing a lot of customer?")
+                .setMessage("Please note that you may be wait listed from queueing if the restaurant is experiencing a lot of customer")
                 .setCancelable(false)
                 .setPositiveButton("Yes") { dialog, id ->
                     val intent = Intent(context, ChooseOrderSetActivity::class.java)
@@ -90,10 +90,21 @@ class BookFragment : Fragment() {
         }
 
         view.btnBookReserve.setOnClickListener {
-            val intent = Intent(context, ChooseOrderSetActivity::class.java)
-            intent.putExtra("restaurantId", restaurantId)
-            intent.putExtra("bookType", "Reservation")
-            startActivity(intent)
+            AlertDialog.Builder(context)
+                .setTitle("Reserve")
+                .setIcon(R.mipmap.ic_launcher)
+                .setMessage("Please note that you may be declined due to the limitation of reservation tables per day.")
+                .setCancelable(false)
+                .setPositiveButton("Yes") { dialog, id ->
+                    val intent = Intent(context, ChooseOrderSetActivity::class.java)
+                    intent.putExtra("restaurantId", restaurantId)
+                    intent.putExtra("bookType", "Reservation")
+                    startActivity(intent)
+                }
+                .setNegativeButton("No") { dialog, id ->
+                    dialog.cancel()
+                }
+                .show()
         }
 
         if (restaurantId != null) {

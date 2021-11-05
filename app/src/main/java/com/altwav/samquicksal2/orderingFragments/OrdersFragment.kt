@@ -94,7 +94,7 @@ class OrdersFragment : Fragment(), UpdateFoodItemInterface {
 
                 btnCOSubmitOrder.setOnClickListener {
                     AlertDialog.Builder(view.context)
-                        .setTitle("Submit Order")
+                        .setTitle("Confirm Order")
                         .setIcon(R.mipmap.ic_launcher)
                         .setMessage("Are you sure you want to submit?")
                         .setCancelable(false)
@@ -120,7 +120,7 @@ class OrdersFragment : Fragment(), UpdateFoodItemInterface {
         viewModel2 = ViewModelProvider(this).get<UpdateFoodItemViewModel>()
         viewModel2.getUpdateOrderingFIObserver().observe(viewLifecycleOwner, {
             if (it != null){
-                Toast.makeText(view.context, "${it.status}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(view.context, "${it.status}", Toast.LENGTH_LONG).show()
                 viewModel.getCurrentOrdersInfo(customerId)
                 adapter.notifyDataSetChanged()
             }
@@ -130,7 +130,7 @@ class OrdersFragment : Fragment(), UpdateFoodItemInterface {
         viewModel3 = ViewModelProvider(this).get<SubmitOrdersViewModel>()
         viewModel3.getSubmitOrdersObserver().observe(viewLifecycleOwner, {
             if(it != null) {
-                Toast.makeText(view.context, "${it.status}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(view.context, "${it.status}", Toast.LENGTH_LONG).show()
                 viewModel.getCurrentOrdersInfo(customerId)
                 adapter.notifyDataSetChanged()
             }

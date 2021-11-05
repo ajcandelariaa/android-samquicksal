@@ -47,7 +47,7 @@
                 android:id="@+id/tvChooseOrderSetTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Queue-in"
+                android:text="Queue-in Form"
                 android:textColor="@color/loginColor"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_queue_form_back"
