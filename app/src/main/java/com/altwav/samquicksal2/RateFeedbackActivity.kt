@@ -56,9 +56,9 @@ class RateFeedbackActivity : AppCompatActivity() {
 
         btnRatingNotNow.setOnClickListener {
             AlertDialog.Builder(this)
-                .setTitle("Not Now")
+                .setTitle("Submit Feedback")
                 .setIcon(R.mipmap.ic_launcher)
-                .setMessage("Are you sure you don't want to give them a feedback?")
+                .setMessage("Your feedback matters to us, but we understand if you don't want to leave a review right now. Are you sure you want to continue?")
                 .setCancelable(false)
                 .setPositiveButton("Yes") { dialog, id ->
                     val rfForm = RFSubmitFormModel(customerId, "", "", "", "not now")
@@ -88,7 +88,7 @@ class RateFeedbackActivity : AppCompatActivity() {
                 AlertDialog.Builder(this)
                     .setTitle("Submit Feedback")
                     .setIcon(R.mipmap.ic_launcher)
-                    .setMessage("Are you sure you want to give them a feedback?")
+                    .setMessage("Are you sure you want to submit this review? Your review cannot be changed afterwards, Thank you for your feedback.")
                     .setCancelable(false)
                     .setPositiveButton("Yes") { dialog, id ->
                         val rfForm = RFSubmitFormModel(customerId, tvRFRatingText.text.toString(), comment.toString(), finalAnonymous, "submit")

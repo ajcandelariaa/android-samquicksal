@@ -2,19 +2,19 @@
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/refreshNotifications"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".mainActivityFragments.NotificationsFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingBottom="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="1dp">
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/containerNoNotifications"
@@ -41,15 +41,18 @@
 
                 <TextView
                     android:id="@+id/textView17"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
                     android:layout_marginTop="30dp"
                     android:fontFamily="@font/montserrat"
+                    android:gravity="center_horizontal"
                     android:text="You have no notifications as of now"
+                    android:textAlignment="center"
                     android:textColor="@color/gradient3TopColor"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView8"
-                    app:layout_constraintStart_toStartOf="@+id/imageView8"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

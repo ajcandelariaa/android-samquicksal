@@ -44,6 +44,6 @@ class DeclinedNotificationActivity : AppCompatActivity() {
             }
         })
 
-        viewModel.getNotifDeclinedInfo(cust_id, notif_id.toInt())
+        viewModel.getNotifDeclinedInfo(cust_id, notif_id)
     }
 }

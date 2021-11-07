@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.LiveStatusActivity
+import com.altwav.samquicksal2.OrderingActivity
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.RestaurantViewActivity
 import com.altwav.samquicksal2.models.ListOfRestaurantModel
@@ -133,7 +134,7 @@ class ListOfNotificationsAdapter : RecyclerView.Adapter<ListOfNotificationsAdapt
                         context.startActivity(intent)
                     }
                     "Table is Ready" -> {
-                        val intent = Intent(context, LiveStatusActivity::class.java)
+                        val intent = Intent(context, OrderingActivity::class.java)
                         context.startActivity(intent)
                     }
                 }

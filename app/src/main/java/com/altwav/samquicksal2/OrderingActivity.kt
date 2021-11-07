@@ -17,6 +17,8 @@ class OrderingActivity : AppCompatActivity() {
             finish()
         }
 
+
+
         val viewPager2 = findViewById<ViewPager2>(R.id.orderingViewPager)
         val tabLayout = findViewById<TabLayout>(R.id.orderingViewTabLayout)
         viewPager2.adapter =  OrderingAdapter(this)

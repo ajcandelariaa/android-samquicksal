@@ -2,8 +2,8 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="150dp"
-    android:layout_height="220dp"
+    android:layout_width="160dp"
+    android:layout_height="190dp"
     android:layout_marginHorizontal="10dp"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="20dp"
@@ -16,22 +16,27 @@
 
         <TextView
             android:id="@+id/tvRatedRestaurantName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
             android:fontFamily="@font/montserrat"
             android:text="Restaurant Name"
+            android:layout_marginHorizontal="10dp"
             android:textColor="@color/black"
+            android:textStyle="bold"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center_horizontal" />
 
         <TextView
             android:id="@+id/tvRatedBranchName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
+            android:layout_marginHorizontal="20dp"
             android:maxLines="1"
             android:fontFamily="@font/montserrat"
             android:textAlignment="center"

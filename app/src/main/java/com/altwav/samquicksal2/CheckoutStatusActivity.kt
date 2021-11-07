@@ -1,6 +1,7 @@
 package com.altwav.samquicksal2
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
@@ -46,6 +47,11 @@ class CheckoutStatusActivity : AppCompatActivity() {
                         tvCheckoutStatusTitle.text = "GCash Checkout"
                         tvCheckoutStatusHeader.text = "Please wait for us to collect the remaining amount of money!"
                         tvCheckoutStatusDesc.text = "It seems like your gcash payment did not meet the total price of your bill"
+                    }
+                    else -> {
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
                 }
             }

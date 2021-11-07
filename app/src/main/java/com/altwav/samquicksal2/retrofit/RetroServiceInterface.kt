@@ -1,10 +1,10 @@
 package com.altwav.samquicksal2.retrofit
 
+import android.content.Context
 import com.altwav.samquicksal2.models.*
-import com.altwav.samquicksal2.viewmodel.RestoReviewViewModel
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 interface RetroServiceInterface {
@@ -63,6 +63,12 @@ interface RetroServiceInterface {
     @GET("get-notifications/runaway/{cust_id}/{notif_id}")
     fun notifRunaway(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifRunawayModel>
 
+    @GET("get-notifications/completed/{cust_id}/{notif_id}")
+    fun notifCompleted(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifCompletedModel>
+
+    @GET("get-notifications/geofencing/{cust_id}/{notif_id}")
+    fun notifGeofencing(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifGeofencingModel>
+
     @GET("get-booking-history/{cust_id}")
     fun bookingHistory(@Path("cust_id") id: Int): Call<List<BookingHistoryModelResponse>>
 
@@ -108,6 +114,8 @@ interface RetroServiceInterface {
     @GET("get-restaurants/get-date-time/{rest_id}")
     fun getReservationDT(@Path("rest_id") rest_id: Int): Call<ReservationDTModel>
 
+    @GET("scan-qr/{cust_id}/{request_cust_id}")
+    fun scanQRCode(@Path("cust_id") cust_id: Int, @Path("request_cust_id") request_cust_id:Int): Call<QRScannedModel>
 
 
 
@@ -154,9 +162,17 @@ interface RetroServiceInterface {
     @POST("get-booking-history/complete")
     fun bookingHistoryComplete(@Body params: BHCompleteModel): Call<BHCompleteModelResponse>
 
-    @Multipart
+    @FormUrlEncoded
     @POST("ordering/checkout/gcash-upload-image")
-    fun gcashUploadImage(@Part part: MultipartBody.Part, @Part("somedata") requestBody: RequestBody): Call<OrderingAssistanceModelResponse>
+    fun gcashUploadImage(@Field("gcashReceipt") gcashReceipt: String, @Field("cust_id") cust_id: Int): Call<UploadReceiptModelResponse>
 
+    @POST("geofencing/notification")
+    fun geofencingListener(): Call<GeofencingModelResponse>
+//    fun geofencingListener(@Body params: GeofencingModel): Call<GeofencingModelResponse>
+
+
+
+    @POST("nearby-restaurants")
+    fun getNearbyResto(@Body params: NearbyRestoModel): Call<List<NearbyRestoModelResponse>>
 
 }

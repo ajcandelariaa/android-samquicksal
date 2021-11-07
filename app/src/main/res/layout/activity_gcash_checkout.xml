@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".sidebarActivities.Account">
+    tools:context=".GcashCheckoutActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
@@ -84,9 +84,9 @@
                         android:id="@+id/ivCOGCCImage"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
+                        android:layout_marginTop="20dp"
                         android:src="@drawable/sample_gcash_qr"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -143,8 +143,11 @@
 
                     <ImageView
                         android:id="@+id/btnCOGCCUploadImage"
-                        android:layout_width="250dp"
-                        android:layout_height="250dp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:layout_marginHorizontal="30dp"
                         android:layout_marginTop="30dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.496"

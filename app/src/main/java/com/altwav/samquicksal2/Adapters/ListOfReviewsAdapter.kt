@@ -42,13 +42,16 @@ class ListOfReviewsAdapter : RecyclerView.Adapter<ListOfReviewsAdapter.MyViewHol
         private val custName: TextView = itemView.tvRRCustName
         private val custRateDate: TextView = itemView.tvRRCustDate
         private val custComment: TextView = itemView.tvRRCustComment
+        private val custRatingLabel: TextView = itemView.tvRRStarLabel
         private val custRating: RatingBar = itemView.rbRRStar
         private val custImage: CircleImageView = itemView.ivRRCustImage
+
 
         fun bind(data: RestoCustReviewList){
             custName.text = data.custName
             custRateDate.text = data.custRateDate
             custComment.text = data.custComment
+            custRatingLabel.text = "(${data.custRating})"
             Glide.with(itemView).load(data.custImage).into(custImage)
             custRating.rating = data.custRating!!.toFloat()
         }

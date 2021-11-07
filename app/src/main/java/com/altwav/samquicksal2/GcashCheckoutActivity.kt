@@ -1,6 +1,5 @@
 package com.altwav.samquicksal2
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.app.DownloadManager
 import android.content.BroadcastReceiver
@@ -9,35 +8,30 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
-import com.altwav.samquicksal2.models.OrderingAssistanceModel
 import com.altwav.samquicksal2.viewmodel.GCashStatusViewModel
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_gcash_checkout.*
+import androidx.activity.result.contract.ActivityResultContracts.GetContent
+import com.altwav.samquicksal2.viewmodel.UploadReceiptViewModell
+import java.io.ByteArrayOutputStream
+import java.util.*
 
 class GcashCheckoutActivity : AppCompatActivity() {
 
     private lateinit var viewModel: GCashStatusViewModel
+    private lateinit var viewModel2: UploadReceiptViewModell
     private var mydownloadid: Long = 0
-    private var IMG_REQUEST = 21
     private lateinit var bitmap: Bitmap
-
-    private val getResult = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()) {
-        if(it.resultCode == Activity.RESULT_OK){
-            val value = it.data?.getStringExtra("input")
-            Log.d("message", "$value")
-        }
-    }
+    private var decodeImg: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +39,41 @@ class GcashCheckoutActivity : AppCompatActivity() {
 
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val customerId = sharedPreferences?.getInt("CUSTOMER_ID", 0)
+
+        val getContent = registerForActivityResult(GetContent()) { uri: Uri? ->
+            if (uri != null){
+                tvCOGCCUploadImageLabel.visibility = View.GONE
+                btnCOGCCUploadImage.setImageURI(uri)
+                bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+
+                val byteArrayOutputStream = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+
+                val byte = byteArrayOutputStream.toByteArray()
+                decodeImg = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    Base64.getEncoder().encodeToString(byte)
+                } else {
+                    TODO("VERSION.SDK_INT < O")
+                }
+
+            } else {
+                tvCOGCCUploadImageLabel.visibility = View.VISIBLE
+                Glide.with(this).load(R.drawable.upload_icon).into(btnCOGCCUploadImage)
+            }
+        }
+        viewModel2 = ViewModelProvider(this).get<UploadReceiptViewModell>()
+        viewModel2.getUploadReceiptObserver().observe(this, {
+            if (it != null) {
+                if(it.status == "Success"){
+                    val intent = Intent(this, CheckoutStatusActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                    Toast.makeText(applicationContext, "GCash Receipt submitted successfully! Please wait til your payment is validated", Toast.LENGTH_LONG).show()
+                }
+                Toast.makeText(applicationContext, "${it.status}", Toast.LENGTH_LONG).show()
+            }
+            Toast.makeText(applicationContext, "${it}", Toast.LENGTH_LONG).show()
+        })
 
         viewModel = ViewModelProvider(this).get<GCashStatusViewModel>()
         viewModel.getGCashStatusObserver().observe(this, {
@@ -59,6 +88,11 @@ class GcashCheckoutActivity : AppCompatActivity() {
                         tvCOGCCInvalid.visibility = View.VISIBLE
                         tvCOGCCTotalPrice.text = it.amount
                         Glide.with(this).load(it.restGCashQr).into(ivCOGCCImage)
+                    }
+                    else -> {
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
                 }
 
@@ -89,14 +123,13 @@ class GcashCheckoutActivity : AppCompatActivity() {
                 }
                 registerReceiver(br, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
 
+                // SELECT IMAGE
                 btnCOGCCUploadImage.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                    intent.action = Intent.ACTION_GET_CONTENT
-                    getResult.launch(intent)
+                    getContent.launch("image/*")
                 }
 
                 btnCOGCCSubmitReceipt.setOnClickListener {
-                    if(tvCOGCCUploadImageLabel.text == "Upload Receipt Here"){
+                    if(decodeImg == ""){
                         Toast.makeText(applicationContext, "Please choose an image first", Toast.LENGTH_SHORT).show()
                     } else {
                         AlertDialog.Builder(this)
@@ -105,7 +138,8 @@ class GcashCheckoutActivity : AppCompatActivity() {
                             .setMessage("Are you sure you want upload your receipt?")
                             .setCancelable(false)
                             .setPositiveButton("Yes") { dialog, id ->
-
+                                Toast.makeText(applicationContext, "Under Construction", Toast.LENGTH_LONG).show()
+//                                viewModel2.getUploadReceiptInfo(decodeImg, customerId!!)
                             }
                             .setNegativeButton("No") { dialog, id ->
                                 dialog.cancel()
@@ -117,6 +151,5 @@ class GcashCheckoutActivity : AppCompatActivity() {
             }
         })
         viewModel.getGCashStatusInfo(customerId!!)
-
     }
 }

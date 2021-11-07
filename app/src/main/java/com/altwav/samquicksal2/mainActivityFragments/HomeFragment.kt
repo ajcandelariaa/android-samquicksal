@@ -1,6 +1,5 @@
 package com.altwav.samquicksal2.mainActivityFragments
 
-import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,12 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.NearbyRestaurantsAdapter
 import com.altwav.samquicksal2.Adapters.RatedRestaurantsAdapter
 import com.altwav.samquicksal2.R
-import com.altwav.samquicksal2.viewmodel.CurrentOrdersViewModel
+import com.altwav.samquicksal2.models.NearbyRestoModel
+import com.altwav.samquicksal2.viewmodel.NearbyRestoViewModel
 import com.altwav.samquicksal2.viewmodel.RatedRestaurantsViewModel
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
-import kotlinx.android.synthetic.main.fragment_orders.*
+import kotlinx.android.synthetic.main.fragment_home.view.*
+import kotlinx.android.synthetic.main.fragment_notifications.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,6 +42,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var recyclerView2: RecyclerView
     private lateinit var adapter2: NearbyRestaurantsAdapter
+    private lateinit var viewModel2: NearbyRestoViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +58,7 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+
 
         val imageList = ArrayList<SlideModel>()
         val imageSlider = view.findViewById<ImageSlider>(R.id.image_slider)
@@ -79,13 +82,26 @@ class HomeFragment : Fragment() {
 
         viewModel.getRatedRestaurantsInfo()
 
-
         recyclerView2 = view.findViewById(R.id.nearbyRestaurantsRecycler)
         adapter2 = NearbyRestaurantsAdapter()
         recyclerView2.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView2.adapter = adapter2
 
+        viewModel2 = ViewModelProvider(this).get<NearbyRestoViewModel>()
+        viewModel2.getNearbyRestoObserver().observe(viewLifecycleOwner, {
+            if (it != null){
+                adapter2.setNearbyResto(it)
+                adapter2.notifyDataSetChanged()
+            }
+        })
 
+        val custLoc = NearbyRestoModel("14.6041267", "120.996228")
+        viewModel2.getNearbyRestoInfo(custLoc)
+
+        view.layout_home_fragment.setOnRefreshListener {
+
+            view.layout_home_fragment.isRefreshing = false
+        }
 
         return view
     }

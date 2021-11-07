@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.altwav.samquicksal2"
-        minSdkVersion 16
+        minSdkVersion 19
         multiDexEnabled true
         targetSdkVersion 30
         versionCode 1
@@ -74,6 +74,15 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
     implementation 'com.google.android.gms:play-services-location:18.0.0'
+
+    implementation 'androidx.activity:activity-ktx:1.2.0'
+
+    //scan qr
+    implementation 'com.budiyev.android:code-scanner:2.1.0'
+
+    //make qr
+    implementation 'com.journeyapps:zxing-android-embedded:3.0.2@aar'
+    implementation 'com.google.zxing:core:3.2.0'
 
 
 }

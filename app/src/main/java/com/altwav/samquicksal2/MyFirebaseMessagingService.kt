@@ -93,7 +93,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
             "Table is Ready" -> {
-                intent = Intent(this, LiveStatusActivity::class.java)
+                intent = Intent(this, OrderingActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
         }
@@ -141,10 +141,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(deviceToken: String) {
         super.onNewToken(deviceToken)
-        MainActivity().sendRegistrationToServer(deviceToken)
+//        MainActivity().sendRegistrationToServer(deviceToken)
     }
 
-    fun getBitmapFromURL(src: String?): Bitmap? {
+    private fun getBitmapFromURL(src: String?): Bitmap? {
         return try {
             val url = URL(src)
             val connection: HttpURLConnection = url.openConnection() as HttpURLConnection

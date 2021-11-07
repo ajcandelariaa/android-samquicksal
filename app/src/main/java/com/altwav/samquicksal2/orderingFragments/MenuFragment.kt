@@ -1,6 +1,7 @@
 package com.altwav.samquicksal2.orderingFragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,9 +13,13 @@ import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.OrderingFoodSetAdapter
+import com.altwav.samquicksal2.OrderingFoodItemActivity
 import com.altwav.samquicksal2.R
+import com.altwav.samquicksal2.ShowQrCodeAccess
+import com.altwav.samquicksal2.sidebarActivities.ScanQrCode
 import com.altwav.samquicksal2.viewmodel.ListsOfRestaurantsViewModel
 import com.altwav.samquicksal2.viewmodel.OrderingFoodSetViewModel
+import kotlinx.android.synthetic.main.fragment_menu.view.*
 import kotlinx.android.synthetic.main.fragment_restaurants.view.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -49,6 +54,11 @@ class MenuFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_menu, container, false)
+
+        view.btnORGetQrCode.setOnClickListener {
+            val intent = Intent(activity, ShowQrCodeAccess::class.java)
+            startActivity(intent)
+        }
 
         recyclerView = view.findViewById(R.id.orderingFoodSetRecyclerView)
         adapter = OrderingFoodSetAdapter()

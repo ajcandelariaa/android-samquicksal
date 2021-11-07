@@ -3,6 +3,7 @@ package com.altwav.samquicksal2.sidebarActivities
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -42,8 +43,11 @@ class Rewards : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(StampCardsViewModel::class.java)
         viewModel.getStampCardsObserver().observe(this,{
             if (it != null){
+                containerNoStampCards.visibility = View.GONE
                 adapter.setStampCards(it)
                 adapter.notifyDataSetChanged()
+            } else {
+                containerNoStampCards.visibility = View.VISIBLE
             }
         })
 

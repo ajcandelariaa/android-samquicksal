@@ -67,7 +67,7 @@
 
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/tvGeofencingHeader"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
@@ -84,13 +84,13 @@
 
         <ImageView
             android:id="@+id/imageView9"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12"
-            app:srcCompat="@drawable/approve_notif_icon" />
+            app:layout_constraintTop_toBottomOf="@+id/tvGeofencingHeader"
+            app:srcCompat="@drawable/geofencing_notif_icon" />
 
         <TextView
             android:id="@+id/textView51"
@@ -107,7 +107,7 @@
 
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivListRestaurantRestaurantImage2"
+            android:id="@+id/ivGeofencingRLogo"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
@@ -117,7 +117,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView51" />
 
         <TextView
-            android:id="@+id/textView52"
+            android:id="@+id/tvGeofencingRName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -125,317 +125,322 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivListRestaurantRestaurantImage2"
-            app:layout_constraintTop_toTopOf="@+id/ivListRestaurantRestaurantImage2" />
+            app:layout_constraintStart_toEndOf="@+id/ivGeofencingRLogo"
+            app:layout_constraintTop_toTopOf="@+id/ivGeofencingRLogo" />
 
         <TextView
-            android:id="@+id/textView53"
+            android:id="@+id/tvGeofencingRAddress"
             android:layout_width="0dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="Morayta"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView52"
-            app:layout_constraintTop_toBottomOf="@+id/textView52" />
+            app:layout_constraintStart_toStartOf="@+id/tvGeofencingRName"
+            app:layout_constraintTop_toBottomOf="@+id/tvGeofencingRName" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/btnGeofencingBookNow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="Book Now"
             android:textAllCaps="false"
-            app:layout_constraintStart_toStartOf="@+id/textView53"
-            app:layout_constraintTop_toBottomOf="@+id/textView53" />
+            app:layout_constraintStart_toStartOf="@+id/tvGeofencingRAddress"
+            app:layout_constraintTop_toBottomOf="@+id/tvGeofencingRAddress" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout6"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:paddingVertical="20dp"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivListRestaurantRestaurantImage2">
-
-            <View
-                android:id="@+id/view10"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView55"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Promos"
-                android:textColor="@color/loginColor"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/view10" />
-
-            <TextView
-                android:id="@+id/textView56"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Get yourself treated using our Promos"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView55" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView56" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clReward"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:paddingVertical="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
-
-            <View
-                android:id="@+id/view101"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView552"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Reward"
-                android:textColor="@color/loginColor"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view101" />
-
-            <TextView
-                android:id="@+id/textView562"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Receive a Stamp once you completed a Task!"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView552" />
+            app:layout_constraintTop_toBottomOf="@+id/ivGeofencingRLogo">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clGeofencingPromoContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="2dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/notificationBgColor"
-                android:paddingVertical="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView562">
+                android:layout_marginHorizontal="20dp"
+                android:paddingVertical="20dp">
 
-
-                <TextView
-                    android:id="@+id/textView57"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:gravity="center_horizontal"
-                    android:text="50 % Discount on total Bill"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                <View
+                    android:id="@+id/view10"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView58"
-                    android:layout_width="0dp"
+                    android:id="@+id/textView55"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_horizontal"
-                    android:text="Valid Until: February 5, 2022"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView57" />
-
-                <TextView
-                    android:id="@+id/textView59"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="25dp"
-                    android:gravity="center_horizontal"
-                    android:text="Complete"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView58" />
-
-                <TextView
-                    android:id="@+id/textView60"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:gravity="center_horizontal"
-                    android:text="10"
-                    android:textAlignment="center"
+                    android:layout_marginTop="10dp"
+                    android:text="Promos"
                     android:textColor="@color/loginColor"
-                    android:textSize="50sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView59" />
-
-                <TextView
-                    android:id="@+id/textView61"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:gravity="center_horizontal"
-                    android:text="Stamps"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView60" />
-
-                <TextView
-                    android:id="@+id/textView62"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center_horizontal"
-                    android:text="1 task = 1 stamp"
-                    android:textAlignment="center"
-                    android:textColor="@color/labelColor"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView61" />
+                    app:layout_constraintTop_toTopOf="@+id/view10" />
 
                 <TextView
-                    android:id="@+id/textView63"
+                    android:id="@+id/textView56"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="30dp"
-                    android:layout_marginTop="40dp"
-                    android:gravity="center_horizontal"
-                    android:text="Earn this reward once you completed the Stamps. You can earn stamps by doing the tasks."
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView62" />
-
-
-                <TextView
-                    android:id="@+id/textView65"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="20dp"
-                    android:text="Tasks:"
+                    android:layout_marginTop="2dp"
+                    android:text="Get yourself treated using our Promos"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView63" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView55" />
 
-
-                <TextView
-                    android:id="@+id/textView66"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/geofencingPromoRv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
                     android:layout_marginTop="5dp"
-                    android:text="Visit the Restaurant \nVisit the Restaurant \nVisit the Restaurant"
-                    app:layout_constraintEnd_toEndOf="@+id/textView65"
-                    app:layout_constraintStart_toStartOf="@+id/textView65"
-                    app:layout_constraintTop_toBottomOf="@+id/textView65" />
-
-                <TextView
-                    android:id="@+id/textView64"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="30dp"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center_horizontal"
-                    android:text="Once completed, reward can be only applied on the next visit. Good luck on earning stamps!"
-                    android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView66" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView56" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout65"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:paddingVertical="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/clReward">
-
-            <View
-                android:id="@+id/view1012"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clGeofencingRewardContainer"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView5522"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Menu"
-                android:textColor="@color/loginColor"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view1012" />
+                android:layout_marginHorizontal="20dp"
+                android:paddingVertical="20dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="0dp"
+                <View
+                    android:id="@+id/view101"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView552"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Reward"
+                    android:textColor="@color/loginColor"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view101" />
+
+                <TextView
+                    android:id="@+id/textView562"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Receive a Stamp once you completed a Task!"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView552" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/tvGeofencingRewardCapacity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/notificationBgColor"
+                    android:paddingVertical="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView562">
+
+
+                    <TextView
+                        android:id="@+id/tvGeofencingRewardName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:gravity="center_horizontal"
+                        android:text="50 % Discount on total Bill"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvGeofencingRewardValidity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_horizontal"
+                        android:text="Valid Until: February 5, 2022"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvGeofencingRewardName" />
+
+                    <TextView
+                        android:id="@+id/textView59"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="25dp"
+                        android:gravity="center_horizontal"
+                        android:text="Complete"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvGeofencingRewardValidity" />
+
+                    <TextView
+                        android:id="@+id/textView60"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:gravity="center_horizontal"
+                        android:text="10"
+                        android:textAlignment="center"
+                        android:textColor="@color/loginColor"
+                        android:textSize="50sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView59" />
+
+                    <TextView
+                        android:id="@+id/textView61"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:gravity="center_horizontal"
+                        android:text="Stamps"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView60" />
+
+                    <TextView
+                        android:id="@+id/textView62"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center_horizontal"
+                        android:text="1 task = 1 stamp"
+                        android:textAlignment="center"
+                        android:textColor="@color/labelColor"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView61" />
+
+                    <TextView
+                        android:id="@+id/textView63"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="40dp"
+                        android:gravity="center_horizontal"
+                        android:text="Earn this reward once you completed the Stamps. You can earn stamps by doing the tasks."
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView62" />
+
+
+                    <TextView
+                        android:id="@+id/textView65"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Tasks:"
+                        android:textColor="@color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView63" />
+
+
+                    <TextView
+                        android:id="@+id/tvGeoFencingTasks"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Visit the Restaurant \nVisit the Restaurant \nVisit the Restaurant"
+                        app:layout_constraintEnd_toEndOf="@+id/textView65"
+                        app:layout_constraintStart_toStartOf="@+id/textView65"
+                        app:layout_constraintTop_toBottomOf="@+id/textView65" />
+
+                    <TextView
+                        android:id="@+id/textView64"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_horizontal"
+                        android:text="Once completed, reward can be only applied on the next visit. Good luck on earning stamps!"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvGeoFencingTasks" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clGeofencingMenuContainer"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5522" />
+                android:layout_marginHorizontal="20dp"
+                android:paddingVertical="20dp">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <View
+                    android:id="@+id/view1012"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView5522"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Menu"
+                    android:textColor="@color/loginColor"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view1012" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/geofencingMenuRv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5522" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

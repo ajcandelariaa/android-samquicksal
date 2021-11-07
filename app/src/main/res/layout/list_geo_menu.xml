@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingVertical="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/tvGeoOSName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/montserrat"
+        android:text="499"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvGeoOSTagline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/montserrat"
+        android:text="5 different Flavors of Pork, and 10 Side dishes"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/tvGeoOSName"
+        app:layout_constraintStart_toStartOf="@+id/tvGeoOSName"
+        app:layout_constraintTop_toBottomOf="@+id/tvGeoOSName" />
+
+    <TextView
+        android:id="@+id/tvGeoOSDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Eat all you can Samgyeopsal chuchu description to"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/tvGeoOSTagline"
+        app:layout_constraintStart_toStartOf="@+id/tvGeoOSTagline"
+        app:layout_constraintTop_toBottomOf="@+id/tvGeoOSTagline" />
+
+    <ImageView
+        android:id="@+id/ivGeoOSImage"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="@+id/tvGeoOSDescription"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvGeoOSDescription"
+        app:layout_constraintTop_toBottomOf="@+id/tvGeoOSPrice"
+        app:srcCompat="@drawable/sample_post" />
+
+    <TextView
+        android:id="@+id/tvGeoOSPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:fontFamily="@font/montserrat"
+        android:layout_marginTop="5dp"
+        android:text="Price: 499.00"
+        app:layout_constraintStart_toStartOf="@+id/tvGeoOSDescription"
+        app:layout_constraintTop_toBottomOf="@+id/tvGeoOSDescription" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,6 +32,7 @@
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnORGetQrCode"
                 android:layout_width="match_parent"
                 android:background="@color/backgroundQrCode"
                 android:layout_height="match_parent">

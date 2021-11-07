@@ -66,7 +66,7 @@
 
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/tvCompletedHeader"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
@@ -83,13 +83,13 @@
 
         <ImageView
             android:id="@+id/imageView9"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12"
-            app:srcCompat="@drawable/newaccount_notif_icon" />
+            app:layout_constraintTop_toBottomOf="@+id/tvCompletedHeader"
+            app:srcCompat="@drawable/completed_notif_icon" />
 
         <TextView
             android:id="@+id/textView26"
@@ -106,7 +106,7 @@
             android:gravity="center_horizontal" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnCompletedNotifBill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bill"
@@ -117,7 +117,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnCompletedNotifStamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -126,10 +126,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView27" />
+            app:layout_constraintTop_toBottomOf="@+id/tvCompletedNotifStampS" />
 
         <TextView
-            android:id="@+id/textView27"
+            android:id="@+id/tvCompletedNotifStampS"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -141,36 +141,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.475"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
-
-        <TextView
-            android:id="@+id/textView271"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:gravity="center_horizontal"
-            android:text="We hope to see you again soon."
-            android:textAlignment="center"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.475"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
+            app:layout_constraintTop_toBottomOf="@+id/btnCompletedNotifBill" />
 
         <LinearLayout
-            android:id="@+id/linearLayout13"
+            android:id="@+id/llCompletedNTasks"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:layout_marginHorizontal="20dp"
             android:background="@color/bookingDetailsBackground"
             android:orientation="vertical"
             android:padding="10dp"
+            android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView271">
+            app:layout_constraintTop_toBottomOf="@+id/btnCompletedNotifStamp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -178,12 +163,13 @@
                 android:fontFamily="@font/montserrat"
                 android:text="Task/s Completed:" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/offenseRecyclerView"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tvCompletedNotifTasks"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="10dp" />
+                android:fontFamily="@font/montserrat"
+                android:text="Task/s Completed:" />
+
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

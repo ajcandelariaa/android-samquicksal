@@ -60,7 +60,6 @@
             android:layout_marginTop="3dp"
             android:text="The service was superb and thanks to this app everything was fast and easy."
             android:textColor="@color/black"
-            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/rbRRStar"
             app:layout_constraintTop_toBottomOf="@+id/rbRRStar" />
@@ -73,6 +72,17 @@
             android:text="Jan 13"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvRRCustName" />
+
+        <TextView
+            android:id="@+id/tvRRStarLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="10sp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/rbRRStar"
+            app:layout_constraintStart_toEndOf="@+id/rbRRStar"
+            app:layout_constraintTop_toBottomOf="@+id/tvRRCustName" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

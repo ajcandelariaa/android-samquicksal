@@ -63,10 +63,26 @@ class ReviewsFragment : Fragment() {
         val viewModel = ViewModelProvider(this).get<RestoReviewViewModel>()
         viewModel.getRestoReviewObserver().observe(viewLifecycleOwner, {
             if (it!= null) {
-                adapter.setCustRestReview(it.custReviews)
-                adapter.notifyDataSetChanged()
-                tvRRAverageRate.text = it.averageRating
-                tvRRRateCount.text = "(${it.countReviews})"
+                if(it.custReviews == null){
+                    containerNoRating.visibility = View.VISIBLE
+                    tvRRHeader.visibility = View.GONE
+                    tvRRAverageRate.visibility = View.GONE
+                    tvRRRateCount.visibility = View.GONE
+                    tvRRO5.visibility = View.GONE
+                    ratingReviewsRecyclerView.visibility = View.GONE
+                } else {
+                    containerNoRating.visibility = View.GONE
+                    tvRRHeader.visibility = View.VISIBLE
+                    tvRRAverageRate.visibility = View.VISIBLE
+                    tvRRRateCount.visibility = View.VISIBLE
+                    tvRRO5.visibility = View.VISIBLE
+                    ratingReviewsRecyclerView.visibility = View.VISIBLE
+
+                    adapter.setCustRestReview(it.custReviews)
+                    adapter.notifyDataSetChanged()
+                    tvRRAverageRate.text = it.averageRating
+                    tvRRRateCount.text = "(${it.countReviews})"
+                }
             }
         })
 
