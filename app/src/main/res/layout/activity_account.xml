@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".sidebarActivities.Account">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar2"
             android:layout_width="0dp"
@@ -64,13 +60,18 @@
 
         </androidx.appcompat.widget.Toolbar>
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshAccount"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2">
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar2">
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -113,7 +114,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView10"
+                        android:id="@+id/btnUpdateImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -137,9 +138,9 @@
                         android:textColor="@color/loginColor"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/textView10"
-                        app:layout_constraintStart_toStartOf="@+id/textView10"
-                        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+                        app:layout_constraintEnd_toEndOf="@+id/btnUpdateImage"
+                        app:layout_constraintStart_toStartOf="@+id/btnUpdateImage"
+                        app:layout_constraintTop_toBottomOf="@+id/btnUpdateImage" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -167,7 +168,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
                 <TextView
-                    android:id="@+id/textView15"
+                    android:id="@+id/btnUpdateName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -236,7 +237,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/ivEmailAddressStatus" />
 
                 <TextView
-                    android:id="@+id/textView152"
+                    android:id="@+id/btnUpdateEmailAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -283,7 +284,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView133" />
 
                 <TextView
-                    android:id="@+id/textView153"
+                    android:id="@+id/btnUpdateContactNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -314,7 +315,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
                     android:gravity=""
-                    android:text="***********"
+                    android:text="**********"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/textView134"
                     app:layout_constraintTop_toBottomOf="@+id/textView134" />
@@ -332,7 +333,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/view4" />
 
                 <TextView
-                    android:id="@+id/textView154"
+                    android:id="@+id/btnUpdatePassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -361,8 +362,8 @@
 
         </androidx.core.widget.NestedScrollView>
 
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,8 +28,6 @@ class UploadReceiptViewModell: ViewModel() {
         call.enqueue(object : retrofit2.Callback<UploadReceiptModelResponse> {
             override fun onFailure(call: Call<UploadReceiptModelResponse>?, t: Throwable?) {
                 createUploadReceiptResponseLD.postValue(null)
-                Log.d("messageMultipart", "failed $t")
-                Log.d("messageMultipartCall", "failed $call")
             }
 
             override fun onResponse(
@@ -41,7 +39,6 @@ class UploadReceiptViewModell: ViewModel() {
                 } else {
                     createUploadReceiptResponseLD.postValue(null)
                 }
-                Log.d("messageMultipart", "$response")
             }
 
         })

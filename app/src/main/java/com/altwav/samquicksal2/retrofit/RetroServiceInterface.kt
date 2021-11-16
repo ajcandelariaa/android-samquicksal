@@ -196,6 +196,19 @@ interface RetroServiceInterface {
 //    fun geofencingListener(@Body params: GeofencingModel): Call<GeofencingModelResponse>
 
 
+    @POST("account/update-single-info")
+    fun updateSingleInfo(@Body params: UpdateNameModel): Call<UpdateNameModelResponse>
+
+    @POST("account/update-password")
+    fun updatePassword(@Body params: UpdatePasswordModel): Call<UpdatePasswordModelResponse>
+
+    @Multipart
+    @POST("account/update-user-image")
+    fun updateUserProfile(
+        @Part userProfile: MultipartBody.Part,
+        @Part("cust_id") cust_id: RequestBody,
+    ): Call<UpdateImageModel>
+
 
     @POST("nearby-restaurants")
     fun getNearbyResto(@Body params: NearbyRestoModel): Call<List<NearbyRestoModelResponse>>

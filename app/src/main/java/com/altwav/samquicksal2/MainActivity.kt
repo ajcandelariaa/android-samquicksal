@@ -53,6 +53,7 @@ import com.google.android.gms.common.api.GoogleApiClient
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: HomepageCustomerViewModel
     private lateinit var viewModel2: DeviceTokenViewModel
+    private var customerId: Int = 0
 
     private var drawerLayout: DrawerLayout? = null
 
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val sharedPreferences: SharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val customerId = sharedPreferences.getInt("CUSTOMER_ID", 0)
+        customerId = sharedPreferences.getInt("CUSTOMER_ID", 0)
 
         getCustomerId(customerId)
 
@@ -159,6 +160,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             true
+        }
+    }
+
+    fun resetHomeInfo(){
+        if (customerId != 0){
+            viewModel.getHomepageInfoCustomer(customerId)
         }
     }
 

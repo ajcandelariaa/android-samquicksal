@@ -1,24 +1,15 @@
 package com.altwav.samquicksal2.Adapters
 
 import android.app.AlertDialog
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.altwav.samquicksal2.AddFoodItemInterface
-import com.altwav.samquicksal2.Login
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.UpdateFoodItemInterface
-import com.altwav.samquicksal2.models.AddFooditemModel
 import com.altwav.samquicksal2.models.CurrentOrdersModel
-import com.altwav.samquicksal2.models.OrderFoodSet
 import com.altwav.samquicksal2.models.UpdateFoodItemModel
-import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.ordering_food_sets.view.*
 import kotlinx.android.synthetic.main.ordering_orders.view.*
 
 class OrderingOrdersAdapter(updateFoodItem3: UpdateFoodItemInterface) : RecyclerView.Adapter<OrderingOrdersAdapter.MyViewHolder>() {
