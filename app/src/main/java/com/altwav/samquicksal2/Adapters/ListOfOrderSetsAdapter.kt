@@ -8,15 +8,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.R
-import com.altwav.samquicksal2.models.RestaurantMenuModelResponse
+import com.altwav.samquicksal2.models.Menu
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.list_of_order_sets.view.*
 
 class ListOfOrderSetsAdapter: RecyclerView.Adapter<ListOfOrderSetsAdapter.MyViewHolder>()  {
 
-    private var restaurantMenu : List<RestaurantMenuModelResponse>? = null
+    private var restaurantMenu : List<Menu>? = null
 
-    fun setRestaurantMenu(restaurantMenu1: List<RestaurantMenuModelResponse>?){
+    fun setRestaurantMenu(restaurantMenu1: List<Menu>?){
         this.restaurantMenu = restaurantMenu1
     }
 
@@ -44,7 +44,7 @@ class ListOfOrderSetsAdapter: RecyclerView.Adapter<ListOfOrderSetsAdapter.MyView
         private val orderSetPrice: TextView = itemView.tvOrderSetPrice
         private val orderSetImage: ImageView = itemView.ivOrderSetImage
 
-        fun bind(data: RestaurantMenuModelResponse){
+        fun bind(data: Menu){
             orderSetName.text = data.orderSetName
             orderSetTagline.text = data.orderSetTagline
             orderSetDescription.text = data.orderSetDescription

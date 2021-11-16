@@ -48,6 +48,8 @@
             android:textStyle="bold"
             android:textAlignment="center"
             android:textSize="14sp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:textColor="@color/restaurantAddressTextColor"
             android:text="Morayta, Metro manila"
             app:layout_constraintEnd_toEndOf="@+id/tvListRestaurantTitle"

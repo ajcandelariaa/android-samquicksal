@@ -42,6 +42,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_restaurants.*
 import kotlinx.android.synthetic.main.main_nav_drawer.*
+import com.google.android.gms.location.LocationServices
+
+import com.google.android.gms.common.api.GoogleApiClient
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -60,7 +66,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         val sharedPreferences: SharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val customerId = sharedPreferences.getInt("CUSTOMER_ID", 0)

@@ -2,6 +2,8 @@ package com.altwav.samquicksal2.retrofit
 
 import android.content.Context
 import com.altwav.samquicksal2.models.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,8 +26,8 @@ interface RetroServiceInterface {
     @GET("get-restaurants/rewards/{id}")
     fun getRestaurantRewardPromoInfo(@Path("id") id: Int): Call<RestaurantRewardPromoModelResponse>
 
-    @GET("get-restaurants/menu/{id}")
-    fun getRestaurantMenuInfo(@Path("id") id: Int): Call<List<RestaurantMenuModelResponse>>
+    @GET("get-restaurants/menu/{id}/{cust_id}")
+    fun getRestaurantMenuInfo(@Path("id") id: Int, @Path("cust_id") cust_id: Int): Call<RestaurantMenuModelResponse>
 
     @GET("get-restaurants/promo/detail/{promoId}/{restaurantId}")
     fun getRestaurantPromoDetailInfo(@Path("promoId") promoId: Int, @Path("restaurantId") restaurantId:Int): Call<RestaurantPromoDetailModelResponse>
@@ -44,6 +46,8 @@ interface RetroServiceInterface {
 
     @GET("cancel-booking/{id}")
     fun cancelBooking(@Path("id") id: Int): Call<CancelBookingModelResponse>
+
+
 
     @GET("get-notifications/pending/{cust_id}/{notif_id}")
     fun notifPending(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifPendingModel>
@@ -66,8 +70,17 @@ interface RetroServiceInterface {
     @GET("get-notifications/completed/{cust_id}/{notif_id}")
     fun notifCompleted(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifCompletedModel>
 
+    @GET("get-notifications/qr-validate/{cust_id}/{notif_id}")
+    fun notifQrValidate(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifQrValidateModel>
+
+    @GET("get-notifications/qr-approved/{cust_id}/{notif_id}")
+    fun notifQrApproved(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifQrAppModel>
+
     @GET("get-notifications/geofencing/{cust_id}/{notif_id}")
     fun notifGeofencing(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifGeofencingModel>
+
+
+
 
     @GET("get-booking-history/{cust_id}")
     fun bookingHistory(@Path("cust_id") id: Int): Call<List<BookingHistoryModelResponse>>
@@ -117,6 +130,12 @@ interface RetroServiceInterface {
     @GET("scan-qr/{cust_id}/{request_cust_id}")
     fun scanQRCode(@Path("cust_id") cust_id: Int, @Path("request_cust_id") request_cust_id:Int): Call<QRScannedModel>
 
+    @GET("ordering/request-access/{cust_id}/{request_cust_id}")
+    fun orderingReqAccess(@Path("cust_id") cust_id: Int, @Path("request_cust_id") request_cust_id:Int): Call<QrReqAccessModel>
+
+    @GET("ordering/check-customer-access/food-set/{cust_id}")
+    fun ordrCheckCusAccess(@Path("cust_id") cust_id: Int) : Call<OrdrChkCusAccsModel>
+
 
 
 
@@ -144,9 +163,6 @@ interface RetroServiceInterface {
     @POST("ordering/checkout/rating-feedback/submit")
     fun ratingFBSubmit(@Body params: RFSubmitFormModel): Call<RFSubmitFormModelResponse>
 
-    @POST("ordering/checkout")
-    fun orderingCheckout(@Body params: OrderingAssistanceModel): Call<OrderingAssistanceModelResponse>
-
     @POST("ordering/assistance")
     fun orderingAssistance(@Body params: OrderingAssistanceModel): Call<OrderingAssistanceModelResponse>
 
@@ -162,9 +178,18 @@ interface RetroServiceInterface {
     @POST("get-booking-history/complete")
     fun bookingHistoryComplete(@Body params: BHCompleteModel): Call<BHCompleteModelResponse>
 
-    @FormUrlEncoded
-    @POST("ordering/checkout/gcash-upload-image")
-    fun gcashUploadImage(@Field("gcashReceipt") gcashReceipt: String, @Field("cust_id") cust_id: Int): Call<UploadReceiptModelResponse>
+
+    @POST("ordering/checkout")
+    fun orderingCheckout(@Body params: OrderingAssistanceModel): Call<OrderingAssistanceModelResponse>
+
+    @Multipart
+    @POST("ordering/checkout/gcash-upload-receipt")
+    fun gcashUploadImage(
+        @Part gCashReceipt: MultipartBody.Part,
+        @Part("cust_id") cust_id: RequestBody,
+        @Part("book_id") book_id: RequestBody,
+        @Part("book_type") book_type: RequestBody,
+    ): Call<UploadReceiptModelResponse>
 
     @POST("geofencing/notification")
     fun geofencingListener(): Call<GeofencingModelResponse>
@@ -174,5 +199,8 @@ interface RetroServiceInterface {
 
     @POST("nearby-restaurants")
     fun getNearbyResto(@Body params: NearbyRestoModel): Call<List<NearbyRestoModelResponse>>
+
+    @POST("ordering/request-access/approved-declined")
+    fun qrReqAppDec(@Body params: QrReqAppDecModel): Call<QrReqAppDecModelResponse>
 
 }

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,7 @@ import com.altwav.samquicksal2.ShowQrCodeAccess
 import com.altwav.samquicksal2.sidebarActivities.ScanQrCode
 import com.altwav.samquicksal2.viewmodel.ListsOfRestaurantsViewModel
 import com.altwav.samquicksal2.viewmodel.OrderingFoodSetViewModel
+import com.altwav.samquicksal2.viewmodel.OrdrChkCusAccsViewModel
 import kotlinx.android.synthetic.main.fragment_menu.view.*
 import kotlinx.android.synthetic.main.fragment_restaurants.view.*
 
@@ -55,10 +57,8 @@ class MenuFragment : Fragment() {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_menu, container, false)
 
-        view.btnORGetQrCode.setOnClickListener {
-            val intent = Intent(activity, ShowQrCodeAccess::class.java)
-            startActivity(intent)
-        }
+        val sharedPreferences = this.activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val customerId = sharedPreferences?.getInt("CUSTOMER_ID", 0)
 
         recyclerView = view.findViewById(R.id.orderingFoodSetRecyclerView)
         adapter = OrderingFoodSetAdapter()
@@ -66,18 +66,47 @@ class MenuFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
 
-        val viewModel = ViewModelProvider(this).get<OrderingFoodSetViewModel>()
-        viewModel.getOrderFSObserver().observe(viewLifecycleOwner, {
-            if (it.restAccId != null){
-                adapter.setOrderingFoodSet(it.foodSets, it.restAccId, it.orderSetId!!)
-                adapter.notifyDataSetChanged()
+        val viewModel2 = ViewModelProvider(this).get<OrdrChkCusAccsViewModel>()
+        viewModel2.getOrdrChkCusAccsObserver().observe(viewLifecycleOwner, {
+            if (it != null){
+                when (it.status) {
+                    "mainCustomer" -> {
+                        view.btnORGetQrCode.visibility = View.VISIBLE
+                        view.btnORGetQrCode.setOnClickListener {
+                            val intent = Intent(activity, ShowQrCodeAccess::class.java)
+                            startActivity(intent)
+                        }
+                        val viewModel = ViewModelProvider(this).get<OrderingFoodSetViewModel>()
+                        viewModel.getOrderFSObserver().observe(viewLifecycleOwner, { it2 ->
+                            if (it2.restAccId != null){
+                                adapter.setOrderingFoodSet(it2.foodSets, it2.restAccId, it2.orderSetId!!)
+                                adapter.notifyDataSetChanged()
+                            }
+                        })
+
+                        viewModel.getOrderFSInfo(customerId!!)
+                    }
+                    "subCustomer" -> {
+                        view.btnORGetQrCode.visibility = View.GONE
+
+                        val viewModel = ViewModelProvider(this).get<OrderingFoodSetViewModel>()
+                        viewModel.getOrderFSObserver().observe(viewLifecycleOwner, { it2 ->
+                            if (it2.restAccId != null){
+                                adapter.setOrderingFoodSet(it2.foodSets, it2.restAccId, it2.orderSetId!!)
+                                adapter.notifyDataSetChanged()
+                            }
+                        })
+
+                        viewModel.getOrderFSInfo(it.mainCust_id!!)
+                    }
+                    else -> {
+
+                    }
+                }
             }
         })
 
-        val sharedPreferences = this.activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val customerId = sharedPreferences?.getInt("CUSTOMER_ID", 0)
-
-        viewModel.getOrderFSInfo(customerId!!)
+        viewModel2.getOrdrChkCusAccsInfo(customerId!!)
 
         return view
     }

@@ -5,6 +5,12 @@ data class RestaurantMenuModel(
 )
 
 data class RestaurantMenuModelResponse(
+    val description: String? = null,
+    val status: String? = null,
+    val menu: List<Menu>? = null,
+)
+
+data class Menu(
     val foodSet: List<FoodSet>? = null,
     val orderSetDescription: String? = null,
     val orderSetImage: String? = null,

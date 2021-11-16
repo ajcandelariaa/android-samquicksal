@@ -101,54 +101,73 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Customer Details"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/loginColor"
                     android:textSize="20sp" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/ivQrSRCusImage"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingVertical="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/aj_profile" />
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/tvQrSRCusName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:layout_marginTop="10dp"
-                    android:text="Aj Candelaria" />
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/ivQrSRCusImage"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/aj_profile" />
 
-                <TextView
-                    android:id="@+id/tvQrSRCusEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="ajajcandelaria@gmail.com" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvQrSRCusCNum"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="0912312312" />
+                        <TextView
+                            android:id="@+id/tvQrSRCusName"
+                            android:layout_width="match_parent"
+                            android:textColor="@color/black"
+                            android:layout_height="wrap_content"
+                            android:text="Aj Candelaria" />
 
-                <TextView
-                    android:id="@+id/tvQrSRCusDJoined"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="User Since: October 21, 2021" />
+                        <TextView
+                            android:id="@+id/tvQrSRCusEmail"
+                            android:layout_width="match_parent"
+                            android:textColor="@color/black"
+                            android:layout_height="wrap_content"
+                            android:text="ajajcandelaria@gmail.com" />
+
+                        <TextView
+                            android:id="@+id/tvQrSRCusCNum"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:text="0912312312" />
+
+                        <TextView
+                            android:id="@+id/tvQrSRCusDJoined"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:text="User Since: October 21, 2021" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Booking Details"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserrat"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/loginColor"
                     android:textSize="20sp" />
 
                 <LinearLayout

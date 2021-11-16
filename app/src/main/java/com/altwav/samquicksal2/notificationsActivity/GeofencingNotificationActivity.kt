@@ -81,6 +81,9 @@ class GeofencingNotificationActivity : AppCompatActivity() {
                     clGeofencingRewardContainer.visibility = View.GONE
                 } else {
                     clGeofencingRewardContainer.visibility = View.VISIBLE
+                    tvGeofencingRewardName.text = it.stampDiscount
+                    tvGeofencingRewardValidity.text = it.stampValidity
+                    tvGeofencingRewardCapacity.text = it.stampCapacity
                     var finalTask = ""
                     var count = 1
                     for (task in it.stampTasks){

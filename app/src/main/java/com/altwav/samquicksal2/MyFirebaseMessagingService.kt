@@ -79,6 +79,40 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 intent.putExtra("notificationId", notificationId)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
+            "QR Request Sub" -> {
+                intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
+            "QR Approved" -> {
+                intent = Intent(this, QRApprovedNotificationActivity::class.java)
+                intent.putExtra("notificationId", notificationId)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
+            "QR Approved Main" -> {
+                intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
+            "QR Access Complete" -> {
+                intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
+            "QR Declined" -> {
+                intent = Intent(this, QRDeclinedNotificationActivity::class.java)
+                intent.putExtra("notificationId", notificationId)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
+            "QR Declined Main" -> {
+                intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
+            "Invalid Receipt" -> {
+                intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
+            "Insufficient Amount" -> {
+                intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
             "Complete" -> {
                 intent = Intent(this, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -94,6 +128,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             }
             "Table is Ready" -> {
                 intent = Intent(this, OrderingActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
+            else -> {
+                intent = Intent(this, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
         }

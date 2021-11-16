@@ -119,6 +119,16 @@ class ListOfNotificationsAdapter : RecyclerView.Adapter<ListOfNotificationsAdapt
                         intent.putExtra("notificationId", notificationId)
                         context.startActivity(intent)
                     }
+                    "QR Approved" -> {
+                        val intent = Intent(context, QRApprovedNotificationActivity::class.java)
+                        intent.putExtra("notificationId", notificationId)
+                        context.startActivity(intent)
+                    }
+                    "QR Declined" -> {
+                        val intent = Intent(context, QRDeclinedNotificationActivity::class.java)
+                        intent.putExtra("notificationId", notificationId)
+                        context.startActivity(intent)
+                    }
                     "Complete" -> {
                         val intent = Intent(context, CheckoutNotificationActivity::class.java)
                         intent.putExtra("notificationId", notificationId)

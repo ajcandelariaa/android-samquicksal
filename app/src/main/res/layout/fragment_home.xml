@@ -19,6 +19,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout5"
             android:layout_width="match_parent"
+            android:paddingBottom="40dp"
             android:layout_height="match_parent">
 
             <com.denzcoskun.imageslider.ImageSlider
@@ -81,24 +82,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ratedRestaurantsRecycler" />
 
-            <TextView
-                android:id="@+id/tvLocateNow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:background="@drawable/textview_rounded2"
-                android:drawableRight="@drawable/ic_locate_now"
-                android:drawablePadding="5dp"
-                android:fontFamily="@font/montserrat"
-                android:gravity="center"
-                android:text="Location is On"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tvNearbyBranches"
-                app:layout_constraintStart_toEndOf="@+id/tvNearbyBranches"
-                app:layout_constraintTop_toTopOf="@+id/tvNearbyBranches" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/nearbyRestaurantsRecycler"
                 android:layout_width="0dp"
@@ -109,6 +92,33 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvNearbyBranches" />
+
+            <TextView
+                android:id="@+id/tvTurnOnLocation"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="Please grant the location permission to be able to use the full function of this app"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/montserrat"
+                android:textSize="12sp"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNearbyBranches" />
+
+            <android.widget.Button
+                android:id="@+id/btn_turn_on_location"
+                android:layout_width="180dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/transparent_button_border"
+                android:fontFamily="@font/montserrat"
+                android:textAllCaps="false"
+                android:textColor="@color/loginColor"
+                android:text="Request Permission"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTurnOnLocation" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

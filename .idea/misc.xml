@@ -36,7 +36,7 @@
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_declined_notification.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_forgot_password.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_gcash_checkout.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_geofencing_notification.xml" value="0.25" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_geofencing_notification.xml" value="0.5" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_live_status.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_login2.xml" value="0.36666666666666664" />
@@ -46,6 +46,8 @@
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_ordering.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_ordering_food_item.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_pending_notification.xml" value="0.6604477611940298" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_qrapproved_notification.xml" value="0.334124347413384" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_qrdeclined_notification.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_qrscanned_notification.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_queue_form.xml" value="0.25" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_rate_feedback.xml" value="0.36666666666666664" />
@@ -55,8 +57,8 @@
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_restaurant_view.xml" value="0.3401268115942029" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_rewards.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_runaway_notification.xml" value="0.33" />
-        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_scan_qr_code.xml" value="0.33" />
-        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_show_qr_code_access.xml" value="0.33" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_scan_qr_code.xml" value="0.25" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_show_qr_code_access.xml" value="0.25" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_stamp_details.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_transaction_details.xml" value="0.25" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/activity_transaction_history.xml" value="0.33" />
@@ -65,8 +67,8 @@
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_about.xml" value="0.4550743374272786" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_assistance.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_book.xml" value="0.33" />
-        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_checkout.xml" value="0.3424124513618677" />
-        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_checkout.xml" value="0.5" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_home.xml" value="0.5" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_menu.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_notifications.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/fragment_orders.xml" value="0.36666666666666664" />
@@ -88,7 +90,7 @@
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/lists_of_particular_promos.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/lists_of_posts.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/lists_of_promos.xml" value="0.5" />
-        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/lists_of_restaurant.xml" value="0.6093552465233881" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/lists_of_restaurant.xml" value="0.33" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/lists_of_reviews.xml" value="0.5" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/lists_of_transactions.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/main_nav_drawer.xml" value="0.33" />
@@ -96,7 +98,7 @@
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/ordering_assistance.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/ordering_bill.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/ordering_food_items.xml" value="0.33" />
-        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/ordering_food_sets.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/ordering_food_sets.xml" value="0.5" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/ordering_orders.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/rated_restaurants.xml" value="0.75" />
         <entry key="..\:/Users/Aj/AndroidStudioProjects/Samquicksal2/app/src/main/res/layout/stamp_card_tasks.xml" value="0.36666666666666664" />

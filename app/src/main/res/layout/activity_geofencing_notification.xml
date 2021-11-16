@@ -248,7 +248,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView552" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/tvGeofencingRewardCapacity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="2dp"
@@ -303,7 +302,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/tvGeofencingRewardValidity" />
 
                     <TextView
-                        android:id="@+id/textView60"
+                        android:id="@+id/tvGeofencingRewardCapacity"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="20dp"
@@ -327,7 +326,7 @@
                         android:textAlignment="center"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView60" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvGeofencingRewardCapacity" />
 
                     <TextView
                         android:id="@+id/textView62"

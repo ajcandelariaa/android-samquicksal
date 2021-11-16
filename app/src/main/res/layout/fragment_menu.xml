@@ -21,6 +21,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/btnORGetQrCode"
             android:layout_width="match_parent"
             android:layout_height="130dp"
             android:layout_marginHorizontal="20dp"
@@ -32,7 +33,6 @@
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btnORGetQrCode"
                 android:layout_width="match_parent"
                 android:background="@color/backgroundQrCode"
                 android:layout_height="match_parent">

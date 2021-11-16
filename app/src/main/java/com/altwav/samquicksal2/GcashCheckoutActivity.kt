@@ -1,37 +1,52 @@
 package com.altwav.samquicksal2
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.DownloadManager
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
-import android.graphics.Bitmap
+import android.content.*
 import android.net.Uri
-import android.os.Build
+import android.os.*
+import android.provider.OpenableColumns
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import com.altwav.samquicksal2.viewmodel.GCashStatusViewModel
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_gcash_checkout.*
-import androidx.activity.result.contract.ActivityResultContracts.GetContent
 import com.altwav.samquicksal2.viewmodel.UploadReceiptViewModell
-import java.io.ByteArrayOutputStream
-import java.util.*
+
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
+
+import okhttp3.RequestBody
+import okhttp3.MultipartBody
+import java.io.FileDescriptor
+
 
 class GcashCheckoutActivity : AppCompatActivity() {
 
     private lateinit var viewModel: GCashStatusViewModel
     private lateinit var viewModel2: UploadReceiptViewModell
     private var mydownloadid: Long = 0
-    private lateinit var bitmap: Bitmap
-    private var decodeImg: String = ""
+
+    private lateinit var requestImage: MultipartBody.Part
+    private lateinit var cust_id: RequestBody
+
+    private lateinit var book_id: String
+    private lateinit var book_type: String
+
+    private lateinit var book_id2: RequestBody
+    private lateinit var book_type2: RequestBody
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,39 +55,39 @@ class GcashCheckoutActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val customerId = sharedPreferences?.getInt("CUSTOMER_ID", 0)
 
-        val getContent = registerForActivityResult(GetContent()) { uri: Uri? ->
+        val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             if (uri != null){
                 tvCOGCCUploadImageLabel.visibility = View.GONE
                 btnCOGCCUploadImage.setImageURI(uri)
-                bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
 
-                val byteArrayOutputStream = ByteArrayOutputStream()
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+                val parcelFileDescriptor = contentResolver.openFileDescriptor(uri, "r", null)
+                val inputStream = FileInputStream(parcelFileDescriptor!!.fileDescriptor)
+                val file = File(cacheDir, contentResolver.getFileName(uri))
+                val outputStream = FileOutputStream(file)
+                inputStream.copyTo(outputStream)
 
-                val byte = byteArrayOutputStream.toByteArray()
-                decodeImg = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    Base64.getEncoder().encodeToString(byte)
-                } else {
-                    TODO("VERSION.SDK_INT < O")
-                }
+                val body = UploadRequestBody(file, "image")
+                requestImage = MultipartBody.Part.createFormData("gCashReceipt", file.name, body)
+                cust_id = customerId.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull())
+                book_id2 = book_id.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+                book_type2 = book_type.toRequestBody("multipart/form-data".toMediaTypeOrNull())
 
             } else {
                 tvCOGCCUploadImageLabel.visibility = View.VISIBLE
                 Glide.with(this).load(R.drawable.upload_icon).into(btnCOGCCUploadImage)
             }
         }
+
         viewModel2 = ViewModelProvider(this).get<UploadReceiptViewModell>()
         viewModel2.getUploadReceiptObserver().observe(this, {
             if (it != null) {
                 if(it.status == "Success"){
+                    Toast.makeText(this, "Receipt Uploaded Successfully", Toast.LENGTH_LONG).show()
                     val intent = Intent(this, CheckoutStatusActivity::class.java)
                     startActivity(intent)
                     finish()
-                    Toast.makeText(applicationContext, "GCash Receipt submitted successfully! Please wait til your payment is validated", Toast.LENGTH_LONG).show()
                 }
-                Toast.makeText(applicationContext, "${it.status}", Toast.LENGTH_LONG).show()
             }
-            Toast.makeText(applicationContext, "${it}", Toast.LENGTH_LONG).show()
         })
 
         viewModel = ViewModelProvider(this).get<GCashStatusViewModel>()
@@ -95,6 +110,10 @@ class GcashCheckoutActivity : AppCompatActivity() {
                         finish()
                     }
                 }
+
+                // BOOKING DETAILS
+                book_id = it.book_id.toString()
+                book_type = it.book_type.toString()
 
                 // DOWNLOAD IMAGE
                 val qrUrl = it.restGCashQr
@@ -129,7 +148,7 @@ class GcashCheckoutActivity : AppCompatActivity() {
                 }
 
                 btnCOGCCSubmitReceipt.setOnClickListener {
-                    if(decodeImg == ""){
+                    if(tvCOGCCUploadImageLabel.visibility == View.VISIBLE){
                         Toast.makeText(applicationContext, "Please choose an image first", Toast.LENGTH_SHORT).show()
                     } else {
                         AlertDialog.Builder(this)
@@ -138,8 +157,7 @@ class GcashCheckoutActivity : AppCompatActivity() {
                             .setMessage("Are you sure you want upload your receipt?")
                             .setCancelable(false)
                             .setPositiveButton("Yes") { dialog, id ->
-                                Toast.makeText(applicationContext, "Under Construction", Toast.LENGTH_LONG).show()
-//                                viewModel2.getUploadReceiptInfo(decodeImg, customerId!!)
+                                viewModel2.getUploadReceiptInfo(requestImage, cust_id, book_id2, book_type2)
                             }
                             .setNegativeButton("No") { dialog, id ->
                                 dialog.cancel()
@@ -151,5 +169,17 @@ class GcashCheckoutActivity : AppCompatActivity() {
             }
         })
         viewModel.getGCashStatusInfo(customerId!!)
+    }
+
+    fun ContentResolver.getFileName(fileUri: Uri): String {
+        var name = ""
+        val returnCursor = this.query(fileUri, null, null, null, null)
+        if (returnCursor != null) {
+            val nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+            returnCursor.moveToFirst()
+            name = returnCursor.getString(nameIndex)
+            returnCursor.close()
+        }
+        return name
     }
 }

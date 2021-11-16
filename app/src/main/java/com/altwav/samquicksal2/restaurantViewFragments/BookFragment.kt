@@ -3,25 +3,25 @@ package com.altwav.samquicksal2.restaurantViewFragments
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.altwav.samquicksal2.Adapters.ListOfFoodSetsAdapter
 import com.altwav.samquicksal2.Adapters.ListOfOrderSetsAdapter
 import com.altwav.samquicksal2.ChooseOrderSetActivity
-import com.altwav.samquicksal2.Login
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.RestaurantViewActivity
-import com.altwav.samquicksal2.sidebarActivities.Account
 import com.altwav.samquicksal2.viewmodel.RestaurantMenuViewModel
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.activity_account.*
+import kotlinx.android.synthetic.main.fragment_book.*
 import kotlinx.android.synthetic.main.fragment_book.view.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -58,6 +58,9 @@ class BookFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_book, container, false)
         val restaurantId = (activity as RestaurantViewActivity?)?.getRestaurantId()
 
+        val sharedPreferences = this.activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val customerId = sharedPreferences?.getInt("CUSTOMER_ID", 0)
+
         recyclerView = view.findViewById(R.id.orderSetRecyclerView)
         adapter = ListOfOrderSetsAdapter()
         recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -66,8 +69,33 @@ class BookFragment : Fragment() {
         val viewModel = ViewModelProvider(this).get<RestaurantMenuViewModel>()
         viewModel.getRestaurantMenuObserver().observe(viewLifecycleOwner, {
             if(it != null){
-                adapter.setRestaurantMenu(it)
+                adapter.setRestaurantMenu(it.menu)
                 adapter.notifyDataSetChanged()
+                when (it.status) {
+                    "onGoing" -> {
+                        tvMenuErrorStatus.visibility = View.VISIBLE
+                        tvMenuErrorStatus.text = it.description
+                        tvMenuDineIn.setTextColor(Color.parseColor("#7A7A7A"))
+                        tvMenuReserve.setTextColor(Color.parseColor("#7A7A7A"))
+                        btnBookReserve.setBackgroundColor(Color.parseColor("#7A7A7A"))
+                        btnBookQueue.setBackgroundColor(Color.parseColor("#7A7A7A"))
+                        btnBookQueue.isClickable = false
+                        btnBookReserve.isClickable = false
+                        Glide.with(this).load(R.drawable.book_queue_icon_disabled).into(ivMenuDineIn)
+                        Glide.with(this).load(R.drawable.book_reserve_icon_disabled).into(ivMenuReserve)
+                    }
+                    "closed" -> {
+                        tvMenuErrorStatus.visibility = View.VISIBLE
+                        tvMenuErrorStatus.text = it.description
+                        tvMenuDineIn.setTextColor(Color.parseColor("#7A7A7A"))
+                        btnBookQueue.setBackgroundColor(Color.parseColor("#7A7A7A"))
+                        btnBookQueue.isClickable = false
+                        Glide.with(this).load(R.drawable.book_queue_icon_disabled).into(ivMenuDineIn)
+                    }
+                    else -> {
+                        tvMenuErrorStatus.visibility = View.GONE
+                    }
+                }
             }
         })
 
@@ -108,7 +136,7 @@ class BookFragment : Fragment() {
         }
 
         if (restaurantId != null) {
-            viewModel.getMenuInfo(restaurantId)
+            viewModel.getMenuInfo(restaurantId, customerId!!)
         }
 
 

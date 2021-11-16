@@ -9,24 +9,24 @@ import retrofit2.Call
 import retrofit2.Response
 
 class RestaurantMenuViewModel: ViewModel() {
-    var createRestaurantMenuViewModelResponseLD: MutableLiveData<List<RestaurantMenuModelResponse>> =
+    var createRestaurantMenuViewModelResponseLD: MutableLiveData<RestaurantMenuModelResponse> =
         MutableLiveData()
 
-    fun getRestaurantMenuObserver(): MutableLiveData<List<RestaurantMenuModelResponse>> {
+    fun getRestaurantMenuObserver(): MutableLiveData<RestaurantMenuModelResponse> {
         return createRestaurantMenuViewModelResponseLD
     }
 
-    fun getMenuInfo(restaurant: Int){
+    fun getMenuInfo(restaurant: Int, cust_id: Int){
         val retroService = RetroInstance.getRetroInstance().create(RetroServiceInterface::class.java)
-        val call = retroService.getRestaurantMenuInfo(restaurant)
-        call.enqueue(object : retrofit2.Callback<List<RestaurantMenuModelResponse>> {
-            override fun onFailure(call: Call<List<RestaurantMenuModelResponse>>?, t: Throwable?) {
+        val call = retroService.getRestaurantMenuInfo(restaurant, cust_id)
+        call.enqueue(object : retrofit2.Callback<RestaurantMenuModelResponse> {
+            override fun onFailure(call: Call<RestaurantMenuModelResponse>?, t: Throwable?) {
                 createRestaurantMenuViewModelResponseLD.postValue(null)
             }
 
             override fun onResponse(
-                call: Call<List<RestaurantMenuModelResponse>>?,
-                response: Response<List<RestaurantMenuModelResponse>>?
+                call: Call<RestaurantMenuModelResponse>?,
+                response: Response<RestaurantMenuModelResponse>?
             ) {
                 if(response != null){
                     createRestaurantMenuViewModelResponseLD.postValue(response.body())

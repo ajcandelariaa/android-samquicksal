@@ -1,16 +1,29 @@
 package com.altwav.samquicksal2.mainActivityFragments
 
+import android.Manifest
+import android.app.PendingIntent
+import android.content.Context
+import android.content.pm.PackageManager
+import android.hardware.SensorManager
+import android.location.Location
+import android.location.LocationManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.NearbyRestaurantsAdapter
 import com.altwav.samquicksal2.Adapters.RatedRestaurantsAdapter
+import com.altwav.samquicksal2.MainActivity
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.models.NearbyRestoModel
 import com.altwav.samquicksal2.viewmodel.NearbyRestoViewModel
@@ -18,8 +31,20 @@ import com.altwav.samquicksal2.viewmodel.RatedRestaurantsViewModel
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.google.android.gms.location.*
+import com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.fragment_notifications.*
+import com.google.android.gms.location.LocationServices
+
+import com.google.android.gms.location.SettingsClient
+
+import com.google.android.gms.location.LocationSettingsRequest
+import androidx.core.content.ContextCompat.getSystemService
+import com.google.android.gms.tasks.CancellationToken
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,6 +69,10 @@ class HomeFragment : Fragment() {
     private lateinit var adapter2: NearbyRestaurantsAdapter
     private lateinit var viewModel2: NearbyRestoViewModel
 
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -58,7 +87,6 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-
 
         val imageList = ArrayList<SlideModel>()
         val imageSlider = view.findViewById<ImageSlider>(R.id.image_slider)
@@ -79,32 +107,113 @@ class HomeFragment : Fragment() {
                 adapter.notifyDataSetChanged()
             }
         })
-
         viewModel.getRatedRestaurantsInfo()
 
-        recyclerView2 = view.findViewById(R.id.nearbyRestaurantsRecycler)
-        adapter2 = NearbyRestaurantsAdapter()
-        recyclerView2.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        recyclerView2.adapter = adapter2
+        if(ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            view.tvTurnOnLocation.visibility = View.VISIBLE
+            view.btn_turn_on_location.visibility = View.VISIBLE
+            view.nearbyRestaurantsRecycler.visibility = View.GONE
 
-        viewModel2 = ViewModelProvider(this).get<NearbyRestoViewModel>()
-        viewModel2.getNearbyRestoObserver().observe(viewLifecycleOwner, {
-            if (it != null){
-                adapter2.setNearbyResto(it)
-                adapter2.notifyDataSetChanged()
+            view.btn_turn_on_location.setOnClickListener {
+                ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 101)
             }
-        })
+        } else {
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+            fusedLocationProviderClient.getCurrentLocation(PRIORITY_HIGH_ACCURACY, null)
+            fusedLocationProviderClient.locationAvailability.addOnSuccessListener {
+                if(it.isLocationAvailable){
+                    fusedLocationProviderClient.lastLocation.addOnCompleteListener { location2 ->
+                        recyclerView2 = view.findViewById(R.id.nearbyRestaurantsRecycler)
+                        adapter2 = NearbyRestaurantsAdapter()
+                        recyclerView2.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+                        recyclerView2.adapter = adapter2
 
-        val custLoc = NearbyRestoModel("14.6041267", "120.996228")
-        viewModel2.getNearbyRestoInfo(custLoc)
+                        viewModel2 = ViewModelProvider(this).get<NearbyRestoViewModel>()
+                        viewModel2.getNearbyRestoObserver().observe(viewLifecycleOwner, { it2 ->
+                            if (it2 != null) {
+                                view.nearbyRestaurantsRecycler.visibility = View.VISIBLE
+                                view.tvTurnOnLocation.visibility = View.GONE
+                                view.btn_turn_on_location.visibility = View.GONE
+                                adapter2.setNearbyResto(it2)
+                                adapter2.notifyDataSetChanged()
+                            } else {
+                                view.nearbyRestaurantsRecycler.visibility = View.GONE
+                                view.btn_turn_on_location.visibility = View.GONE
+                                view.tvTurnOnLocation.visibility = View.VISIBLE
+                                view.tvTurnOnLocation.text = "It seems like there are no nearby restaurants at your location right now"
+                            }
+                        })
+
+                        val location: Location = location2.result
+                        val custLoc = NearbyRestoModel("${location.latitude}", "${location.longitude}")
+                        viewModel2.getNearbyRestoInfo(custLoc)
+                    }
+                } else {
+                    nearbyRestaurantsRecycler.visibility = View.GONE
+                    btn_turn_on_location.visibility = View.GONE
+                    tvTurnOnLocation.visibility = View.VISIBLE
+                    tvTurnOnLocation.text = "Could not get location, please turn on your GPS"
+                }
+            }
+        }
+
 
         view.layout_home_fragment.setOnRefreshListener {
+            if(ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+                view.tvTurnOnLocation.visibility = View.VISIBLE
+                view.btn_turn_on_location.visibility = View.VISIBLE
+                view.nearbyRestaurantsRecycler.visibility = View.GONE
 
+                view.btn_turn_on_location.setOnClickListener {
+                    ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 101)
+                }
+            } else {
+                fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+                fusedLocationProviderClient.getCurrentLocation(PRIORITY_HIGH_ACCURACY, null)
+                fusedLocationProviderClient.locationAvailability.addOnSuccessListener {
+                    if(it.isLocationAvailable){
+                        fusedLocationProviderClient.lastLocation.addOnCompleteListener { location2 ->
+                            recyclerView2 = view.findViewById(R.id.nearbyRestaurantsRecycler)
+                            adapter2 = NearbyRestaurantsAdapter()
+                            recyclerView2.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+                            recyclerView2.adapter = adapter2
+
+                            viewModel2 = ViewModelProvider(this).get<NearbyRestoViewModel>()
+                            viewModel2.getNearbyRestoObserver().observe(viewLifecycleOwner, { it2 ->
+                                if (it2 != null) {
+                                    view.nearbyRestaurantsRecycler.visibility = View.VISIBLE
+                                    view.tvTurnOnLocation.visibility = View.GONE
+                                    view.btn_turn_on_location.visibility = View.GONE
+                                    adapter2.setNearbyResto(it2)
+                                    adapter2.notifyDataSetChanged()
+                                } else {
+                                    view.nearbyRestaurantsRecycler.visibility = View.GONE
+                                    view.btn_turn_on_location.visibility = View.GONE
+                                    view.tvTurnOnLocation.visibility = View.VISIBLE
+                                    view.tvTurnOnLocation.text = "It seems like there are no nearby restaurants at your location right now"
+                                }
+                            })
+
+                            val location: Location = location2.result
+                            val custLoc = NearbyRestoModel("${location.latitude}", "${location.longitude}")
+                            viewModel2.getNearbyRestoInfo(custLoc)
+                        }
+                    } else {
+                        nearbyRestaurantsRecycler.visibility = View.GONE
+                        btn_turn_on_location.visibility = View.GONE
+                        tvTurnOnLocation.visibility = View.VISIBLE
+                        tvTurnOnLocation.text = "Could not get location, please turn on your GPS"
+                    }
+                }
+            }
             view.layout_home_fragment.isRefreshing = false
         }
 
         return view
     }
+
 
     companion object {
         /**
@@ -125,4 +234,5 @@ class HomeFragment : Fragment() {
                 }
             }
     }
+
 }
