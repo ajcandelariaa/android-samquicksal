@@ -14,4 +14,5 @@ data class OrderingFoodItemModelResponse(
     val foodItemPrice: String? = null,
     val foodItemImage: String? = null,
     val foodItemType: String? = null,
+    val foodItemAvailable: String? = null,
 )

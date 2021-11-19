@@ -48,6 +48,7 @@ class OrderFoodItemAdapter(addFoodItem3: AddFoodItemInterface) : RecyclerView.Ad
         private var foodItemType: String? = null
         private var foodItemPrice: String? = null
         private var foodItemId: Int? = null
+        private var foodItemAvailable: String? = null
 
         fun bind(data: OrderingFoodItemModelResponse){
             foodItemName.text = data.foodItemName
@@ -56,12 +57,21 @@ class OrderFoodItemAdapter(addFoodItem3: AddFoodItemInterface) : RecyclerView.Ad
             foodItemType = data.foodItemType
             foodItemPrice = data.foodItemPrice
             foodItemId = data.foodItemId
+            foodItemAvailable = data.foodItemAvailable
+
+
+            if(foodItemAvailable == "No"){
+                foodItemName.visibility = View.GONE
+                foodItemDesc.text = "Not Available"
+            }
         }
 
         init {
             itemView.setOnClickListener{
-                val foodItem = AddFooditemModel(customerId2, foodItemId!!, foodItemName.text.toString(), foodItemPrice!!)
-                addFoodItem2.addItem(foodItem)
+                if(foodItemAvailable == "Yes"){
+                    val foodItem = AddFooditemModel(customerId2, foodItemId!!, foodItemName.text.toString(), foodItemPrice!!)
+                    addFoodItem2.addItem(foodItem)
+                }
             }
         }
     }

@@ -46,24 +46,32 @@ class OrderingFoodSetAdapter : RecyclerView.Adapter<OrderingFoodSetAdapter.MyVie
         private val foodSetDesc: TextView = itemView.tvOrderingFSDesc
         private val foodSetImage: ImageView = itemView.ivOrderingFSImage
         private var foodSetId: Int? = null
+        private var foodSetAvailable: String? = null
 
         fun bind(data: OrderFoodSet){
             foodSetName.text = data.foodSetName
             foodSetDesc.text = data.foodSetDescription
             Glide.with(itemView).load(data.foodSetImage).into(foodSetImage)
             foodSetId = data.foodSetId
+            foodSetAvailable = data.foodSetAvailable
+
+            if(foodSetAvailable == "No") {
+                foodSetName.visibility = View.GONE
+                foodSetDesc.text = "Not Available"
+            }
         }
 
         init {
             itemView.setOnClickListener {
-                val context = itemView.context
-                val intent = Intent(context, OrderingFoodItemActivity::class.java)
-                intent.putExtra("restAccId", restAccId2)
-                intent.putExtra("orderSetId", orderSetId2)
-                intent.putExtra("foodSetId", foodSetId)
-                intent.putExtra("foodSetName", foodSetName.text)
-                context.startActivity(intent)
-//                 OrderingFoodSetAdapter().notifyDataSetChanged()
+                if(foodSetAvailable == "Yes"){
+                    val context = itemView.context
+                    val intent = Intent(context, OrderingFoodItemActivity::class.java)
+                    intent.putExtra("restAccId", restAccId2)
+                    intent.putExtra("orderSetId", orderSetId2)
+                    intent.putExtra("foodSetId", foodSetId)
+                    intent.putExtra("foodSetName", foodSetName.text)
+                    context.startActivity(intent)
+                }
             }
         }
     }

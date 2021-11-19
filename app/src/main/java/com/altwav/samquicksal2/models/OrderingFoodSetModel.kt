@@ -16,4 +16,5 @@ data class OrderFoodSet(
     val foodSetImage: String? = null,
     val foodSetName: String? = null,
     val foodSetDescription: String? = null,
+    val foodSetAvailable: String? = null,
 )

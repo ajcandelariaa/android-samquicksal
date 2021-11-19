@@ -76,6 +76,7 @@ class ChooseOrderSetAdapter : RecyclerView.Adapter<ChooseOrderSetAdapter.MyViewH
         private val orderSetImage: ImageView = itemView.ivChooseOrderSetImage
         private var orderSetId: Int? = null
         private var orderSetPrice: String? = null
+        private var orderSetAvailable: String? = null
 
         fun bind(data: OrderSet){
             orderSetName.text = data.orderSetName
@@ -83,27 +84,34 @@ class ChooseOrderSetAdapter : RecyclerView.Adapter<ChooseOrderSetAdapter.MyViewH
             orderSetId = data.orderSetId
             orderSetPrice = data.orderSetPrice
             Glide.with(itemView).load(data.orderSetImage).into(orderSetImage)
+            orderSetAvailable = data.orderSetAvailable
+
+            if(orderSetAvailable == "No"){
+                orderSetTagline.text = "Not Available"
+                orderSetName.visibility = View.GONE
+            }
         }
 
         init {
             itemView.setOnClickListener {
                 var intent: Intent? = null
-
-                if(bookType2 == "Reservation"){
-                    intent = Intent(itemView.context, ReservationFormActivity::class.java)
-                } else {
-                    intent = Intent(itemView.context, QueueFormActivity::class.java)
+                if(orderSetAvailable == "Yes"){
+                    if(bookType2 == "Reservation"){
+                        intent = Intent(itemView.context, ReservationFormActivity::class.java)
+                    } else {
+                        intent = Intent(itemView.context, QueueFormActivity::class.java)
+                    }
+                    intent.putExtra("orderSetPrice", orderSetPrice)
+                    intent.putExtra("orderSetId", orderSetId)
+                    intent.putExtra("rTimeLimit", rTimeLimit2)
+                    intent.putExtra("rCapacityPerTable", rCapacityPerTable2)
+                    intent.putExtra("orderSetName", orderSetName.text)
+                    intent.putExtra("restaurantId", restaurantId2)
+                    intent.putExtra("rewardStatus", rewardStatus2)
+                    intent.putExtra("rewardType", rewardType2)
+                    intent.putExtra("rewardInput", rewardInput2)
+                    itemView.context.startActivity(intent)
                 }
-                intent.putExtra("orderSetPrice", orderSetPrice)
-                intent.putExtra("orderSetId", orderSetId)
-                intent.putExtra("rTimeLimit", rTimeLimit2)
-                intent.putExtra("rCapacityPerTable", rCapacityPerTable2)
-                intent.putExtra("orderSetName", orderSetName.text)
-                intent.putExtra("restaurantId", restaurantId2)
-                intent.putExtra("rewardStatus", rewardStatus2)
-                intent.putExtra("rewardType", rewardType2)
-                intent.putExtra("rewardInput", rewardInput2)
-                itemView.context.startActivity(intent)
             }
         }
     }

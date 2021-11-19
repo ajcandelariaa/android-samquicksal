@@ -1,29 +1,20 @@
 package com.altwav.samquicksal2.mainActivityFragments
 
-import android.Manifest
-import android.app.PendingIntent
-import android.content.Context
 import android.content.pm.PackageManager
-import android.hardware.SensorManager
 import android.location.Location
-import android.location.LocationManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.NearbyRestaurantsAdapter
 import com.altwav.samquicksal2.Adapters.RatedRestaurantsAdapter
-import com.altwav.samquicksal2.MainActivity
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.models.NearbyRestoModel
 import com.altwav.samquicksal2.viewmodel.NearbyRestoViewModel
@@ -33,17 +24,9 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.google.android.gms.location.*
 import com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
-import kotlinx.android.synthetic.main.fragment_notifications.*
 import com.google.android.gms.location.LocationServices
-
-import com.google.android.gms.location.SettingsClient
-
-import com.google.android.gms.location.LocationSettingsRequest
-import androidx.core.content.ContextCompat.getSystemService
-import com.google.android.gms.tasks.CancellationToken
 
 
 // TODO: Rename parameter arguments, choose names that match

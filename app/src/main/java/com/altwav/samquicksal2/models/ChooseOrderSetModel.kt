@@ -20,4 +20,5 @@ data class OrderSet(
     val orderSetImage: String? = null,
     val orderSetName: String? = null,
     val orderSetTagline: String? = null,
+    val orderSetAvailable: String? = null,
 )
