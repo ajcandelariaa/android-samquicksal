@@ -3,20 +3,16 @@ package com.altwav.samquicksal2
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.OrderingBillAdapter
-import com.altwav.samquicksal2.Adapters.OrderingOrdersAdapter
-import com.altwav.samquicksal2.models.BHCancelledModel
 import com.altwav.samquicksal2.models.BHCompleteModel
-import com.altwav.samquicksal2.viewmodel.BHCancelViewModel
 import com.altwav.samquicksal2.viewmodel.BHCompleteViewModel
-import kotlinx.android.synthetic.main.activity_bd_cancelled.*
 import kotlinx.android.synthetic.main.activity_bd_complete.*
-import kotlinx.android.synthetic.main.fragment_checkout.*
 
 class BdCompleteActivity : AppCompatActivity() {
 
@@ -24,10 +20,13 @@ class BdCompleteActivity : AppCompatActivity() {
     private lateinit var adapter: OrderingBillAdapter
 
     private lateinit var viewModel: BHCompleteViewModel
+    private val loading = LoadingDialog(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bd_complete)
+        clCompleteBD.visibility = View.GONE
+        loading.startLoading()
 
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val customerId = sharedPreferences.getInt("CUSTOMER_ID", 0)
@@ -44,6 +43,8 @@ class BdCompleteActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(BHCompleteViewModel::class.java)
         viewModel.getBHCompleteObserver().observe(this, Observer {
             if(it != null){
+                clCompleteBD.visibility = View.VISIBLE
+                loading.isDismiss()
                 tvBDCompDate.text = it.bookDate
                 tvBDCompCheckIn.text = it.checkIn
                 tvBDCompCheckOut.text = it.checkOut

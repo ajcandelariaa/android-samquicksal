@@ -12,4 +12,5 @@ data class NotificationListModelResponse(
     val notificationDescription: String? = null,
     val notificationStatus: String? = null,
     val notificationTime: String? = null,
+    val clickable: String? = null,
 )

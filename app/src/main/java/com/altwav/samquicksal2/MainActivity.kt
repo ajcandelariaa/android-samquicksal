@@ -1,58 +1,39 @@
 package com.altwav.samquicksal2
 
-import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.app.ActivityCompat.recreate
-import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.altwav.samquicksal2.geofencing.LocationService
 import com.altwav.samquicksal2.mainActivityFragments.HomeFragment
 import com.altwav.samquicksal2.mainActivityFragments.NotificationsFragment
 import com.altwav.samquicksal2.mainActivityFragments.PromosFragment
 import com.altwav.samquicksal2.mainActivityFragments.RestaurantsFragment
 import com.altwav.samquicksal2.models.*
-import com.altwav.samquicksal2.sidebarActivities.Account
-import com.altwav.samquicksal2.sidebarActivities.Rewards
-import com.altwav.samquicksal2.sidebarActivities.ScanQrCode
-import com.altwav.samquicksal2.sidebarActivities.TransactionHistory
+import com.altwav.samquicksal2.sidebarActivities.*
 import com.altwav.samquicksal2.viewmodel.DeviceTokenViewModel
 import com.altwav.samquicksal2.viewmodel.HomepageCustomerViewModel
-import com.altwav.samquicksal2.viewmodel.LoginCustomerViewModel
+import com.altwav.samquicksal2.viewmodel.LogoutCustomerViewModel
 import com.bumptech.glide.Glide
-import com.denzcoskun.imageslider.ImageSlider
-import com.denzcoskun.imageslider.constants.ScaleTypes
-import com.denzcoskun.imageslider.models.SlideModel
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_restaurants.*
 import kotlinx.android.synthetic.main.main_nav_drawer.*
-import com.google.android.gms.location.LocationServices
-
-import com.google.android.gms.common.api.GoogleApiClient
-
-
-
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: HomepageCustomerViewModel
     private lateinit var viewModel2: DeviceTokenViewModel
+    private lateinit var viewModel3: LogoutCustomerViewModel
     private var customerId: Int = 0
 
     private var drawerLayout: DrawerLayout? = null
@@ -64,9 +45,17 @@ class MainActivity : AppCompatActivity() {
     private val fm: FragmentManager = supportFragmentManager
     private var activeFragment = fragment1
 
+    private val loading = LoadingDialog(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val serviceIntent = Intent(this, LocationService::class.java)
+        startService(serviceIntent)
+
+        clMainActivity.visibility = View.GONE
+        loading.startLoading()
 
         val sharedPreferences: SharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         customerId = sharedPreferences.getInt("CUSTOMER_ID", 0)
@@ -111,7 +100,11 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     ivOngoingGif.visibility = View.GONE
                 }
+                clMainActivity.visibility = View.VISIBLE
+                loading.isDismiss()
             } else {
+                clMainActivity.visibility = View.VISIBLE
+                loading.isDismiss()
                 ivOngoingGif.visibility = View.GONE
             }
         })
@@ -221,6 +214,10 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, ScanQrCode::class.java)
         startActivity(intent)
     }
+    fun ClickTerms(view: View?){
+        val intent = Intent(this, TermsConditions::class.java)
+        startActivity(intent)
+    }
     fun ClickLogout(view: View?){
         logout(this);
     }
@@ -231,14 +228,29 @@ class MainActivity : AppCompatActivity() {
             .setMessage("Are you sure you want to Logout?")
             .setCancelable(false)
             .setPositiveButton("Yes") { dialog, id ->
-                val intent = Intent(this, Login::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-                sharedPreferences.edit().remove("CUSTOMER_ID").apply()
-                startActivity(intent)
-                finish()
+                viewModel3 = ViewModelProvider(this).get(LogoutCustomerViewModel::class.java)
+                viewModel3.getLogoutCustomerObserver().observe(this, Observer <LogoutCustomerModelResponse>{
+                    if(it == null){
+                        Toast.makeText(this, "Logout Failed", Toast.LENGTH_SHORT).show()
+                    } else {
+                        if(it.status == "Logged Out Successfully"){
+                            val intent = Intent(this, Login::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+                            sharedPreferences.edit().remove("CUSTOMER_ID").apply()
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Toast.makeText(this, "Logout Failed", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                })
+
+                val customer = LogoutCustomerModel(customerId)
+                viewModel3.getLogoutInfoCustomer(customer)
+
             }
             .setNegativeButton("No") { dialog, id ->
                 dialog.cancel()
@@ -268,5 +280,10 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         closeDrawer(drawerLayout)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getHomepageInfoCustomer(customerId)
     }
 }

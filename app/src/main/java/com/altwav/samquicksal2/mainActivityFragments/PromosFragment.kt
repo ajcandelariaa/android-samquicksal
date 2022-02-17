@@ -12,9 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.ListsOfPromosAdapter
 import com.altwav.samquicksal2.Adapters.ListsOfRestaurantAdapter
+import com.altwav.samquicksal2.LoadingDialog2
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.viewmodel.ListOfPromosViewModel
 import com.altwav.samquicksal2.viewmodel.ListsOfRestaurantsViewModel
+import kotlinx.android.synthetic.main.fragment_notifications.view.*
+import kotlinx.android.synthetic.main.fragment_promos.view.*
 import kotlinx.android.synthetic.main.fragment_restaurants.view.*
 
     // TODO: Rename parameter arguments, choose names that match
@@ -34,6 +37,7 @@ class PromosFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ListsOfPromosAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,11 +63,21 @@ class PromosFragment : Fragment() {
         val viewModel = ViewModelProvider(this).get<ListOfPromosViewModel>()
         viewModel.getListOfPromosObserver().observe(viewLifecycleOwner, {
             if (it != null){
+                view.containerNoPromosFragment.visibility = View.GONE
+                view.promosRecyclerView.visibility = View.VISIBLE
                 adapter.setPromosList(it)
                 adapter.notifyDataSetChanged()
+            } else {
+                view.containerNoPromosFragment.visibility = View.VISIBLE
+                view.promosRecyclerView.visibility = View.GONE
             }
         })
         viewModel.getPromosInfo()
+
+        view.refreshPromos.setOnRefreshListener {
+            viewModel.getPromosInfo()
+            view.refreshPromos.isRefreshing = false
+        }
 
         return view
     }

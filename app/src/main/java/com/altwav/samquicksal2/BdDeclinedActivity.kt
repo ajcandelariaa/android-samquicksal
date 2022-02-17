@@ -9,27 +9,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.altwav.samquicksal2.models.BHCancelledModel
 import com.altwav.samquicksal2.viewmodel.BHCancelViewModel
-import kotlinx.android.synthetic.main.activity_bd_cancelled.*
-import kotlinx.android.synthetic.main.activity_bd_cancelled.tvBDCBookingType
-import kotlinx.android.synthetic.main.activity_bd_cancelled.tvBDCDate
-import kotlinx.android.synthetic.main.activity_bd_cancelled.tvBDCHoursOfStay
-import kotlinx.android.synthetic.main.activity_bd_cancelled.tvBDCNotes
-import kotlinx.android.synthetic.main.activity_bd_cancelled.tvBDCNumberOfChildren
-import kotlinx.android.synthetic.main.activity_bd_cancelled.tvBDCNumberOfPwd
-import kotlinx.android.synthetic.main.activity_bd_cancelled.tvBDCOrderName
-import kotlinx.android.synthetic.main.activity_bd_cancelled.tvBDCReason
-import kotlinx.android.synthetic.main.activity_bd_cancelled.tvBDCRestaurantAddress
-import kotlinx.android.synthetic.main.activity_bd_cancelled.tvBDCRestaurantName
-import kotlinx.android.synthetic.main.activity_bd_cancelled.tvBDCReward
-import kotlinx.android.synthetic.main.activity_bd_cancelled.tvBDCTime
 import kotlinx.android.synthetic.main.activity_bd_declined.*
 
 class BdDeclinedActivity : AppCompatActivity() {
     private lateinit var viewModel: BHCancelViewModel
+    private val loading = LoadingDialog(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bd_declined)
+        clDeclineBD.visibility = View.GONE
+        loading.startLoading()
 
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val customerId = sharedPreferences.getInt("CUSTOMER_ID", 0)
@@ -39,6 +29,8 @@ class BdDeclinedActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(BHCancelViewModel::class.java)
         viewModel.getBHCancelledObserver().observe(this, Observer {
             if(it != null){
+                clDeclineBD.visibility = View.VISIBLE
+                loading.isDismiss()
                 tvBDDDate.text = it.bookDate
                 tvBDDTime.text = it.bookTime
                 tvBDDRestaurantName.text = it.rName

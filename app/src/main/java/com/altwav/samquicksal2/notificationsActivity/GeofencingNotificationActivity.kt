@@ -13,6 +13,7 @@ import com.altwav.samquicksal2.Adapters.ChooseOrderSetAdapter
 import com.altwav.samquicksal2.Adapters.GeofencingMenuAdapter
 import com.altwav.samquicksal2.Adapters.GeofencingPromosAdapter
 import com.altwav.samquicksal2.LiveStatusActivity
+import com.altwav.samquicksal2.LoadingDialog
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.RestaurantViewActivity
 import com.altwav.samquicksal2.models.NotifPendingModel
@@ -32,9 +33,15 @@ class GeofencingNotificationActivity : AppCompatActivity() {
     private lateinit var recyclerView2: RecyclerView
     private lateinit var adapter2: GeofencingMenuAdapter
 
+    private val loading = LoadingDialog(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_geofencing_notification)
+
+        clGeofencingNotification.visibility = View.GONE
+        loading.startLoading()
+
 
         btn_geofencing_notification_back.setOnClickListener {
             finish()
@@ -56,6 +63,8 @@ class GeofencingNotificationActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(NotifGeofencingViewModel::class.java)
         viewModel.getNotifGeofencingObserver().observe(this, {
+            clGeofencingNotification.visibility = View.VISIBLE
+            loading.isDismiss()
             if(it == null){
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
             } else {
@@ -63,6 +72,7 @@ class GeofencingNotificationActivity : AppCompatActivity() {
                 Glide.with(this).load(it.rLogo).into(ivGeofencingRLogo)
                 tvGeofencingRName.text = it.rName
                 tvGeofencingRAddress.text = it.rAddress
+                tvgeofencingAbovePromo.text = "We would like you to try out our latest promotions and what we have to offer here at ${it.rName} ${it.rBranch}! Scroll down to learn more"
                 btnGeofencingBookNow.setOnClickListener{ it2 ->
                     val intent = Intent(this, RestaurantViewActivity::class.java)
                     intent.putExtra("restaurantId", it.restAcc_id)

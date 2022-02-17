@@ -1,8 +1,6 @@
 package com.altwav.samquicksal2.Adapters
 
 import android.content.Intent
-import android.graphics.Color
-import android.media.Rating
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +10,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.RestaurantViewActivity
-import com.altwav.samquicksal2.models.ListOfRestaurantModel
 import com.altwav.samquicksal2.models.RatedRestaurantsModel
 import com.bumptech.glide.Glide
-import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.lists_of_restaurant.view.*
 import kotlinx.android.synthetic.main.rated_restaurants.view.*
 
 class RatedRestaurantsAdapter : RecyclerView.Adapter<RatedRestaurantsAdapter.MyViewHolder>() {

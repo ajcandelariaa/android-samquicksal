@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.altwav.samquicksal2.LoadingDialog
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.models.NotifDeclinedModel
 import com.altwav.samquicksal2.models.NotifNoShowModel
@@ -18,10 +19,15 @@ import kotlinx.android.synthetic.main.activity_no_show_notification.*
 
 class NoShowNotificationActivity : AppCompatActivity() {
     private lateinit var viewModel: NotifNoShowViewModel
+    private val loading = LoadingDialog(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_no_show_notification)
+
+        clNoShowNotification.visibility = View.GONE
+        loading.startLoading()
+
 
         btn_noshow_notification_back.setOnClickListener {
             finish()
@@ -33,6 +39,8 @@ class NoShowNotificationActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(NotifNoShowViewModel::class.java)
         viewModel.getNotifNoShowObserver().observe(this, Observer <NotifNoShowModel>{
+            clNoShowNotification.visibility = View.VISIBLE
+            loading.isDismiss()
             if(it == null){
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
             } else {

@@ -7,6 +7,7 @@
     tools:context=".notificationsActivity.DeclinedNotificationActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clGeofencingNotification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="60dp">
@@ -93,14 +94,12 @@
             app:srcCompat="@drawable/geofencing_notif_icon" />
 
         <TextView
-            android:id="@+id/textView51"
+            android:id="@+id/tvgeofencingAbovePromo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
-            android:gravity="center_horizontal"
             android:text=" Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView9" />
@@ -110,11 +109,11 @@
             android:id="@+id/ivGeofencingRLogo"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             android:scaleType="centerCrop"
             android:src="@drawable/sample_rlogo2"
-            app:layout_constraintStart_toStartOf="@+id/textView51"
-            app:layout_constraintTop_toBottomOf="@+id/textView51" />
+            app:layout_constraintStart_toStartOf="@+id/tvgeofencingAbovePromo"
+            app:layout_constraintTop_toBottomOf="@+id/tvgeofencingAbovePromo" />
 
         <TextView
             android:id="@+id/tvGeofencingRName"

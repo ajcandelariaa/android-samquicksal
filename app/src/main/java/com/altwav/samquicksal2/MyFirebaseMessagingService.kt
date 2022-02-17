@@ -32,7 +32,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         when(notificationType){
             "New Account" -> {
                 intent = Intent(this, NewAccountNotificationActivity::class.java)
-                intent.putExtra("notificationId", notificationId)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
             "Geofencing" -> {
@@ -151,7 +150,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setContentIntent(pendingIntent)
             .setLargeIcon(getBitmapFromURL(notificationRLogo))
             .setColor(Color.parseColor("#D8345F"))
-
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.altwav.samquicksal2.LiveStatusActivity
+import com.altwav.samquicksal2.LoadingDialog
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.models.NotifPendingModel
 import com.altwav.samquicksal2.viewmodel.NotifPendingViewModel
@@ -16,10 +17,15 @@ import kotlinx.android.synthetic.main.activity_pending_notification.*
 
 class PendingNotificationActivity : AppCompatActivity() {
     private lateinit var viewModel: NotifPendingViewModel
+    private val loading = LoadingDialog(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pending_notification)
+
+        clPendingNotification.visibility = View.GONE
+        loading.startLoading()
+
 
         btn_pending_notification_back.setOnClickListener {
             finish()
@@ -31,6 +37,8 @@ class PendingNotificationActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(NotifPendingViewModel::class.java)
         viewModel.getNotifPendingObserver().observe(this, Observer <NotifPendingModel>{
+            clPendingNotification.visibility = View.VISIBLE
+            loading.isDismiss()
             if(it == null){
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
             } else {

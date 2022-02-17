@@ -7,7 +7,6 @@
     android:background="@drawable/gradient_background3"
     tools:context=".Register">
 
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="450dp"
@@ -285,34 +284,31 @@
             android:textColorHint="@color/labelColor"
             android:textSize="16sp" />
 
-        <Button
+
+        <android.widget.Button
             android:id="@+id/btnSignup"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/login_button"
             android:fontFamily="@font/montserrat"
-            android:text="Sign Up"
             android:textAllCaps="false"
-            android:layout_marginBottom="30dp"
-            app:backgroundTint="@color/loginColor"
-            app:layout_constraintEnd_toEndOf="@+id/etRConfirmPassword"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/etRConfirmPassword"
-            app:layout_constraintTop_toBottomOf="@+id/etRConfirmPassword" />
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:text="Sign Up"/>
 
-        <TextView
-            android:id="@+id/tvLogin"
+
+        <android.widget.Button
+            android:id="@+id/btnGoBackToEula"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/transparent_button_border"
             android:fontFamily="@font/montserrat"
-            android:gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:text="Already have an account? Login here"
-            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
             android:textColor="@color/loginColor"
-            app:layout_constraintEnd_toEndOf="@+id/btnSignup"
-            app:layout_constraintStart_toStartOf="@+id/btnSignup"
-            app:layout_constraintTop_toBottomOf="@+id/btnSignup" />
+            android:text="Go Back"/>
+
 
     </LinearLayout>
 

@@ -20,15 +20,19 @@ import com.altwav.samquicksal2.viewmodel.RestaurantPromoDetailViewModel
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_live_status.*
 import kotlinx.android.synthetic.main.activity_restaurant_promo_view.*
+import kotlinx.android.synthetic.main.activity_stamp_details.*
 import kotlinx.android.synthetic.main.fragment_notifications.*
 import kotlinx.android.synthetic.main.fragment_notifications.view.*
 
 class LiveStatusActivity : AppCompatActivity() {
     private lateinit var viewModel: LiveStatusViewModel
+    private val loading = LoadingDialog(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_live_status)
+        clLiveStatus.visibility = View.GONE
+        loading.startLoading()
 
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val customerId = sharedPreferences.getInt("CUSTOMER_ID", 0)
@@ -59,6 +63,8 @@ class LiveStatusActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(LiveStatusViewModel::class.java)
         viewModel.getLiveStatusObserver().observe(this, Observer <LiveStatusModelResponse>{
+            clLiveStatus.visibility = View.VISIBLE
+            loading.isDismiss()
             if (it != null){
                 if(it.liveStatusBookType == "queue"){
                     tvLiveStatusTitle.text = "Queue Status"
@@ -113,6 +119,7 @@ class LiveStatusActivity : AppCompatActivity() {
                             if (it.liveStatusBody == "no"){
                                 btn_live_status_cancel_booking.visibility = View.GONE
                             } else {
+                                btn_live_status_cancel_booking.visibility = View.VISIBLE
                                 btn_live_status_cancel_booking.text = "Unqueue"
                                 val viewModel2: CancelBookingViewModel = ViewModelProvider(this).get(CancelBookingViewModel::class.java)
                                 viewModel2.getCancelBookObserver().observe(this, Observer <CancelBookingModelResponse>{ it2 ->

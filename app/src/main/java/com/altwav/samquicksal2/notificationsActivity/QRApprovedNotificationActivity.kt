@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.altwav.samquicksal2.LoadingDialog
 import com.altwav.samquicksal2.OrderingActivity
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.viewmodel.NotifQrAppViewModel
@@ -15,10 +16,14 @@ import kotlinx.android.synthetic.main.activity_qrapproved_notification.*
 
 class QRApprovedNotificationActivity : AppCompatActivity() {
     private lateinit var viewModel: NotifQrAppViewModel
+    private val loading = LoadingDialog(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_qrapproved_notification)
+
+        clQRApprovedNotification.visibility = View.GONE
+        loading.startLoading()
 
         btn_qrapproved_notification_back.setOnClickListener {
             finish()
@@ -30,6 +35,8 @@ class QRApprovedNotificationActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(NotifQrAppViewModel::class.java)
         viewModel.getNotifQrAppObserver().observe(this, {
+            clQRApprovedNotification.visibility = View.VISIBLE
+            loading.isDismiss()
             if (it != null) {
                 tvNotifQrAppCustName.text = "Name: ${it.custName}"
                 tvNotifQrAppCustEmail.text = "Email Address: ${it.custEAddress}"

@@ -4,18 +4,14 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.altwav.samquicksal2.Adapters.ListsOfTransactionsAdapter
 import com.altwav.samquicksal2.Adapters.StampCardsAdapter
+import com.altwav.samquicksal2.LoadingDialog
 import com.altwav.samquicksal2.R
-import com.altwav.samquicksal2.models.BookingHistoryModelResponse
-import com.altwav.samquicksal2.viewmodel.BookingHistoryViewModel
 import com.altwav.samquicksal2.viewmodel.StampCardsViewModel
 import kotlinx.android.synthetic.main.activity_rewards.*
-import kotlinx.android.synthetic.main.activity_transaction_history.*
 
 class Rewards : AppCompatActivity() {
 
@@ -23,10 +19,13 @@ class Rewards : AppCompatActivity() {
     private lateinit var adapter: StampCardsAdapter
 
     private lateinit var viewModel: StampCardsViewModel
+    private val loading = LoadingDialog(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rewards)
+        clStampCards.visibility = View.GONE
+        loading.startLoading()
 
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val customerId = sharedPreferences.getInt("CUSTOMER_ID", 0)
@@ -49,6 +48,8 @@ class Rewards : AppCompatActivity() {
             } else {
                 containerNoStampCards.visibility = View.VISIBLE
             }
+            clStampCards.visibility = View.VISIBLE
+            loading.isDismiss()
         })
 
         viewModel.getStampCardsInfo(customerId)

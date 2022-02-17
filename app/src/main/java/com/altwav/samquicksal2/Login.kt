@@ -26,7 +26,7 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         tvSignup.setOnClickListener{
-            val intent = Intent(this, Register::class.java)
+            val intent = Intent(this, Register2::class.java)
             startActivity(intent)
         }
 

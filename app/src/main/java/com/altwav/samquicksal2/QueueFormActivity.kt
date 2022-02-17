@@ -108,15 +108,16 @@ class QueueFormActivity : AppCompatActivity() {
                 countError += 1
                 return@setOnClickListener
             } else {
-                if(numberOfPersons.toInt() <= rCapacityPerTable){
-                    numberOfTables = 1
-                } else {
-                    numberOfTables = numberOfPersons.toInt() / rCapacityPerTable
-                    val getModule = numberOfPersons.toInt() % rCapacityPerTable
-                    if(getModule > 0){
-                        numberOfTables += 1
-                    }
-                }
+//                if(numberOfPersons.toInt() <= rCapacityPerTable){
+//                    numberOfTables = 1
+//                } else {
+//                    numberOfTables = numberOfPersons.toInt() / rCapacityPerTable
+//                    val getModule = numberOfPersons.toInt() % rCapacityPerTable
+//                    if(getModule > 0){
+//                        numberOfTables += 1
+//                    }
+//                }
+                numberOfTables = 1
             }
 
             if(cbQueueFormChildren.isChecked){

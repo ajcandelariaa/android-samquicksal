@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.PorterDuff
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,9 +17,9 @@ import com.altwav.samquicksal2.Adapters.ListOfOrderSetsAdapter
 import com.altwav.samquicksal2.ChooseOrderSetActivity
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.RestaurantViewActivity
+import com.altwav.samquicksal2.LoadingDialog2
 import com.altwav.samquicksal2.viewmodel.RestaurantMenuViewModel
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_account.*
 import kotlinx.android.synthetic.main.fragment_book.*
 import kotlinx.android.synthetic.main.fragment_book.view.*
 
@@ -42,6 +41,8 @@ class BookFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ListOfOrderSetsAdapter
 
+    private val loading = LoadingDialog2(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -56,6 +57,10 @@ class BookFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_book, container, false)
+
+        view.clRestaurantBook.visibility = View.GONE
+        loading.startLoading()
+
         val restaurantId = (activity as RestaurantViewActivity?)?.getRestaurantId()
 
         val sharedPreferences = this.activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
@@ -68,6 +73,8 @@ class BookFragment : Fragment() {
 
         val viewModel = ViewModelProvider(this).get<RestaurantMenuViewModel>()
         viewModel.getRestaurantMenuObserver().observe(viewLifecycleOwner, {
+            view.clRestaurantBook.visibility = View.VISIBLE
+            loading.isDismiss()
             if(it != null){
                 adapter.setRestaurantMenu(it.menu)
                 adapter.notifyDataSetChanged()
@@ -121,7 +128,7 @@ class BookFragment : Fragment() {
             AlertDialog.Builder(context)
                 .setTitle("Reserve")
                 .setIcon(R.mipmap.ic_launcher)
-                .setMessage("Please note that you may be declined due to the limitation of reservation tables per day.")
+                .setMessage("Please note that you may be declined due to the limitation of reservation tables per day. Also, anytime your reservation can be void due to some changes on schedule and tables. You will receive a notification once your reservation has been void.")
                 .setCancelable(false)
                 .setPositiveButton("Yes") { dialog, id ->
                     val intent = Intent(context, ChooseOrderSetActivity::class.java)

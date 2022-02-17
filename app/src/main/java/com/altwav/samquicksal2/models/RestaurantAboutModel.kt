@@ -16,6 +16,7 @@ data class RestaurantModelResponse(
     val rNumberOfQueues: Int? = null,
     val rPosts: List<RPosts>? = null,
     val rPolicy: List<RPolicy>? = null,
+    val rUnavailableD: List<RUnavailableD>? = null,
 )
 
 data class RSchedule(
@@ -31,4 +32,10 @@ data class RPosts(
 
 data class RPolicy(
     val policy: String? = null,
+)
+
+data class RUnavailableD(
+    val date: String? = null,
+    val description: String? = null,
+    val startTime: String? = null,
 )

@@ -5,16 +5,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
@@ -29,130 +25,180 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".sidebarActivities.TermsConditions"
+            android:screenOrientation="portrait"
+            android:theme="@style/HomeScreen" />
+        <activity
+            android:name=".Register2"
+            android:screenOrientation="portrait"
+            android:theme="@style/RegistrationScreen" />
+        <activity
             android:name=".notificationsActivity.QRDeclinedNotificationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".notificationsActivity.QRApprovedNotificationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".ShowQrCodeAccess"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".StampDetailsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".CheckoutStatusActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".ForgotPasswordActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/LoginScreen" />
         <activity
             android:name=".BdNoshowActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".BdCancelledActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".BdDeclinedActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".BdRunawayActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".BdCompleteActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".RateFeedbackActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".GcashCheckoutActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".OrderingFoodItemActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".OrderingActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".notificationsActivity.GeofencingNotificationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".notificationsActivity.QRScannedNotificationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".notificationsActivity.CheckoutNotificationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".notificationsActivity.BlockedNotificationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".notificationsActivity.CancelledNotificationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".notificationsActivity.DeclinedNotificationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".notificationsActivity.RunawayNotificationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".notificationsActivity.NoShowNotificationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".notificationsActivity.ApprovedNotificationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".notificationsActivity.NewAccountNotificationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".notificationsActivity.PendingNotificationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".LiveStatusActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".BookingDetailsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".QueueFormActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".ReservationFormActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".ChooseOrderSetActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".RestaurantPromoViewActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".TransactionDetailsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".RestaurantViewActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".sidebarActivities.ScanQrCode"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".sidebarActivities.TransactionHistory"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".sidebarActivities.Rewards"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".sidebarActivities.Account"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeScreen" />
         <activity
             android:name=".Register"
+            android:screenOrientation="portrait"
             android:theme="@style/RegistrationScreen" />
         <activity
             android:name=".Login"
+            android:screenOrientation="portrait"
             android:theme="@style/LoginScreen" />
         <activity
             android:name=".SplashScreen"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -177,8 +223,7 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
-
-        <service android:name = ".geofencing.LocationService"/>
+        <service android:name=".geofencing.LocationService" />
     </application>
 
 </manifest>

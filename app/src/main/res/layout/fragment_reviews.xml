@@ -7,6 +7,7 @@
     tools:context=".restaurantViewFragments.ReviewsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clRestaurantReviews"
         android:layout_width="match_parent"
         android:paddingBottom="10dp"
         android:layout_height="match_parent">

@@ -3,9 +3,11 @@ package com.altwav.samquicksal2.notificationsActivity
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.altwav.samquicksal2.LoadingDialog
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.models.NotifNoShowModel
 import com.altwav.samquicksal2.models.NotifRunawayModel
@@ -17,10 +19,14 @@ import kotlinx.android.synthetic.main.activity_runaway_notification.*
 
 class RunawayNotificationActivity : AppCompatActivity() {
     private lateinit var viewModel: NotifRunawayViewModel
+    private val loading = LoadingDialog(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_runaway_notification)
+
+        clRunawayNotification.visibility = View.GONE
+        loading.startLoading()
 
         btn_runaway_notification_back.setOnClickListener {
             finish()
@@ -32,6 +38,8 @@ class RunawayNotificationActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(NotifRunawayViewModel::class.java)
         viewModel.getNotifRunawayObserver().observe(this, Observer <NotifRunawayModel>{
+            clRunawayNotification.visibility = View.VISIBLE
+            loading.isDismiss()
             if(it == null){
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
             } else {

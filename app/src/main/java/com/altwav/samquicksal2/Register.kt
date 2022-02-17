@@ -36,7 +36,7 @@ class Register : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        tvLogin.setOnClickListener{
+        btnGoBackToEula.setOnClickListener{
             finish()
         }
 

@@ -1,5 +1,7 @@
 package com.altwav.samquicksal2.mainActivityFragments
 
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -15,8 +17,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.NearbyRestaurantsAdapter
 import com.altwav.samquicksal2.Adapters.RatedRestaurantsAdapter
+import com.altwav.samquicksal2.LoadingDialog2
 import com.altwav.samquicksal2.R
+import com.altwav.samquicksal2.geofencing.LocationService
+import com.altwav.samquicksal2.models.GeofencingModel
 import com.altwav.samquicksal2.models.NearbyRestoModel
+import com.altwav.samquicksal2.viewmodel.GeofencingViewModel
 import com.altwav.samquicksal2.viewmodel.NearbyRestoViewModel
 import com.altwav.samquicksal2.viewmodel.RatedRestaurantsViewModel
 import com.denzcoskun.imageslider.ImageSlider
@@ -27,6 +33,7 @@ import com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import com.google.android.gms.location.LocationServices
+import kotlinx.android.synthetic.main.fragment_about.view.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -53,8 +60,9 @@ class HomeFragment : Fragment() {
     private lateinit var viewModel2: NearbyRestoViewModel
 
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var viewModel3: GeofencingViewModel
 
-
+    private val loading = LoadingDialog2(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +78,11 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+        view.clHomeHome.visibility = View.GONE
+        loading.startLoading()
+
+        val sharedPreferences = this.activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val customerId = sharedPreferences?.getInt("CUSTOMER_ID", 0)
 
         val imageList = ArrayList<SlideModel>()
         val imageSlider = view.findViewById<ImageSlider>(R.id.image_slider)
@@ -83,14 +96,12 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = adapter
 
-        viewModel = ViewModelProvider(this).get<RatedRestaurantsViewModel>()
-        viewModel.getRatedRestaurantsObserver().observe(viewLifecycleOwner, {
-            if (it != null){
-                adapter.setRatedRestaurants(it)
-                adapter.notifyDataSetChanged()
-            }
+
+
+        viewModel3 = ViewModelProvider(this).get<GeofencingViewModel>()
+        viewModel3.getGeofencingObserver().observe(viewLifecycleOwner, {
+            if (it != null){}
         })
-        viewModel.getRatedRestaurantsInfo()
 
         if(ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
@@ -101,6 +112,18 @@ class HomeFragment : Fragment() {
             view.btn_turn_on_location.setOnClickListener {
                 ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 101)
             }
+
+            viewModel = ViewModelProvider(this).get<RatedRestaurantsViewModel>()
+            viewModel.getRatedRestaurantsObserver().observe(viewLifecycleOwner, {
+                view.clHomeHome.visibility = View.VISIBLE
+                loading.isDismiss()
+                if (it != null){
+                    adapter.setRatedRestaurants(it)
+                    adapter.notifyDataSetChanged()
+                }
+            })
+            viewModel.getRatedRestaurantsInfo()
+
         } else {
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
             fusedLocationProviderClient.getCurrentLocation(PRIORITY_HIGH_ACCURACY, null)
@@ -114,6 +137,18 @@ class HomeFragment : Fragment() {
 
                         viewModel2 = ViewModelProvider(this).get<NearbyRestoViewModel>()
                         viewModel2.getNearbyRestoObserver().observe(viewLifecycleOwner, { it2 ->
+
+
+                            viewModel = ViewModelProvider(this).get<RatedRestaurantsViewModel>()
+                            viewModel.getRatedRestaurantsObserver().observe(viewLifecycleOwner, {
+                                view.clHomeHome.visibility = View.VISIBLE
+                                loading.isDismiss()
+                                if (it != null){
+                                    adapter.setRatedRestaurants(it)
+                                    adapter.notifyDataSetChanged()
+                                }
+                            })
+                            viewModel.getRatedRestaurantsInfo()
                             if (it2 != null) {
                                 view.nearbyRestaurantsRecycler.visibility = View.VISIBLE
                                 view.tvTurnOnLocation.visibility = View.GONE
@@ -131,18 +166,34 @@ class HomeFragment : Fragment() {
                         val location: Location = location2.result
                         val custLoc = NearbyRestoModel("${location.latitude}", "${location.longitude}")
                         viewModel2.getNearbyRestoInfo(custLoc)
+
+                        val custLoc2 = GeofencingModel(customerId!!, "${location.latitude}", "${location.longitude}")
+                        viewModel3.getGeofencingInfo(custLoc2)
                     }
                 } else {
+
                     nearbyRestaurantsRecycler.visibility = View.GONE
                     btn_turn_on_location.visibility = View.GONE
                     tvTurnOnLocation.visibility = View.VISIBLE
                     tvTurnOnLocation.text = "Could not get location, please turn on your GPS"
+
+                    viewModel = ViewModelProvider(this).get<RatedRestaurantsViewModel>()
+                    viewModel.getRatedRestaurantsObserver().observe(viewLifecycleOwner, {
+                        view.clHomeHome.visibility = View.VISIBLE
+                        loading.isDismiss()
+                        if (it != null){
+                            adapter.setRatedRestaurants(it)
+                            adapter.notifyDataSetChanged()
+                        }
+                    })
+                    viewModel.getRatedRestaurantsInfo()
                 }
             }
         }
 
 
         view.layout_home_fragment.setOnRefreshListener {
+            viewModel.getRatedRestaurantsInfo()
             if(ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
                 view.tvTurnOnLocation.visibility = View.VISIBLE
@@ -182,6 +233,9 @@ class HomeFragment : Fragment() {
                             val location: Location = location2.result
                             val custLoc = NearbyRestoModel("${location.latitude}", "${location.longitude}")
                             viewModel2.getNearbyRestoInfo(custLoc)
+
+                            val custLoc2 = GeofencingModel(customerId!!, "${location.latitude}", "${location.longitude}")
+                            viewModel3.getGeofencingInfo(custLoc2)
                         }
                     } else {
                         nearbyRestaurantsRecycler.visibility = View.GONE

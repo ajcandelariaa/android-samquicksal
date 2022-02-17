@@ -15,6 +15,7 @@ import androidx.lifecycle.get
 import com.altwav.samquicksal2.viewmodel.GCashStatusViewModel
 import com.altwav.samquicksal2.viewmodel.ReservationDTViewModel
 import kotlinx.android.synthetic.main.activity_reservation_form.*
+import kotlinx.android.synthetic.main.activity_stamp_details.*
 import java.lang.reflect.TypeVariable
 
 class ReservationFormActivity : AppCompatActivity() {
@@ -24,10 +25,13 @@ class ReservationFormActivity : AppCompatActivity() {
     private var time: String? = null
     private lateinit var arrayTrueDate: List<String>
     private lateinit var arrayTempDate: List<String>
+    private val loading = LoadingDialog(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reservation_form)
+        clReservationForm.visibility = View.GONE
+        loading.startLoading()
 
         val restaurantId = intent.getIntExtra("restaurantId", 0)
         val rTimeLimit = intent.getIntExtra("rTimeLimit", 0)
@@ -46,6 +50,8 @@ class ReservationFormActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get<ReservationDTViewModel>()
         viewModel.getReservationDTObserver().observe(this, {
+            clReservationForm.visibility = View.VISIBLE
+            loading.isDismiss()
             if(it != null){
                 val date = it.storeTrueDates!!.toTypedArray()
 
@@ -162,15 +168,16 @@ class ReservationFormActivity : AppCompatActivity() {
                 countError += 1
                 return@setOnClickListener
             } else {
-                if(numberOfPersons.toInt() <= rCapacityPerTable){
-                    numberOfTables = 1
-                } else {
-                    numberOfTables = numberOfPersons.toInt() / rCapacityPerTable
-                    val getModule = numberOfPersons.toInt() % rCapacityPerTable
-                    if(getModule > 0){
-                        numberOfTables += 1
-                    }
-                }
+//                if(numberOfPersons.toInt() <= rCapacityPerTable){
+//                    numberOfTables = 1
+//                } else {
+//                    numberOfTables = numberOfPersons.toInt() / rCapacityPerTable
+//                    val getModule = numberOfPersons.toInt() % rCapacityPerTable
+//                    if(getModule > 0){
+//                        numberOfTables += 1
+//                    }
+//                }
+                numberOfTables = 1
             }
 
             if(cbReserveFormChildren.isChecked){

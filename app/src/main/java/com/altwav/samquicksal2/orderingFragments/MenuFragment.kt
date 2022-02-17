@@ -14,6 +14,7 @@ import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.OrderingFoodSetAdapter
+import com.altwav.samquicksal2.MainActivity
 import com.altwav.samquicksal2.OrderingFoodItemActivity
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.ShowQrCodeAccess
@@ -100,7 +101,6 @@ class MenuFragment : Fragment() {
                         viewModel.getOrderFSInfo(it.mainCust_id!!)
                     }
                     else -> {
-
                     }
                 }
             }

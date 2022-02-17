@@ -1,7 +1,6 @@
 package com.altwav.samquicksal2.restaurantViewFragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +19,7 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_rewards.view.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.altwav.samquicksal2.R
+import com.altwav.samquicksal2.LoadingDialog2
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -43,6 +43,8 @@ class RewardsFragment : Fragment() {
     private lateinit var recyclerView2: RecyclerView
     private lateinit var adapter2: ListsOfParticularPromosAdapter
 
+    private val loading = LoadingDialog2(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -58,6 +60,10 @@ class RewardsFragment : Fragment() {
         // Inflate the layout for this fragment
         val view =
             inflater.inflate(com.altwav.samquicksal2.R.layout.fragment_rewards, container, false)
+
+        view.clRestaurantPromos.visibility = View.GONE
+        loading.startLoading()
+
         val restaurantId = (activity as RestaurantViewActivity?)?.getRestaurantId()
 
         val imageView = view.findViewById<ImageView>(com.altwav.samquicksal2.R.id.gifImage)
@@ -77,7 +83,8 @@ class RewardsFragment : Fragment() {
 
         val viewModel = ViewModelProvider(this).get<RestaurantRewardPromoViewModel>()
         viewModel.getRestaurantRewardPromoObserver().observe(viewLifecycleOwner, {
-
+            view.clRestaurantPromos.visibility = View.VISIBLE
+            loading.isDismiss()
             if (it.stampTasks == null && it.promos == null) {
                 view.containerRewardsAndPromo.visibility = ViewGroup.GONE
             } else {

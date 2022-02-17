@@ -52,8 +52,10 @@ class ListOfNotificationsAdapter : RecyclerView.Adapter<ListOfNotificationsAdapt
         private val notificationBackground: ConstraintLayout = itemView.clNotificationListBackground
         private var notificationId: Int? = null
         private var notificationType: String? = null
+        private var clickable: String? = null
 
         fun bind(data: NotificationListModelResponse){
+            clickable = data.clickable
             notificationId = data.id
             notificationType = data.notificationType
             notificationTitle.text = data.notificationTitle
@@ -101,8 +103,10 @@ class ListOfNotificationsAdapter : RecyclerView.Adapter<ListOfNotificationsAdapt
                         context.startActivity(intent)
                     }
                     "Validation" -> {
-                        val intent = Intent(context, LiveStatusActivity::class.java)
-                        context.startActivity(intent)
+                        if(clickable == "Yes"){
+                            val intent = Intent(context, LiveStatusActivity::class.java)
+                            context.startActivity(intent)
+                        }
                     }
                     "No Show" -> {
                         val intent = Intent(context, NoShowNotificationActivity::class.java)
@@ -140,12 +144,19 @@ class ListOfNotificationsAdapter : RecyclerView.Adapter<ListOfNotificationsAdapt
                         context.startActivity(intent)
                     }
                     "Table Setting Up" -> {
-                        val intent = Intent(context, LiveStatusActivity::class.java)
-                        context.startActivity(intent)
+                        if(clickable == "Yes"){
+                            val intent = Intent(context, LiveStatusActivity::class.java)
+                            context.startActivity(intent)
+                        }
                     }
                     "Table is Ready" -> {
-                        val intent = Intent(context, OrderingActivity::class.java)
-                        context.startActivity(intent)
+                        if(clickable == "Yes"){
+                            val intent = Intent(context, OrderingActivity::class.java)
+                            context.startActivity(intent)
+                        }
+                    }
+                    else -> {
+
                     }
                 }
             }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,8 @@ import com.altwav.samquicksal2.Adapters.ListsOfRestaurantAdapter
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.RestaurantViewActivity
 import com.altwav.samquicksal2.viewmodel.ListsOfRestaurantsViewModel
+import kotlinx.android.synthetic.main.fragment_notifications.*
+import kotlinx.android.synthetic.main.fragment_notifications.view.*
 import kotlinx.android.synthetic.main.fragment_restaurants.view.*
 
 
@@ -60,14 +63,32 @@ class RestaurantsFragment : Fragment()  {
         viewModel.getLiveDataObserver().observe(viewLifecycleOwner, {
             if (it == null || it.isEmpty()){
                 view.tvNoRestaurant.visibility = View.VISIBLE
+                view.restaurantsRecyclerView.visibility = View.GONE
             } else {
+                view.restaurantsRecyclerView.visibility = View.VISIBLE
+                view.tvNoRestaurant.visibility = View.GONE
                 adapter.setRestaurantList(it)
                 adapter.notifyDataSetChanged()
-                Log.d("message", "$it")
-                view.tvNoRestaurant.visibility = View.GONE
             }
+            Log.d("m,essage", "$it")
         })
-        viewModel.makeApiCall()
+        viewModel.makeApiCall(" ")
+
+        view.refreshRestaurants.setOnRefreshListener {
+            viewModel.makeApiCall(" ")
+            view.etSearchResto.setText("")
+            view.refreshRestaurants.isRefreshing = false
+        }
+
+        view.etSearchResto.addTextChangedListener {
+            var keyword = it.toString()
+            if(view.etSearchResto.text.isEmpty()){
+                keyword = " "
+            }
+            viewModel.makeApiCall(keyword)
+        }
+
+
         return view
     }
 

@@ -1,6 +1,5 @@
 package com.altwav.samquicksal2
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.app.DownloadManager
 import android.content.*
@@ -18,7 +17,6 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_gcash_checkout.*
 import com.altwav.samquicksal2.viewmodel.UploadReceiptViewModell
 
-import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
@@ -27,7 +25,6 @@ import java.io.FileOutputStream
 
 import okhttp3.RequestBody
 import okhttp3.MultipartBody
-import java.io.FileDescriptor
 
 
 class GcashCheckoutActivity : AppCompatActivity() {
@@ -45,12 +42,15 @@ class GcashCheckoutActivity : AppCompatActivity() {
     private lateinit var book_id2: RequestBody
     private lateinit var book_type2: RequestBody
 
+    private val loading = LoadingDialog(this)
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gcash_checkout)
+        clGcashSubmitReceipt.visibility = View.GONE
+        loading.startLoading()
 
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val customerId = sharedPreferences?.getInt("CUSTOMER_ID", 0)
@@ -165,7 +165,8 @@ class GcashCheckoutActivity : AppCompatActivity() {
                             .show()
                     }
                 }
-
+                clGcashSubmitReceipt.visibility = View.VISIBLE
+                loading.isDismiss()
             }
         })
         viewModel.getGCashStatusInfo(customerId!!)

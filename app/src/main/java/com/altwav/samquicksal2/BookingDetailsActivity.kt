@@ -18,6 +18,7 @@ import com.altwav.samquicksal2.models.SubmitReserveFormModelResponse
 import com.altwav.samquicksal2.viewmodel.SubmitQueueFormViewModel
 import com.altwav.samquicksal2.viewmodel.SubmitReserveFormViewModel
 import kotlinx.android.synthetic.main.activity_booking_details.*
+import kotlinx.android.synthetic.main.activity_reservation_form.*
 
 class BookingDetailsActivity : AppCompatActivity() {
 
@@ -26,6 +27,8 @@ class BookingDetailsActivity : AppCompatActivity() {
 
     private var date: String? = null
     private var time: String? = null
+
+    private val loading = LoadingDialog(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -144,6 +147,8 @@ class BookingDetailsActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(SubmitQueueFormViewModel::class.java)
         viewModel.getQueueFormObserver().observe(this, Observer <SubmitQueueFormModelResponse>{
+            clBookingDetails.visibility = View.VISIBLE
+            loading.isDismiss()
             if(it == null){
                 Toast.makeText(this, "Error Submitting Form", Toast.LENGTH_SHORT).show()
             } else {
@@ -165,6 +170,8 @@ class BookingDetailsActivity : AppCompatActivity() {
 
         viewModel2 = ViewModelProvider(this).get(SubmitReserveFormViewModel::class.java)
         viewModel2.getReserveFormObserver().observe(this, Observer <SubmitReserveFormModelResponse>{
+            clBookingDetails.visibility = View.VISIBLE
+            loading.isDismiss()
             if(it == null){
                 Toast.makeText(this, "Error Submitting Form", Toast.LENGTH_SHORT).show()
             } else {
@@ -203,6 +210,8 @@ class BookingDetailsActivity : AppCompatActivity() {
                 .setMessage("Are you sure you want to submit?")
                 .setCancelable(false)
                 .setPositiveButton("Yes") { dialog, id ->
+                    clBookingDetails.visibility = View.GONE
+                    loading.startLoading()
                     if(bookType == "Reserve"){
                         val customer = SubmitReserveFormModel(
                             customerId,

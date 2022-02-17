@@ -8,25 +8,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.OpenableColumns
 import android.text.InputType
-import android.text.Layout
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.altwav.samquicksal2.MainActivity
+import com.altwav.samquicksal2.LoadingDialog
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.UploadRequestBody
 import com.altwav.samquicksal2.models.AccountCustomerModelResponse
 import com.altwav.samquicksal2.models.UpdateNameModel
 import com.altwav.samquicksal2.models.UpdatePasswordModel
-import com.altwav.samquicksal2.viewmodel.AccountCustomerViewModel
-import com.altwav.samquicksal2.viewmodel.UpdateImageViewModel
-import com.altwav.samquicksal2.viewmodel.UpdateNameViewModel
-import com.altwav.samquicksal2.viewmodel.UpdatePasswordViewModel
+import com.altwav.samquicksal2.viewmodel.*
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_account.*
 import kotlinx.android.synthetic.main.activity_gcash_checkout.*
@@ -52,6 +47,7 @@ class Account : AppCompatActivity() {
     private lateinit var viewModel2: UpdateNameViewModel
     private lateinit var viewModel3: UpdatePasswordViewModel
     private lateinit var viewModel4: UpdateImageViewModel
+    private lateinit var viewModel5: VerifyEmailViewModel
     private var customerId: Int = 0
     private lateinit var emailAddress: String
     private lateinit var nameDialog: AlertDialog
@@ -62,6 +58,8 @@ class Account : AppCompatActivity() {
     private lateinit var viewUpdateImage: View
     private lateinit var requestImage: MultipartBody.Part
     private lateinit var cust_id: RequestBody
+
+    private val loading = LoadingDialog(this)
 
     private val validEmail = Pattern.compile(
         "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
@@ -77,6 +75,8 @@ class Account : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account)
+        clAccountDetails.visibility = View.GONE
+        loading.startLoading()
 
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         customerId = sharedPreferences.getInt("CUSTOMER_ID", 0)
@@ -126,9 +126,20 @@ class Account : AppCompatActivity() {
             updatePasswordDialog()
         }
 
+        viewModel5 = ViewModelProvider(this).get(VerifyEmailViewModel::class.java)
+        viewModel5.getVerifyEmailObserver().observe(this, {
+            if(it != null){
+                viewModel.getAccountInfoCustomer(customerId)
+                Toast.makeText(this, "Link has been sent to your email", Toast.LENGTH_LONG).show()
+            }
+        })
+
         viewModel = ViewModelProvider(this).get(AccountCustomerViewModel::class.java)
         viewModel.getAccountCustomerObserver().observe(this, Observer <AccountCustomerModelResponse>{
             if(it != null){
+                clAccountDetails.visibility = View.VISIBLE
+                loading.isDismiss()
+
                 tvAccountName.text = it.name
                 tvHeaderAccountName.text = it.name
                 tvAccountEmailAddress.text = it.emailAddress
@@ -139,6 +150,7 @@ class Account : AppCompatActivity() {
                     tvEmailAddressStatus.text = "Not Verified"
                     tvEmailAddressStatus.setTextColor(Color.parseColor("#91001B"))
                     Glide.with(this).load(R.drawable.ic_not_verified).into(ivEmailAddressStatus)
+
                 } else {
                     tvEmailAddressStatus.text = "Verified"
                     tvEmailAddressStatus.setTextColor(Color.parseColor("#0AA034"))
@@ -147,6 +159,26 @@ class Account : AppCompatActivity() {
 
                 Glide.with(this).load(it.profileImage).into(ivAccountImageInner)
                 Glide.with(this).load(it.profileImage).into(ivAccountImageOuter)
+
+
+                tvEmailAddressStatus.setOnClickListener {
+                    if(tvEmailAddressStatus.text == "Not Verified"){
+                        AlertDialog.Builder(this)
+                            .setTitle("Verify your email")
+                            .setIcon(R.mipmap.ic_launcher)
+                            .setMessage("Are you sure you want verify your email?")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes") { dialog, id ->
+                                clAccountDetails.visibility = View.GONE
+                                loading.startLoading()
+                                viewModel5.getVerifyEmailInfo(customerId)
+                            }
+                            .setNegativeButton("No") { dialog, id ->
+                                dialog.cancel()
+                            }
+                            .show()
+                    }
+                }
             }
         })
 
@@ -202,6 +234,7 @@ class Account : AppCompatActivity() {
             }
         })
 
+
         refreshAccount.setOnRefreshListener {
             viewModel.getAccountInfoCustomer(customerId)
             refreshAccount.isRefreshing = false
@@ -220,6 +253,8 @@ class Account : AppCompatActivity() {
             if(viewUpdateImage.btnUploadImageLabel.visibility == View.VISIBLE){
                 Toast.makeText(applicationContext, "Please choose an image first", Toast.LENGTH_LONG).show()
             } else {
+                clAccountDetails.visibility = View.GONE
+                loading.startLoading()
                 viewModel4.getUploadImageInfo(requestImage, cust_id)
             }
         }

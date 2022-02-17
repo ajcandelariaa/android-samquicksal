@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.ListOfNotificationsAdapter
 import com.altwav.samquicksal2.Adapters.ListsOfPromosAdapter
+import com.altwav.samquicksal2.LoadingDialog
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.viewmodel.ListsOfRestaurantsViewModel
 import com.altwav.samquicksal2.viewmodel.NotificationListViewModel
@@ -39,6 +40,10 @@ class NotificationsFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ListOfNotificationsAdapter
 
+    private lateinit var viewModel: NotificationListViewModel
+    private var customerId: Int? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -53,14 +58,13 @@ class NotificationsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_notifications, container, false)
-
         recyclerView = view.findViewById(R.id.notificationsRecyclerView)
         adapter = ListOfNotificationsAdapter()
-
+        clHomeNotifications
         recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = adapter
 
-        val viewModel = ViewModelProvider(this).get<NotificationListViewModel>()
+        viewModel = ViewModelProvider(this).get<NotificationListViewModel>()
         viewModel.getNotificationListObserver().observe(viewLifecycleOwner, {
             if (it == null || it.isEmpty()){
                 view.containerNoNotifications.visibility = ViewGroup.VISIBLE
@@ -72,12 +76,12 @@ class NotificationsFragment : Fragment() {
         })
 
         val sharedPreferences = this.activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val customerId = sharedPreferences?.getInt("CUSTOMER_ID", 0)
+        customerId = sharedPreferences?.getInt("CUSTOMER_ID", 0)
 
         viewModel.getNotificationsInfo(customerId!!)
 
         view.refreshNotifications.setOnRefreshListener {
-            viewModel.getNotificationsInfo(customerId)
+            viewModel.getNotificationsInfo(customerId!!)
             refreshNotifications.isRefreshing = false
         }
 
@@ -102,5 +106,10 @@ class NotificationsFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getNotificationsInfo(customerId!!)
     }
 }

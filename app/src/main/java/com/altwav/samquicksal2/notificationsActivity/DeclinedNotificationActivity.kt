@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.altwav.samquicksal2.LoadingDialog
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.models.NotifDeclinedModel
 import com.altwav.samquicksal2.viewmodel.NotifDeclinedViewModel
@@ -16,10 +17,14 @@ import kotlinx.android.synthetic.main.activity_declined_notification.*
 
 class DeclinedNotificationActivity : AppCompatActivity() {
     private lateinit var viewModel: NotifDeclinedViewModel
+    private val loading = LoadingDialog(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_declined_notification)
+
+        clDeclinedNotification.visibility = View.GONE
+        loading.startLoading()
 
         btn_declined_notification_back.setOnClickListener {
             finish()
@@ -32,6 +37,8 @@ class DeclinedNotificationActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(NotifDeclinedViewModel::class.java)
         viewModel.getNotifDeclinedObserver().observe(this, Observer <NotifDeclinedModel>{
+            clDeclinedNotification.visibility = View.VISIBLE
+            loading.isDismiss()
             if(it == null){
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
             } else {

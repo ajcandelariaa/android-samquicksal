@@ -16,10 +16,10 @@ class ListsOfRestaurantsViewModel:ViewModel() {
         return liveDataList
     }
 
-    fun makeApiCall(){
+    fun makeApiCall(keyword: String){
         val retroInstance = RetroInstance.getRetroInstance()
         val retroService = retroInstance.create(RetroServiceInterface::class.java)
-        val call = retroService.getRestaurantList()
+        val call = retroService.getRestaurantList(keyword)
         call.enqueue(object : retrofit2.Callback<List<ListOfRestaurantModel>> {
             override fun onFailure(call: Call<List<ListOfRestaurantModel>>?, t: Throwable?) {
                 liveDataList.postValue(null)

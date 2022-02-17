@@ -11,8 +11,8 @@ import retrofit2.http.*
 
 interface RetroServiceInterface {
 
-    @GET("restaurants")
-    fun getRestaurantList(): Call<List<ListOfRestaurantModel>>
+    @GET("restaurants/{keyword}")
+    fun getRestaurantList(@Path("keyword") keyword: String): Call<List<ListOfRestaurantModel>>
 
     @GET("get-homepage-info/{id}")
     fun getHomepageCustomerInfo(@Path("id") id: Int): Call<HomepageCustomerModelResponse>
@@ -79,6 +79,9 @@ interface RetroServiceInterface {
     @GET("get-notifications/geofencing/{cust_id}/{notif_id}")
     fun notifGeofencing(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifGeofencingModel>
 
+    @GET("get-notifications/blocked/{cust_id}/{notif_id}")
+    fun notifBlocked(@Path("cust_id") cust_id: Int, @Path("notif_id") notif_id:Int): Call<NotifBlockedModel>
+
 
 
 
@@ -128,13 +131,17 @@ interface RetroServiceInterface {
     fun getReservationDT(@Path("rest_id") rest_id: Int): Call<ReservationDTModel>
 
     @GET("scan-qr/{cust_id}/{request_cust_id}")
-    fun scanQRCode(@Path("cust_id") cust_id: Int, @Path("request_cust_id") request_cust_id:Int): Call<QRScannedModel>
+    fun scanQRCode(@Path("cust_id") cust_id: Int, @Path("request_cust_id") request_cust_id:String): Call<QRScannedModel>
 
     @GET("ordering/request-access/{cust_id}/{request_cust_id}")
     fun orderingReqAccess(@Path("cust_id") cust_id: Int, @Path("request_cust_id") request_cust_id:Int): Call<QrReqAccessModel>
 
     @GET("ordering/check-customer-access/food-set/{cust_id}")
     fun ordrCheckCusAccess(@Path("cust_id") cust_id: Int) : Call<OrdrChkCusAccsModel>
+
+    @GET("verify-email-link/{cust_id}")
+    fun verifyEmail(@Path("cust_id") cust_id: Int) : Call<VerifyEmailModel>
+
 
 
 
@@ -147,6 +154,9 @@ interface RetroServiceInterface {
 
     @POST("login-customer")
     fun loginCustomer(@Body params: LoginCustomerModel): Call<LoginCustomerModelResponse>
+
+    @POST("logout-customer")
+    fun logoutCustomer(@Body params: LogoutCustomerModel): Call<LogoutCustomerModelResponse>
 
     @POST("submit-queue-form")
     fun submitQueueForm(@Body params: SubmitQueueFormModel): Call<SubmitQueueFormModelResponse>
@@ -192,8 +202,7 @@ interface RetroServiceInterface {
     ): Call<UploadReceiptModelResponse>
 
     @POST("geofencing/notification")
-    fun geofencingListener(): Call<GeofencingModelResponse>
-//    fun geofencingListener(@Body params: GeofencingModel): Call<GeofencingModelResponse>
+    fun geofencingListener(@Body params: GeofencingModel): Call<GeofencingModelResponse>
 
 
     @POST("account/update-single-info")

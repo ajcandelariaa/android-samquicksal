@@ -43,14 +43,32 @@ class ScanQrCode : AppCompatActivity() {
         setupPermissions()
         codeScanner()
 
+        val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val customerId = sharedPreferences?.getInt("CUSTOMER_ID", 0)
+
+
+        viewModel2 = ViewModelProvider(this).get<QrReqAccessViewModel>()
+        viewModel2.getQrReqAccessObserver().observe(this, { it2 ->
+            if(it2 != null){
+                if(it2.status == "success"){
+                    Toast.makeText(this, "Request Sent! Please wait for your friend to validate your request", Toast.LENGTH_LONG).show()
+                    finish()
+                } else {
+                    Toast.makeText(this, "Request Denied", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+            }
+        })
+
 
         viewModel = ViewModelProvider(this).get<QRScannedViewModel>()
         viewModel.getQrScannedObserver().observe(this, {
             if (it != null){
                 if(it.reqStatus == "Invalid Access"){
-                    Toast.makeText(applicationContext, "${it.reqStatus}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "${it.reqStatus}", Toast.LENGTH_LONG).show()
                 } else if(it.reqStatus == "Ongoing Status") {
-                    Toast.makeText(applicationContext, "${it.reqStatus}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "You are currently booked. Please cancel your booking to access your friend's Ordering QR", Toast.LENGTH_LONG).show()
                 } else if (it.reqStatus == "Approved"){
                     llScannedInfoContainer.visibility = View.VISIBLE
                     btn_request_access.visibility = View.GONE
@@ -64,7 +82,7 @@ class ScanQrCode : AppCompatActivity() {
                     tvQrSROrderName.text = it.bdOrderName
                     tvQrSRBookType.text = it.bdBookType
                     tvQrSRSlot.text = it.bdAccessSlot.toString()
-                    Toast.makeText(applicationContext, "You already have an access to this customer", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "You already have an access to this customer", Toast.LENGTH_LONG).show()
                 } else if (it.reqStatus == "Full Slot"){
                     llScannedInfoContainer.visibility = View.VISIBLE
                     btn_request_access.visibility = View.GONE
@@ -78,7 +96,7 @@ class ScanQrCode : AppCompatActivity() {
                     tvQrSROrderName.text = it.bdOrderName
                     tvQrSRBookType.text = it.bdBookType
                     tvQrSRSlot.text = it.bdAccessSlot.toString()
-                    Toast.makeText(applicationContext, "Customer is already Full Slot", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Customer is already Full Slot", Toast.LENGTH_LONG).show()
                 } else if (it.reqStatus == "Success"){
                     llScannedInfoContainer.visibility = View.VISIBLE
                     btn_request_access.visibility = View.VISIBLE
@@ -100,21 +118,7 @@ class ScanQrCode : AppCompatActivity() {
                             .setMessage("Are you sure you want to participate ordering with ${tvQrSRCusName.text}?")
                             .setCancelable(false)
                             .setPositiveButton("Yes") { dialog, id ->
-                                viewModel2 = ViewModelProvider(this).get<QrReqAccessViewModel>()
-                                viewModel2.getQrReqAccessObserver().observe(this, { it2 ->
-                                    if(it2 != null){
-                                        if(it2.status == "success"){
-                                            Toast.makeText(applicationContext, "Request Sent! Please wait for your friend to validate your request", Toast.LENGTH_LONG).show()
-                                            finish()
-                                        } else {
-                                            Toast.makeText(applicationContext, "Request Denied", Toast.LENGTH_SHORT).show()
-                                        }
-                                    } else {
-                                        Toast.makeText(applicationContext, "Error", Toast.LENGTH_SHORT).show()
-                                    }
-                                })
-                                val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-                                val customerId = sharedPreferences?.getInt("CUSTOMER_ID", 0)
+
                                 if (customerId != null && main_cust_id != null) {
                                     viewModel2.getQrReqAccessInfo(customerId, main_cust_id)
                                 }
@@ -124,7 +128,7 @@ class ScanQrCode : AppCompatActivity() {
                             }
                             .show()
                     }
-                    Toast.makeText(applicationContext, "Scanned Successfully", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Scanned Successfully", Toast.LENGTH_LONG).show()
                 } else if (it.reqStatus == "Pending"){
                     llScannedInfoContainer.visibility = View.VISIBLE
                     btn_request_access.visibility = View.GONE
@@ -138,7 +142,7 @@ class ScanQrCode : AppCompatActivity() {
                     tvQrSROrderName.text = it.bdOrderName
                     tvQrSRBookType.text = it.bdBookType
                     tvQrSRSlot.text = it.bdAccessSlot.toString()
-                    Toast.makeText(applicationContext, "You've already sent a request to this customer a while ago. Please wait for the customer to validate your request", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "You've already sent a request to this customer a while ago. Please wait for the customer to validate your request", Toast.LENGTH_LONG).show()
                 } else {
 
                 }
@@ -165,7 +169,7 @@ class ScanQrCode : AppCompatActivity() {
                     val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
                     val customerId = sharedPreferences?.getInt("CUSTOMER_ID", 0)
                     if (customerId != null) {
-                        viewModel.getQrScannedInfo(customerId, it.text.toInt())
+                        viewModel.getQrScannedInfo(customerId, it.text.toString())
                     }
                     stopPreview()
                 }

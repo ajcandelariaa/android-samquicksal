@@ -7,10 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.altwav.samquicksal2.BdCompleteActivity
-import com.altwav.samquicksal2.BdRunawayActivity
-import com.altwav.samquicksal2.R
-import com.altwav.samquicksal2.StampDetailsActivity
+import com.altwav.samquicksal2.*
 import com.altwav.samquicksal2.models.NotifCompletedModel
 import com.altwav.samquicksal2.models.NotifDeclinedModel
 import com.altwav.samquicksal2.viewmodel.NotifCompletedViewModel
@@ -22,10 +19,14 @@ import kotlinx.android.synthetic.main.activity_geofencing_notification.*
 
 class CheckoutNotificationActivity : AppCompatActivity() {
     private lateinit var viewModel: NotifCompletedViewModel
+    private val loading = LoadingDialog(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_checkout_notification)
+        clCheckoutNotification.visibility = View.GONE
+        loading.startLoading()
+
 
         btn_checkout_notification_back.setOnClickListener {
             finish()
@@ -38,6 +39,8 @@ class CheckoutNotificationActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(NotifCompletedViewModel::class.java)
         viewModel.getNotifCompletedObserver().observe(this, {
+            clCheckoutNotification.visibility = View.VISIBLE
+            loading.isDismiss()
             if(it == null){
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
             } else {

@@ -1,5 +1,6 @@
 package com.altwav.samquicksal2.Adapters
 
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.R
+import com.altwav.samquicksal2.RestaurantViewActivity
 import com.altwav.samquicksal2.models.NearbyRestoModelResponse
 import com.altwav.samquicksal2.models.OrderingBillOrders
 import com.bumptech.glide.Glide
@@ -59,6 +61,15 @@ class NearbyRestaurantsAdapter : RecyclerView.Adapter<NearbyRestaurantsAdapter.M
                 rSchedule.setTextColor(Color.parseColor("#91001B"))
             } else {
                 rSchedule.setTextColor(Color.parseColor("#0AA034"))
+            }
+        }
+        init {
+            itemView.setOnClickListener {
+                val context = itemView.context
+                val intent = Intent(context, RestaurantViewActivity::class.java)
+                intent.putExtra("restaurantId", restId)
+                intent.putExtra("restaurantName", "${rName.text}")
+                context.startActivity(intent)
             }
         }
     }

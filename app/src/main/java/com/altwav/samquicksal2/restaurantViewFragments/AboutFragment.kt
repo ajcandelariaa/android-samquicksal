@@ -1,7 +1,6 @@
 package com.altwav.samquicksal2.restaurantViewFragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,16 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.altwav.samquicksal2.Adapters.ListOfStoreHoursAdapter
-import com.altwav.samquicksal2.Adapters.ListsOfPostsAdapter
-import com.altwav.samquicksal2.Adapters.RatedRestaurantsAdapter
-import com.altwav.samquicksal2.Adapters.RestaurantPolicyAdapter
+import com.altwav.samquicksal2.Adapters.*
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.RestaurantViewActivity
-import com.altwav.samquicksal2.viewmodel.ListsOfRestaurantsViewModel
+import com.altwav.samquicksal2.LoadingDialog2
 import com.altwav.samquicksal2.viewmodel.RestaurantAboutViewModel
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_account.*
 import kotlinx.android.synthetic.main.fragment_about.view.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -47,6 +42,11 @@ class AboutFragment : Fragment() {
     private lateinit var recyclerView3: RecyclerView
     private lateinit var adapter3: RestaurantPolicyAdapter
 
+    private lateinit var recyclerView4: RecyclerView
+    private lateinit var adapter4: UnavailableDAdapter
+
+    private val loading = LoadingDialog2(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -62,6 +62,8 @@ class AboutFragment : Fragment() {
         // Inflate the layout for this fragment
 
         val view = inflater.inflate(R.layout.fragment_about, container, false)
+        view.clRestaurantAbout.visibility = View.GONE
+        loading.startLoading()
 
         val restaurantId = (activity as RestaurantViewActivity?)?.getRestaurantId()
 
@@ -80,18 +82,47 @@ class AboutFragment : Fragment() {
         recyclerView3.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView3.adapter = adapter3
 
+        recyclerView4 = view.findViewById(R.id.restaurantUDRecyclerview)
+        adapter4 = UnavailableDAdapter()
+        recyclerView4.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        recyclerView4.adapter = adapter4
+
 
         val viewModel = ViewModelProvider(this).get<RestaurantAboutViewModel>()
         viewModel.getRestaurantAboutObserver().observe(viewLifecycleOwner, {
+            view.clRestaurantAbout.visibility = View.VISIBLE
+            loading.isDismiss()
             if (it != null){
-                adapter.setRestaurantPost(it.rPosts)
-                adapter.notifyDataSetChanged()
-
                 adapter2.setRestaurantSchedule(it.rSchedule)
                 adapter2.notifyDataSetChanged()
 
-                adapter3.setRestaurantPolicy(it.rPolicy)
-                adapter3.notifyDataSetChanged()
+                if(it.rPolicy != null){
+                    view.containerRPolicy.visibility = View.VISIBLE
+                    adapter3.setRestaurantPolicy(it.rPolicy)
+                    adapter3.notifyDataSetChanged()
+                } else {
+                    view.containerRPolicy.visibility = View.GONE
+                }
+
+
+                if(it.rUnavailableD != null){
+                    view.containerRUnavailableD.visibility = View.VISIBLE
+                    adapter4.setUnavailableDate(it.rUnavailableD)
+                    adapter4.notifyDataSetChanged()
+                } else {
+                    view.containerRUnavailableD.visibility = View.GONE
+                }
+
+
+                if(it.rPosts != null){
+                    view.containerRPosts.visibility = View.VISIBLE
+                    adapter.setRestaurantPost(it.rPosts)
+                    adapter.notifyDataSetChanged()
+                } else {
+                    view.containerRPosts.visibility = View.GONE
+                }
+
+
                 view.tvAboutRestaurantName.text = it.rName
                 view.tvAboutRestaurantAddress.text = it.rAddress
                 view.tvAboutTablesCapacity.text = "${it.rTableStatus} / ${it.rTableCapacity}"

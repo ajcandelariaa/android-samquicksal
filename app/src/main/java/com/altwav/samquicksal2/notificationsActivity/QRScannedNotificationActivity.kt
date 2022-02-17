@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.altwav.samquicksal2.LoadingDialog
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.models.QrReqAppDecModel
 import com.altwav.samquicksal2.viewmodel.NotifQrValidateViewModel
@@ -19,11 +20,15 @@ import kotlinx.android.synthetic.main.activity_scan_qr_code.*
 class QRScannedNotificationActivity : AppCompatActivity() {
     private lateinit var viewModel: NotifQrValidateViewModel
     private lateinit var viewModel2: QrReqAppDecViewModel
+    private val loading = LoadingDialog(this)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_qrscanned_notification)
+
+        clQRScannedNotification.visibility = View.GONE
+        loading.startLoading()
 
         btn_qrscanned_notification_back.setOnClickListener {
             finish()
@@ -43,6 +48,8 @@ class QRScannedNotificationActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(NotifQrValidateViewModel::class.java)
         viewModel.getNotifQrValidateObserver().observe(this, {
+            clQRScannedNotification.visibility = View.VISIBLE
+            loading.isDismiss()
             if(it != null){
                 tvNotifQrVCustName.text = "Name: ${it.custName}"
                 tvNotifQrVCustEmail.text = "Email Address: ${it.custEAddress}"

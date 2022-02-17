@@ -16,7 +16,7 @@ class QRScannedViewModel: ViewModel() {
         return createQRScannedResponseLD
     }
 
-    fun getQrScannedInfo(cust_id: Int, request_cust_id: Int){
+    fun getQrScannedInfo(cust_id: Int, request_cust_id: String){
         val retroService = RetroInstance.getRetroInstance().create(RetroServiceInterface::class.java)
         val call = retroService.scanQRCode(cust_id, request_cust_id)
         call.enqueue(object : retrofit2.Callback<QRScannedModel> {

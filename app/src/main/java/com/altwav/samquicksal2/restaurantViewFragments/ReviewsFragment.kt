@@ -5,20 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altwav.samquicksal2.Adapters.ListOfReviewsAdapter
-import com.altwav.samquicksal2.Adapters.ListsOfPromosAdapter
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.RestaurantViewActivity
-import com.altwav.samquicksal2.viewmodel.RestaurantRewardPromoViewModel
+import com.altwav.samquicksal2.LoadingDialog2
 import com.altwav.samquicksal2.viewmodel.RestoReviewViewModel
 import kotlinx.android.synthetic.main.fragment_reviews.*
-import kotlinx.android.synthetic.main.fragment_rewards.view.*
+import kotlinx.android.synthetic.main.fragment_reviews.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,6 +35,8 @@ class ReviewsFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ListOfReviewsAdapter
 
+    private val loading = LoadingDialog2(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -52,6 +51,10 @@ class ReviewsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_reviews, container, false)
+
+        view.clRestaurantReviews.visibility = View.GONE
+        loading.startLoading()
+
         val restaurantId = (activity as RestaurantViewActivity?)?.getRestaurantId()
 
         recyclerView = view.findViewById(R.id.ratingReviewsRecyclerView)
@@ -62,6 +65,8 @@ class ReviewsFragment : Fragment() {
 
         val viewModel = ViewModelProvider(this).get<RestoReviewViewModel>()
         viewModel.getRestoReviewObserver().observe(viewLifecycleOwner, {
+            view.clRestaurantReviews.visibility = View.VISIBLE
+            loading.isDismiss()
             if (it!= null) {
                 if(it.custReviews == null){
                     containerNoRating.visibility = View.VISIBLE

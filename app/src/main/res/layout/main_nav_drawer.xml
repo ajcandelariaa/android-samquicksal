@@ -171,6 +171,28 @@
             android:background="@color/sideBarViewColor"/>
 
         <LinearLayout
+            android:id="@+id/main_nav_drawer_eula"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:onClick="ClickTerms"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_terms"
+                android:drawablePadding="20dp"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+                android:paddingLeft="20dp"
+                android:text="Terms and Conditions"
+                android:textColor="@color/sideBarViewColor" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/main_nav_drawer_logout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -193,6 +215,8 @@
                 android:text="Logout"
                 android:textColor="@color/sideBarViewColor" />
         </LinearLayout>
+
+
     </LinearLayout>
 
 

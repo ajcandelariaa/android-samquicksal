@@ -13,10 +13,13 @@ import kotlinx.android.synthetic.main.activity_bd_cancelled.*
 
 class BdCancelledActivity : AppCompatActivity() {
     private lateinit var viewModel: BHCancelViewModel
+    private val loading = LoadingDialog(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bd_cancelled)
+        clCancelBD.visibility = View.GONE
+        loading.startLoading()
 
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val customerId = sharedPreferences.getInt("CUSTOMER_ID", 0)
@@ -26,6 +29,8 @@ class BdCancelledActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(BHCancelViewModel::class.java)
         viewModel.getBHCancelledObserver().observe(this, Observer {
             if(it != null){
+                clCancelBD.visibility = View.VISIBLE
+                loading.isDismiss()
                 tvBDCDate.text = it.bookDate
                 tvBDCTime.text = it.bookTime
                 tvBDCRestaurantName.text = it.rName

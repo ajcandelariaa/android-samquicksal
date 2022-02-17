@@ -24,7 +24,7 @@ class ShowQrCodeAccess : AppCompatActivity() {
 
         val writer = QRCodeWriter()
         try {
-            val bitMatrix = writer.encode(customerId.toString(), BarcodeFormat.QR_CODE, 512, 512)
+            val bitMatrix = writer.encode("s@mquicks@l,$customerId", BarcodeFormat.QR_CODE, 512, 512)
             val width = bitMatrix.width
             val height = bitMatrix.height
             val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)

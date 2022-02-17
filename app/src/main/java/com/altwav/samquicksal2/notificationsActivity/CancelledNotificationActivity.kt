@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.altwav.samquicksal2.LiveStatusActivity
+import com.altwav.samquicksal2.LoadingDialog
 import com.altwav.samquicksal2.R
 import com.altwav.samquicksal2.models.NotifApprovedModel
 import com.altwav.samquicksal2.models.NotifCancelledModel
@@ -21,10 +22,15 @@ import kotlinx.android.synthetic.main.activity_cancelled_notification.*
 
 class CancelledNotificationActivity : AppCompatActivity() {
     private lateinit var viewModel: NotifCancelledViewModel
+    private val loading = LoadingDialog(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cancelled_notification)
+
+        clCancelledNotification.visibility = View.GONE
+        loading.startLoading()
+
 
         btn_cancelled_notification_back.setOnClickListener {
             finish()
@@ -37,6 +43,8 @@ class CancelledNotificationActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(NotifCancelledViewModel::class.java)
         viewModel.getNotifCancelledObserver().observe(this, Observer <NotifCancelledModel>{
+            clCancelledNotification.visibility = View.VISIBLE
+            loading.isDismiss()
             if(it == null){
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
             } else {
@@ -49,6 +57,6 @@ class CancelledNotificationActivity : AppCompatActivity() {
             }
         })
 
-        viewModel.getNotifCancelledInfo(cust_id, notif_id.toInt())
+        viewModel.getNotifCancelledInfo(cust_id, notif_id)
     }
 }
