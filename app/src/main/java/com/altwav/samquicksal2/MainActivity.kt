@@ -106,6 +106,14 @@ class MainActivity : AppCompatActivity() {
                 clMainActivity.visibility = View.VISIBLE
                 loading.isDismiss()
                 ivOngoingGif.visibility = View.GONE
+                val intent = Intent(this, Login::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+                sharedPreferences.edit().remove("CUSTOMER_ID").apply()
+                startActivity(intent)
+                finish()
             }
         })
 

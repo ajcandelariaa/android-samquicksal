@@ -56,6 +56,9 @@ class Register : AppCompatActivity() {
                     }.apply()
 
                     val intent = Intent(this, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     intent.putExtra("id", it.id)
                     startActivity(intent)
                     finish()
